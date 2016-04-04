@@ -86,6 +86,16 @@ As of OpenShift v3.1 routes can be configured in the web console or via CLI. Usi
 If you're running OpenShift on a local machine, you can preview the new app by setting a local route like:
 
         $ oc expose service/nodejs-ex --hostname=10.2.2.2
+        
+#### database
+
+You may have noticed the "Page view count" reads "No database configured". Let's fix that by adding a MongoDB pod:
+
+        $ oc new-app -e \
+        $ MONGODB_USER=admin,MONGODB_DATABASE=mongo_db,MONGODB_PASSWORD=secret,MONGODB_ADMIN_PASSWORD=super-secret \
+        $ centos/mongodb-26-centos7
+        
+(Database work to be continued...)
 
 #### enjoy
 
