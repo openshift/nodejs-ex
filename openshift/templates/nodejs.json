@@ -191,23 +191,27 @@
                 "env": [
                   {
                     "name": "DATABASE_SERVICE_NAME",
-                    "value": "${DATABASE_SERVICE_NAME}"
+                    "value": "mongodb-26-centos7"
                   },
                   {
                     "name": "MONGODB_USER",
-                    "value": "${MONGODB_USER}"
+                    "value": "admin"
                   },
                   {
                     "name": "MONGODB_PASSWORD",
-                    "value": "${MONGODB_PASSWORD}"
+                    "value": "secret"
                   },
                   {
                     "name": "MONGODB_DATABASE",
-                    "value": "${MONGODB_DATABASE}"
+                    "value": "mongo_db"
                   },
                   {
                     "name": "MONGODB_ADMIN_PASSWORD",
-                    "value": "${MONGODB_ADMIN_PASSWORD}"
+                    "value": "super-secret"
+                  },
+                  {
+                    "name": "MONGODB_URL",
+                    "value": "172.30.27.142"
                   }
                 ],
                 "resources": {
