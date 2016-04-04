@@ -15,7 +15,7 @@ After logging in with `oc login`, if you don't have a project setup all ready, g
 
 That's it, project has been created.  Though it would probably be good to set your current project to this (thought new-project does it automatically as well), such as:
 
-        $ oc project nodejs
+        $ oc project nodejs-echo
 
 ### The app ###
 
