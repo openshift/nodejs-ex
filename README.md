@@ -105,7 +105,7 @@ If the build is not yet started (you can check by running `oc get builds`), star
 
         $ oc start-build nodejs-ex --follow
 
-You can alternatively leave off `--follow` and use `oc logs nodejs-ex-n` where *n* is the number of the build to track the output of the build.
+You can alternatively leave off `--follow` and use `oc logs build/nodejs-ex-n` where *n* is the number of the build to track the output of the build.
 
 #### Deploy the app
 
@@ -166,7 +166,7 @@ To take a look at environment variables set for each pod, run `oc env pods --all
 
 We need to add the environment variable `MONGO_URL` to our Node.js web app so that it will utilize our MongoDB, and enable the "Page view count" feature. Run:
 
-        $ oc env dc/nodejs-ex MONGO_URL='mongodb://admin:secret@172.30.0.112:27017/mongo_db'
+        $ oc set env dc/nodejs-ex MONGO_URL='mongodb://admin:secret@172.30.0.112:27017/mongo_db'
         
 Then check `oc status` to see that an updated deployment has been kicked off:
         
