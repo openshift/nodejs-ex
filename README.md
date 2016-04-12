@@ -147,7 +147,7 @@ The `-e` flag sets the environment variables we want used in the configuration o
 
 Running `oc status` or checking the web console will reveal the address of the newly created MongoDB:
 
-	In project nodejs-echo2 on server https://10.2.2.2:8443
+	In project nodejs-echo on server https://10.2.2.2:8443
 	
 	svc/mongodb-26-centos7 - 172.30.0.112:27017
 	  dc/mongodb-26-centos7 deploys istag/mongodb-26-centos7:latest
@@ -170,7 +170,7 @@ We need to add the environment variable `MONGO_URL` to our Node.js web app so th
         
 Then check `oc status` to see that an updated deployment has been kicked off:
         
-	In project nodejs-echo2 on server https://10.2.2.2:8443
+	In project nodejs-echo on server https://10.2.2.2:8443
 	
 	svc/mongodb-26-centos7 - 172.30.0.112:27017
 	  dc/mongodb-26-centos7 deploys istag/mongodb-26-centos7:latest
