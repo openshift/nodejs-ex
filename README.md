@@ -92,8 +92,14 @@ Check the status of your new nodejs app with the command:
 Which should return something like:
 
         In project nodejs (nodejs-echo) on server https://10.2.2.2:8443
+        
+        svc/nodejs-ex - 172.30.108.183:8080
+          dc/nodejs-ex deploys istag/nodejs-ex:latest <-
+            bc/nodejs-ex builds https://github.com/openshift/nodejs-ex with openshift/nodejs:0.10
+              build #1 running for 7 seconds
+            deployment #1 waiting on image or update
 
-Note the address, as yours may differ. This is the address for the web GUI console. You can follow along with the web console to see what new resources have been created and watch the progress of builds and deployments.
+Note the server address for the web console, as yours will likely differ if you're not using the Vagrant set-up. You can follow along with the web console to see what new resources have been created and watch the progress of builds and deployments.
 
 If the build is not yet started (you can check by running `oc get builds`), start one and stream the logs with:
 
@@ -116,51 +122,56 @@ This will help indicate what IP address the service is running, the default port
 
 An OpenShift route exposes a service at a host name, like www.example.com, so that external clients can reach it by name.
 
-DNS resolution for a host name is handled separately from routing; your administrator may have configured a cloud domain that will always correctly resolve to the OpenShift router, or if using an unrelated host name you may need to modify its DNS records independently to resolve to the router.
+DNS resolution for a host name is handled separately from routing; you may wish to configure a cloud domain that will always correctly resolve to the OpenShift router, or if using an unrelated host name you may need to modify its DNS records independently to resolve to the router.
 
-As of OpenShift v3.1 routes can be configured in the web console or via CLI. Using the CLI, you can expose a route as follows:
+That aside, let's explore our new web console, which for our example is running at [https://10.2.2.2:8443](https://10.2.2.2:8443).
 
-        $ oc expose service/<name> --hostname=<www.example.com>
+After logging into the web console with your same CLI `oc login` credentials, click on the project we just created, then click `Create route`.
 
-If you're running OpenShift on a local machine, you can preview the new app by setting a local route like:
+If you're running OpenShift on a local machine, you can preview the new app by setting the Hostname to a localhost like: *10.2.2.2*.
 
-        $ oc expose service/nodejs-ex --hostname=10.2.2.2
+Now navigate to the newly created Node.js web app at the hostname we just configured, for our example it was simply [https://10.2.2.2](https://10.2.2.2).
 
 #### Create a new app from an image (method 3) 
 
-You may have noticed the home page "Page view count" reads "No database configured". Let's fix that by adding a MongoDB service. We could use the second OpenShift template example (`nodejs-mongodb.json`) but for the sake of demonstration let's point `oc new-app` at a DockerHub image:
+You may have noticed the index page "Page view count" reads "No database configured". Let's fix that by adding a MongoDB service. We could use the second OpenShift template example (`nodejs-mongodb.json`) but for the sake of demonstration let's point `oc new-app` at a DockerHub image:
 
         $ oc new-app centos/mongodb-26-centos7 \
         $ -e MONGODB_USER=admin,MONGODB_DATABASE=mongo_db,MONGODB_PASSWORD=secret,MONGODB_ADMIN_PASSWORD=super-secret
         
 The `-e` flag sets the environment variables we want used in the configuration of our new app.
 
-Running `oc status` will reveal the address of the newly created MongoDB:
+Running `oc status` or checking the web console will reveal the address of the newly created MongoDB:
 
-        In project nodejs (nodejs-echo) on server https://10.2.2.2:8443
+	In project nodejs-echo2 on server https://10.2.2.2:8443
+	
+	svc/mongodb-26-centos7 - 172.30.0.112:27017
+	  dc/mongodb-26-centos7 deploys istag/mongodb-26-centos7:latest
+	    deployment #1 running for 43 seconds - 1 pod
+	
+	http://10.2.2.2 to pod port 8080-tcp (svc/nodejs-ex)
+	  dc/nodejs-ex deploys istag/nodejs-ex:latest <-
+	    bc/nodejs-ex builds https://github.com/openshift/nodejs-ex with openshift/nodejs:0.10
+	    deployment #1 deployed 14 minutes ago - 1 pod
+            
+Note that the url for our new Mongo instance, for our example, is `172.30.0.112:27017` -- your's will likely differ.
 
-        http://10.2.2.2 to pod port 8080-tcp (svc/nodejs-ex)
-          dc/nodejs-ex deploys istag/nodejs-ex:latest <-
-            bc/nodejs-ex builds https://github.com/openshift/nodejs-ex with openshift/nodejs:0.10
-            deployment #1 deployed 12 minutes ago - 1 pod
+#### Setting environment variables
 
-        svc/mongodb-26-centos7 - 172.30.201.71:27017
-          dc/mongodb-26-centos7 deploys istag/mongodb-26-centos7:latest
-            deployment #1 deployed 2 minutes ago - 1 pod
+To take a look at environment variables set for each pod, run `oc env pods --all --list`.
+
+We need to add the environment variable `MONGO_URL=mongodb://admin:secret@172.30.0.112:27017/mongo_db` to our Node.js web app so that it will utilize our MongoDB, and enable the "Page view count" feature.
 
 
-Remove all the nodejs-ex resources with the label "name=myapp".
+... 
 
-        $ oc delete all -l name=myapp
+Trying variations on: `oc env pods/nodejs-ex-1-jrz3w  MONGO_URL='mongodb://admin:secret@172.30.0.112:27017/mongo_db` 
 
-Recreate the nodejs service again, but this time specifying the MONGO_URL environment variable:
-
-        $ oc new-app https://github.com/openshift/nodejs-ex -l name=myapp \
-        $ -e MONGO_URL=mongodb://admin:secret@172.30.201.71:27017/mongo_db
+...
 
 #### Success
 
-This example will serve a welcome page and the current hit count as stored in a database to [http://10.2.2.2](http://10.2.2.2).
+This example will serve a Node.js welcome page and the current hit count as stored in a MongoDB database.
 
 #### Pushing updates
 
