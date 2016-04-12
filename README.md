@@ -56,21 +56,11 @@ Pointing `oc new-app` at source code kicks off an automagic chain of events, for
 
 The tool will inspect the source code, locate an appropriate image on DockerHub, create an ImageStream for that image, and then create the right build configuration, deployment configuration and service definition.  
 
-Next you'll be able to kick off the build, though new-app will kick off a build once all required dependencies are confirmed.  The -l flag will apply a label of "name=myapp" to all the resources created by new-app, for easy management later.
-
-Check the status of your new nodejs app with the command:
-
-        $ oc status
-
-Which should return something like:
-
-        In project nodejs (nodejs-echo) on server https://10.2.2.2:8443
-
-Note the address, as yours may differ. This is the address for the web GUI console. You can follow along with the web console to see what new resources have been created and watch the progress of builds and deployments.
+(The -l flag will apply a label of "name=myapp" to all the resources created by new-app, for easy management later.)
 
 #### Create a new app from a template (method 2)
 
-We can also create new apps using OpenShift template files. Clone the demo app source code from [GitHub repo](https://github.com/openshift/nodejs-ex) (fork if you like).
+We can also [create new apps using OpenShift template files](https://docs.openshift.com/enterprise/3.0/dev_guide/new_app.html#specifying-a-template). Clone the demo app source code from [GitHub repo](https://github.com/openshift/nodejs-ex) (fork if you like).
 
         $ git clone https://github.com/openshift/nodejs-ex
         
@@ -92,6 +82,18 @@ We can create the the new app from the `nodejs.json` template by using the `-f` 
         $ oc new-app -f /path/to/nodejs.json
         
 #### Build the app
+
+`oc new-app` will kick off a build once all required dependencies are confirmed. 
+
+Check the status of your new nodejs app with the command:
+
+        $ oc status
+
+Which should return something like:
+
+        In project nodejs (nodejs-echo) on server https://10.2.2.2:8443
+
+Note the address, as yours may differ. This is the address for the web GUI console. You can follow along with the web console to see what new resources have been created and watch the progress of builds and deployments.
 
 If the build is not yet started (you can check by running `oc get builds`), start one and stream the logs with:
 
