@@ -99,7 +99,7 @@ If the build is not yet started (you can check by running `oc get builds`), star
 
         $ oc start-build nodejs-ex --follow
 
-You can alternatively leave off `--follow` and use `oc build-logs nodejs-ex-n` where *n* is the number of the build to track the output of the build.
+You can alternatively leave off `--follow` and use `oc logs nodejs-ex-n` where *n* is the number of the build to track the output of the build.
 
 #### Deploy the app
 
