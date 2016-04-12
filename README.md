@@ -188,7 +188,7 @@ You should now have a Node.js welcome page showing the current hit count, as sto
 
 #### Pushing updates
 
-Assuming you used the URL of your own forked report, we can easily push changes to that hosted repo and simply repeat the steps above to build which will trigger the new built image to be deployed.
+Assuming you used the URL of your own forked repository, we can easily push changes and simply repeat the steps above which will trigger the newly built image to be deployed.
 
 ### Debugging
 
