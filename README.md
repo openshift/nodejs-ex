@@ -158,13 +158,13 @@ Running `oc status` or checking the web console will reveal the address of the n
 	    bc/nodejs-ex builds https://github.com/openshift/nodejs-ex with openshift/nodejs:0.10
 	    deployment #1 deployed 14 minutes ago - 1 pod
             
-Note that the url for our new Mongo instance, for our example, is `172.30.0.112:27017` -- your's will likely differ.
+Note that the url for our new Mongo instance, for our example, is `172.30.0.112:27017`, your's will likely differ.
 
 #### Setting environment variables
 
 To take a look at environment variables set for each pod, run `oc env pods --all --list`.
 
-We need to add the environment variable `MONGO_URL=mongodb://admin:secret@172.30.0.112:27017/mongo_db` to our Node.js web app so that it will utilize our MongoDB, and enable the "Page view count" feature. Run:
+We need to add the environment variable `MONGO_URL` to our Node.js web app so that it will utilize our MongoDB, and enable the "Page view count" feature. Run:
 
         $ oc env dc/nodejs-ex MONGO_URL='mongodb://admin:secret@172.30.0.112:27017/mongo_db'
         
