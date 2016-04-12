@@ -130,6 +130,10 @@ After logging into the web console with your same CLI `oc login` credentials, cl
 
 If you're running OpenShift on a local machine, you can preview the new app by setting the Hostname to a localhost like: *10.2.2.2*.
 
+This could also be accomplished by running:
+
+        $ oc expose svc/nodejs-ex --hostname=www.example.com
+
 Now navigate to the newly created Node.js web app at the hostname we just configured, for our example it was simply [https://10.2.2.2](https://10.2.2.2).
 
 #### Create a new app from an image (method 3) 
@@ -160,18 +164,27 @@ Note that the url for our new Mongo instance, for our example, is `172.30.0.112:
 
 To take a look at environment variables set for each pod, run `oc env pods --all --list`.
 
-We need to add the environment variable `MONGO_URL=mongodb://admin:secret@172.30.0.112:27017/mongo_db` to our Node.js web app so that it will utilize our MongoDB, and enable the "Page view count" feature.
+We need to add the environment variable `MONGO_URL=mongodb://admin:secret@172.30.0.112:27017/mongo_db` to our Node.js web app so that it will utilize our MongoDB, and enable the "Page view count" feature. Run:
 
-
-... 
-
-Trying variations on: `oc env pods/nodejs-ex-1-jrz3w  MONGO_URL='mongodb://admin:secret@172.30.0.112:27017/mongo_db` 
-
-...
+        $ oc env dc/nodejs-ex MONGO_URL='mongodb://admin:secret@172.30.0.112:27017/mongo_db'
+        
+Then check `oc status` to see that an updated deployment has been kicked off:
+        
+	In project nodejs-echo2 on server https://10.2.2.2:8443
+	
+	svc/mongodb-26-centos7 - 172.30.0.112:27017
+	  dc/mongodb-26-centos7 deploys istag/mongodb-26-centos7:latest
+	    deployment #1 deployed 2 hours ago - 1 pod
+	
+	http://10.2.2.2 to pod port 8080-tcp (svc/nodejs-ex)
+	  dc/nodejs-ex deploys istag/nodejs-ex:latest <-
+	    bc/nodejs-ex builds https://github.com/openshift/nodejs-ex with openshift/nodejs:0.10
+	    deployment #2 deployed about a minute ago - 1 pod
+	    deployment #1 deployed 2 hours ago
 
 #### Success
 
-This example will serve a Node.js welcome page and the current hit count as stored in a MongoDB database.
+You should now have a Node.js welcome page showing the current hit count, as stored in a MongoDB database.
 
 #### Pushing updates
 
