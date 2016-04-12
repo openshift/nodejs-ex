@@ -3,7 +3,7 @@ Node.js sample app on OpenShift!
 
 This example will serve a welcome page and the current hit count as stored in a database.
 
-### OpenShift v3 setup
+### OpenShift Origin v3 setup
 
 There are four methods to get started with OpenShift v3: 
 
@@ -40,15 +40,23 @@ That's it, project has been created.  Though it would probably be good to set yo
 
         $ oc project nodejs-echo
 
-### Configuring the web app
+### Creating new apps
 
-Now let's pull in the app source code from [GitHub repo](https://github.com/openshift/nodejs-ex) (fork if you like).
+You can create a new OpenShift application using the web console or by running the `oc new-app` command from the CLI. With the  OpenShift CLI there are three ways to create a new application, by specifying either: 
 
-#### Create a new app
+- [source code](https://docs.openshift.com/enterprise/3.0/dev_guide/new_app.html#specifying-source-code)
+- [OpenShift templates](https://docs.openshift.com/enterprise/3.0/dev_guide/new_app.html#specifying-a-template)
+- [DockerHub images](https://docs.openshift.com/enterprise/3.0/dev_guide/new_app.html#specifying-an-image)
+
+#### Create a new app from source code (method 1)
+
+Pointing `oc new-app` at source code kicks off an automagic chain of events, for our example:
 
         $ oc new-app https://github.com/openshift/nodejs-ex -l name=myapp
 
-That should be it, this form of `new-app` will locate an appropriate image on DockerHub, create an ImageStream for that image, and then create the right build configuration, deployment configuration and service definition.  Next you'll be able to kick off the build, though new-app will kick off a build once all required dependencies are confirmed.  The -l flag will apply a label of "name=myapp" to all the resources created by new-app, for easy management later.
+The tool will inspect the source code, locate an appropriate image on DockerHub, create an ImageStream for that image, and then create the right build configuration, deployment configuration and service definition.  
+
+Next you'll be able to kick off the build, though new-app will kick off a build once all required dependencies are confirmed.  The -l flag will apply a label of "name=myapp" to all the resources created by new-app, for easy management later.
 
 Check the status of your new nodejs app with the command:
 
@@ -58,8 +66,31 @@ Which should return something like:
 
         In project nodejs (nodejs-echo) on server https://10.2.2.2:8443
 
-Note the address, as yours may differ. This is the address for the web GUI console. You can follow along with the web console to see what new resources have been created and watch the progress of the build and deployment.
+Note the address, as yours may differ. This is the address for the web GUI console. You can follow along with the web console to see what new resources have been created and watch the progress of builds and deployments.
 
+#### Create a new app from a template (method 2)
+
+We can also create new apps using OpenShift template files. Clone the demo app source code from [GitHub repo](https://github.com/openshift/nodejs-ex) (fork if you like).
+
+        $ git clone https://github.com/openshift/nodejs-ex
+        
+Looking at the repo, you'll notice two files in the openshift/template directory:
+
+	nodejs-ex
+	├── README.md
+	├── openshift
+	│   └── templates
+	│       ├── nodejs-mongodb.json
+	│       └── nodejs.json
+	├── package.json
+	├── server.js
+	└── views
+	    └── index.html
+	    
+We can create the the new app from the `nodejs.json` template by using the `-f` flag and pointing the tool at a path to the template file:
+
+        $ oc new-app -f /path/to/nodejs.json
+        
 #### Build the app
 
 If the build is not yet started (you can check by running `oc get builds`), start one and stream the logs with:
@@ -93,7 +124,7 @@ If you're running OpenShift on a local machine, you can preview the new app by s
 
         $ oc expose service/nodejs-ex --hostname=10.2.2.2
 
-#### Create a database
+#### Create a new app from an image (method 3) 
 
 You may have noticed the home page "Page view count" reads "No database configured". Let's fix that by adding a MongoDB service:
 
