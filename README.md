@@ -50,7 +50,7 @@ You can create a new OpenShift application using the web console or by running t
 
 #### Create a new app from source code (method 1)
 
-Pointing `oc new-app` at source code kicks off an automagic chain of events, for our example:
+Pointing `oc new-app` at source code kicks off a chain of events, for our example run:
 
         $ oc new-app https://github.com/openshift/nodejs-ex -l name=myapp
 
