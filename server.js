@@ -15,6 +15,8 @@ app.engine('html', require('ejs').renderFile)
 app.use(morgan('combined'))
 
 var mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL
+// NOTE: when mongoURL was provided, we never set mongoURLLabel, which means it
+// will be empty in the UI. (broken by default)
 var mongoURLLabel = ''
 
 if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
