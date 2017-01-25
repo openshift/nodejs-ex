@@ -1,107 +1,142 @@
-//  OpenShift sample Node application
-var express = require('express'),
-    fs      = require('fs'),
-    app     = express(),
-    eps     = require('ejs'),
-    morgan  = require('morgan');
-    
-Object.assign=require('object-assign')
+'use strict'
 
-app.engine('html', require('ejs').renderFile);
+/*
+  NodeJS OpenShift Origin example for node 0.1xx and 4.xx
+*/
+
+var express = require('express')
+var morgan = require('morgan')
+var mongoose = require('mongoose')
+
+var app = module.exports = express()
+
+app.set('view engine', 'html')
+app.engine('html', require('ejs').renderFile)
 app.use(morgan('combined'))
 
-var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
-    ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
-    mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL,
-    mongoURLLabel = "";
+var mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL
+// NOTE: when mongoURL was provided, we never set mongoURLLabel, which means it
+// will be empty in the UI. (broken by default)
+var mongoURLLabel = ''
 
 if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
-  var mongoServiceName = process.env.DATABASE_SERVICE_NAME.toUpperCase(),
-      mongoHost = process.env[mongoServiceName + '_SERVICE_HOST'],
-      mongoPort = process.env[mongoServiceName + '_SERVICE_PORT'],
-      mongoDatabase = process.env[mongoServiceName + '_DATABASE'],
-      mongoPassword = process.env[mongoServiceName + '_PASSWORD']
-      mongoUser = process.env[mongoServiceName + '_USER'];
+  // TODO: improve a bit on this ugliness
+  let mongoServiceName = process.env.DATABASE_SERVICE_NAME.toUpperCase()
+  let mongoHost = process.env[mongoServiceName + '_SERVICE_HOST']
+  let mongoPort = process.env[mongoServiceName + '_SERVICE_PORT']
+  let mongoDatabase = process.env[mongoServiceName + '_DATABASE']
+  let mongoPassword = process.env[mongoServiceName + '_PASSWORD']
+  let mongoUser = process.env[mongoServiceName + '_USER']
 
   if (mongoHost && mongoPort && mongoDatabase) {
-    mongoURLLabel = mongoURL = 'mongodb://';
+    let mongoURLLabel = mongoURL = 'mongodb://'
     if (mongoUser && mongoPassword) {
-      mongoURL += mongoUser + ':' + mongoPassword + '@';
+      mongoURL += mongoUser + ':' + mongoPassword + '@'
     }
     // Provide UI label that excludes user id and pw
-    mongoURLLabel += mongoHost + ':' + mongoPort + '/' + mongoDatabase;
-    mongoURL += mongoHost + ':' +  mongoPort + '/' + mongoDatabase;
-
+    mongoURLLabel += mongoHost + ':' + mongoPort + '/' + mongoDatabase
+    mongoURL += mongoHost + ':' + mongoPort + '/' + mongoDatabase
   }
 }
-var db = null,
-    dbDetails = new Object();
 
-var initDb = function(callback) {
-  if (mongoURL == null) return;
-
-  var mongodb = require('mongodb');
-  if (mongodb == null) return;
-
-  mongodb.connect(mongoURL, function(err, conn) {
-    if (err) {
-      callback(err);
-      return;
+var dbConnection = function () {
+  let db = mongoose.connect(mongoURL)
+  // clear previously assigned event listeners so that we don't reach the limit
+  db.connection.removeAllListeners()
+  db.connection.once('error', function (err) {
+    console.error('Database connection error: %s', err)
+  })
+  db.connection.once('disconnected', function () {
+    console.log('Database disconnected from %s', mongoURL)
+  })
+  db.connection.once('open', function () {
+    db.dbDetails = {
+      type: 'MongoDB',
+      databaseName: db.name,
+      url: mongoURLLabel
     }
+    console.log('Connected to database %s', mongoURL)
+  })
 
-    db = conn;
-    dbDetails.databaseName = db.databaseName;
-    dbDetails.url = mongoURLLabel;
-    dbDetails.type = 'MongoDB';
+  db.model = function () {
+    // only register the schema if it wasn't previously registered.
+    // otherwise return the model.
+    if (!mongoose.models.Counts) {
+      return mongoose.model('Counts',
+        new db.Schema({
+          ip: String,
+          date: {type: Date, default: Date.now}
+        })
+      )
+    } else {
+      return mongoose.model('Counts')
+    }
+  }
+  return db
+}
 
-    console.log('Connected to MongoDB at: %s', mongoURL);
-  });
-};
+var countHits = function (db, callback) {
+  let countsModel = db.model()
+  countsModel.count({}, function (err, count) {
+    if (err) {
+      console.error('An error occured retrieving data %s', err)
+      callback(undefined)
+    }
+    callback(count)
+  })
+}
+
+function insertHits (ip, callback) {
+  let db = dbConnection()
+  let NewCountsModel = new db.model()
+  new NewCountsModel({ip: ip})
+  .save(function (err) {
+    if (err) {
+      console.error('An error occured while saving the data %s', err)
+    }
+    countHits(db, function (count) {
+      let results = {
+        dbInfo: db.dbDetails,
+        pageCountMessage: count
+      }
+      callback(results)
+    })
+  })
+}
 
 app.get('/', function (req, res) {
-  // try to initialize the db on every request if it's not already
-  // initialized.
-  if (!db) {
-    initDb(function(err){});
-  }
-  if (db) {
-    var col = db.collection('counts');
-    // Create a document with request IP and current time of request
-    col.insert({ip: req.ip, date: Date.now()});
-    col.count(function(err, count){
-      res.render('index.html', { pageCountMessage : count, dbInfo: dbDetails });
-    });
-  } else {
-    res.render('index.html', { pageCountMessage : null});
-  }
-});
+  insertHits(req.ip, function (results) {
+    results || {
+      dbInfo: null,
+      pageCountMessage: null
+    }
+    mongoose.disconnect()
+    res.render('index', {
+      dbInfo: results.dbInfo,
+      pageCountMessage: results.pageCountMessage
+    })
+  })
+})
 
 app.get('/pagecount', function (req, res) {
-  // try to initialize the db on every request if it's not already
-  // initialized.
-  if (!db) {
-    initDb(function(err){});
+  let db = dbConnection()
+  countHits(db, function (results) {
+    results || {'pageCount': -1}
+    db.disconnect()
+    res.send(JSON.stringify({pageCount: results}))
+  })
+})
+
+var server = app.listen(process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080, process.env.HOST || '0.0.0.0')
+
+server.once('error', function (err) {
+  if (err) {
+    console.error('Server error: %s', err)
   }
-  if (db) {
-    db.collection('counts').count(function(err, count ){
-      res.send('{ pageCount: ' + count + '}');
-    });
-  } else {
-    res.send('{ pageCount: -1 }');
-  }
-});
+})
 
-// error handling
-app.use(function(err, req, res, next){
-  console.error(err.stack);
-  res.status(500).send('Something bad happened!');
-});
-
-initDb(function(err){
-  console.log('Error connecting to Mongo. Message:\n'+err);
-});
-
-app.listen(port, ip);
-console.log('Server running on http://%s:%s', ip, port);
-
-module.exports = app ;
+server.once('listening', function () {
+  let host = server.address().address
+  let port = server.address().port
+  console.log('Application accessible on http://%s:%s', host, port)
+})
