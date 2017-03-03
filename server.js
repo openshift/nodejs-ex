@@ -5,8 +5,18 @@ var express = require('express'),
     eps     = require('ejs'),
     morgan  = require('morgan'),
     mongoose= require('mongoose');
+
+
+//creando esquema
+var Schema = mongoose.Schema;
+var Sh_user = new Schema({
+  email: String,
+  password: String
+});
+
+var Usuario = mongoose.model('usuario', Sh_user);
     
-Object.assign=require('object-assign')
+Object.assign=require('object-assign');
 
 app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined'))
@@ -21,7 +31,7 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
       mongoHost = process.env[mongoServiceName + '_SERVICE_HOST'],
       mongoPort = process.env[mongoServiceName + '_SERVICE_PORT'],
       mongoDatabase = process.env[mongoServiceName + '_DATABASE'],
-      mongoPassword = process.env[mongoServiceName + '_PASSWORD']
+      mongoPassword = process.env[mongoServiceName + '_PASSWORD'],
       mongoUser = process.env[mongoServiceName + '_USER'];
 
   if (mongoHost && mongoPort && mongoDatabase) {
@@ -91,6 +101,21 @@ app.get('/pagecount', function (req, res) {
     res.send('{ pageCount: -1 }');
   }
 });
+
+//prueba de conexion
+
+app.get('/usuario', function (req, res){
+  var us = new Usuario({
+    email: 'anibal@mail.com',
+    password: '12345'
+  });
+  us.save(function (err) {
+      if (err) res.send('opps');
+      else res.send('email: ' + us.email + ' password: ' + us.password);
+  });
+});
+
+//
 
 // error handling
 app.use(function(err, req, res, next){
