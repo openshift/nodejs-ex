@@ -3,7 +3,8 @@ var express = require('express'),
     fs      = require('fs'),
     app     = express(),
     eps     = require('ejs'),
-    morgan  = require('morgan');
+    morgan  = require('morgan'),
+    mongoose= require('mongoose');
     
 Object.assign=require('object-assign')
 
