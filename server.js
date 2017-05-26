@@ -91,6 +91,20 @@ app.get('/pagecount', function (req, res) {
   }
 });
 
+app.get('/home', function (req, res) {
+  res.render('home.html', {pageCountMessage: null})
+  // if (!db) {
+  //   initDb(function (err) {});
+  // }
+  // if (db) {
+  //   var col = db.collection(counts);
+  //   col.count(function (err, count) {
+  //     res.render('home.html', {pageCountMessage : count, dbInfo: dbDetails });
+  //   });
+  // }else{
+  //   res.render('home,html', {pageCountMessage: null});
+  // }
+});
 // error handling
 app.use(function(err, req, res, next){
   console.error(err.stack);
