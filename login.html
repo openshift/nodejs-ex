@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>online store</title>
+<style>
+h1{
+color:red;
+}
+p
+{
+color:red
+background:lightred;
+textindent:40px
+}
+</style>
+</head>
+<body bgcolor="palewhite">
+<table width="100%" cellpadding="5" cellspacing="0" >  
+<tr bgcolor="red"> 
+<td width="100%" valign="top">
+</td>  
+<td valign="top"><h1 align="left">QuickCook</h1>  
+<h3 align="left">COOKING UTENSILS</h3>
+</td> 
+</tr> 
+<h1>Welcome to QuickCook</h1>
+<p>Please Login!</p>
+<form name="login">
+Username<input type="text" name="userid"/>
+Password<input type="password" name="pswrd"/>
+<input type="button" onclick="check(this.form)" value="Login"/>
+<input type="reset" value="Cancel"/>
+</form>
+<img src="quick.jpg" width="100%" height="400" />
+<script language="javascript">
+function check(form)/*function to check userid & password*/
+{
+ /*the following code checkes whether the entered userid and password are matching*/
+ if(form.userid.value == "natsva" && form.pswrd.value == "natsva")
+  {
+    <a href=home page.html>login</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+  }
+ else
+ {
+   alert("Error Password or Username")/*displays error message*/
+  }
+}
+
+</body>
+</html>
