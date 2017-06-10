@@ -4,7 +4,7 @@ var express = require('express'),
     app     = express(),
     eps     = require('ejs'),
     morgan  = require('morgan'),
-    mongoose = require('mongoose'),
+    //mongoose = require('mongoose'),
     Task = require('./api/models/todoListModel'),
     bodyParser = require('body-parser');
     
@@ -39,8 +39,8 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
   }
 }
 
-mongoose.Promise = global.Promise;
-mongoose.connect(mongoURL)
+//mongoose.Promise = global.Promise;
+//mongoose.connect(mongoURL)
 
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
