@@ -1,6 +1,7 @@
 'use strict';
 module.exports = function(app) {
-  var tasks = require('./tasks');
-  app.route('/tasks',tasks);
+  app.route('/tests').get(function(req,res){
+    res.send('Hi tests');
+  });
 
 };
