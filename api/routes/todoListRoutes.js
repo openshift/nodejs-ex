@@ -3,7 +3,7 @@ module.exports = function(app) {
   //var todoList = require('../controllers/todoListController');
 
   app.get('/tasks',(req, res) => {
-    res.end('Tasks is here')
+    res.send('Tasks is here')
   });
 /*
   // todoList Routes
