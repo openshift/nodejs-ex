@@ -1,15 +1,18 @@
 //  OpenShift sample Node application
 var express = require('express'),
-    fs      = require('fs'),
+    //fs      = require('fs'),
     app     = express(),
-    eps     = require('ejs'),
-    morgan  = require('morgan');
+    //eps     = require('ejs'),
+    //morgan  = require('morgan'),
+    mongoose = require('mongoose'),
+    Task = require('./api/models/todoListModel'),
+    bodyParser = require('body-parser');
     
-Object.assign=require('object-assign')
-
+//Object.assign=require('object-assign')
+/*
 app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined'))
-
+*/
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
     mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL,
@@ -34,6 +37,16 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
 
   }
 }
+
+mongoose.Promise = global.Promise;
+mongoose.connect(mongoURL)
+
+app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.json());
+
+var routes = require('./api/routes/todoListRoutes');
+routes(app);
+/*
 var db = null,
     dbDetails = new Object();
 
@@ -100,7 +113,7 @@ app.use(function(err, req, res, next){
 initDb(function(err){
   console.log('Error connecting to Mongo. Message:\n'+err);
 });
-
+*/
 app.listen(port, ip);
 console.log('Server running on http://%s:%s', ip, port);
 
