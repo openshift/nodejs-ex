@@ -1,6 +1,9 @@
 'use strict';
 module.exports = function(app) {
   //var todoList = require('../controllers/todoListController');
+  
+  app.route('/api/test')
+    .get((req,res)=>{ res.send('testing here'); });
 
   app.get('/tasks',(req, res) => {
     res.send('Tasks is here')
