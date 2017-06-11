@@ -4,11 +4,11 @@ module.exports = function(app) {
   
   app.route('/api/test')
     .get((req,res)=>{ res.send('testing here'); });
-
+/*
   app.get('/tasks',(req, res) => {
     res.send('Tasks is here')
   });
-/*
+*/
   // todoList Routes
   app.route('/tasks')
     .get(todoList.list_all_tasks)
@@ -19,5 +19,5 @@ module.exports = function(app) {
     .get(todoList.read_a_task)
     .put(todoList.update_a_task)
     .delete(todoList.delete_a_task);
-*/    
+    
 };
