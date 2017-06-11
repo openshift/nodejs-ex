@@ -3,12 +3,16 @@ var express = require('express'),
     fs      = require('fs'),
     app     = express(),
     eps     = require('ejs'),
-    morgan  = require('morgan');
+    morgan  = require('morgan'),
+    mongoose = require('mongoose'),
+    Task = require('./api/models/todoListModel'),
+    bodyParser = require('body-parser');
     
 Object.assign=require('object-assign')
 
 app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined'))
+
 
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
@@ -34,8 +38,18 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
 
   }
 }
-var db = null,
-    dbDetails = new Object();
+
+mongoose.Promise = global.Promise;
+mongoose.connect(mongoURL);
+
+app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.json());
+
+var routes = require('./api/routes/todoListRoutes');
+routes(app);
+
+/*
+var db = null, dbDetails = new Object();
 
 var initDb = function(callback) {
   if (mongoURL == null) return;
@@ -84,13 +98,13 @@ app.get('/pagecount', function (req, res) {
   }
   if (db) {
     db.collection('counts').count(function(err, count ){
-      res.send('{ pageCount: ' + count + '}');
+      res.send('{ pageCount: == ' + count + '}');
     });
   } else {
     res.send('{ pageCount: -1 }');
   }
 });
-
+*/
 // error handling
 app.use(function(err, req, res, next){
   console.error(err.stack);
@@ -103,5 +117,4 @@ initDb(function(err){
 
 app.listen(port, ip);
 console.log('Server running on http://%s:%s', ip, port);
-
 module.exports = app ;
