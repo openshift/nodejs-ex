@@ -4,7 +4,7 @@ var express = require('express'),
     app     = express(),
     eps     = require('ejs'),
     morgan  = require('morgan'),
-    //mongoose = require('mongoose'),
+    mongoose = require('mongoose'),
     Task = require('./api/models/todoListModel'),
     bodyParser = require('body-parser');
     
@@ -39,8 +39,8 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
   }
 }
 
-//mongoose.Promise = global.Promise;
-//mongoose.connect(mongoURL)
+mongoose.Promise = global.Promise;
+mongoose.connect(mongoURL);
 
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
@@ -48,7 +48,7 @@ app.use(bodyParser.json());
 var routes = require('./api/routes/todoListRoutes');
 routes(app);
 
-
+/*
 var db = null, dbDetails = new Object();
 
 var initDb = function(callback) {
@@ -104,7 +104,7 @@ app.get('/pagecount', function (req, res) {
     res.send('{ pageCount: -1 }');
   }
 });
-
+*/
 // error handling
 app.use(function(err, req, res, next){
   console.error(err.stack);
