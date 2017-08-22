@@ -1,0 +1,143 @@
+
+
+/* Basic */
+
+	body, html {
+		height: 100%;
+	}
+
+	html {
+		background: none;
+	}
+
+/* List */
+
+	ul.actions li {
+		padding: 0 0 0 1em;
+	}
+
+		ul.actions li:first-child {
+			padding-left: 0;
+		}
+
+/* Form */
+
+	input[type="text"],
+	input[type="password"],
+	input[type="email"],
+	select,
+	textarea {
+		border: solid 2px #dddddd;
+		position: relative;
+	}
+
+	input[type="text"],
+	input[type="password"],
+	input[type="email"] {
+		line-height: 3em;
+	}
+
+	input[type="checkbox"],
+	input[type="radio"] {
+		font-size: 3em;
+	}
+
+		input[type="checkbox"] + label:before,
+		input[type="radio"] + label:before {
+			display: none;
+		}
+
+/* Button */
+
+	input[type="submit"],
+	input[type="reset"],
+	input[type="button"],
+	button,
+	.button {
+		border: solid 2px #dddddd;
+	}
+
+/* Main BG */
+
+	.main-bg {
+		z-index: 0;
+	}
+
+/* Main */
+
+	.main {
+		background-size: cover;
+	}
+
+		.main .container {
+			background: #fff;
+			border-top: solid 1px #dddddd;
+			position: relative;
+			z-index: 1;
+		}
+
+		.main .goto-next {
+			text-decoration: none;
+		}
+
+			.main .goto-next:before {
+				-moz-osx-font-smoothing: grayscale;
+				-webkit-font-smoothing: antialiased;
+				font-family: Verdana;
+				font-style: normal;
+				font-weight: normal;
+				text-transform: none !important;
+			}
+
+			.main .goto-next:before {
+				color: #dddddd;
+				content: '\f063';
+				display: block;
+				font-size: 2em;
+				height: 2em;
+				left: 0;
+				line-height: 2em;
+				position: absolute;
+				text-align: center;
+				text-indent: 0;
+				top: 0;
+				width: 2em;
+			}
+
+/* Header */
+
+	#header {
+		-ms-behavior: url("assets/js/ie/backgroundsize.min.htc");
+		background-image: url("../../images/bg.jpg");
+		background-size: cover;
+		height: 100%;
+	}
+
+		#header:after {
+			min-height: 100%;
+		}
+
+		#header header {
+			position: relative;
+			z-index: 1;
+		}
+
+		#header .container {
+			background: #fff;
+			z-index: 1;
+		}
+
+/* Footer */
+
+	#footer {
+		-ms-behavior: url("assets/js/ie/backgroundsize.min.htc");
+		background-image: url("../../images/pic04.jpg");
+		background-size: cover;
+	}
+
+		#footer .container {
+			background: #fff;
+			border-top: solid 1px #dddddd;
+			position: relative;
+			z-index: 1;
+		}
