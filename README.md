@@ -1,4 +1,33 @@
-Node.js sample app on OpenShift!
+
+
+<!-- toc -->
+
+- [Node.js sample app on OpenShift!](#nodejs-sample-app-on-openshift)
+  * [OpenShift Origin v3 setup](#openshift-origin-v3-setup)
+    + [Running a virtual machine with Vagrant](#running-a-virtual-machine-with-vagrant)
+    + [Starting a Docker container](#starting-a-docker-container)
+    + [Downloading the Binary](#downloading-the-binary)
+    + [Running an Ansible playbook](#running-an-ansible-playbook)
+  * [Creating a project](#creating-a-project)
+  * [Creating new apps](#creating-new-apps)
+    + [Create a new app from source code (method 1)](#create-a-new-app-from-source-code-method-1)
+    + [Create a new app from a template (method 2)](#create-a-new-app-from-a-template-method-2)
+    + [Build the app](#build-the-app)
+    + [Deploy the app](#deploy-the-app)
+    + [Configure routing](#configure-routing)
+    + [Create a new app from an image (method 3)](#create-a-new-app-from-an-image-method-3)
+    + [Setting environment variables](#setting-environment-variables)
+    + [Success](#success)
+    + [Pushing updates](#pushing-updates)
+  * [Debugging](#debugging)
+  * [Web UI](#web-ui)
+  * [Looking for help](#looking-for-help)
+  * [Compatibility](#compatibility)
+  * [License](#license)
+
+<!-- tocstop -->
+
+## Node.js sample app on OpenShift!
 -----------------
 
 This example will serve a welcome page and the current hit count as stored in a database.
@@ -205,11 +234,14 @@ To run this example from the Web UI, you can same steps following done on the CL
 <img src="http://img.youtube.com/vi/uocucZqg_0I/0.jpg"
 alt="OpenShift 3: Node.js Sample" width="240" height="180" border="10" /></a>
 
-## Looking for help
+### Looking for help
 
 If you get stuck at some point, or think that this document needs further details or clarification, you can give feedback and look for help using the channels mentioned in [the OpenShift Origin repo](https://github.com/openshift/origin), or by filing an issue.
 
+### Compatibility
 
-## License
+This repository is compatible with Node.js 4 and higher, excluding any alpha or beta versions.
+
+### License
 
 This code is dedicated to the public domain to the maximum extent permitted by applicable law, pursuant to [CC0](http://creativecommons.org/publicdomain/zero/1.0/).
