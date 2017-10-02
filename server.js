@@ -1,4 +1,5 @@
 //  OpenShift sample Node application
+// Agregué una lnea
 var express = require('express'),
     app     = express(),
     morgan  = require('morgan');
