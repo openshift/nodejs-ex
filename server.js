@@ -1,11 +1,15 @@
 //Dependencies
 var express = require('express'),
 	webapp = express(),
-	Promise = require('promise');
+	Promise = require('promise'),
+  morgan  = require('morgan');
 
 //OpenShift Settings
-var ipaddress = process.env.OPENSHIFT_NODEJS_IP || 'localhost',
-	port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
+var ip = process.env.OPENSHIFT_NODEJS_IP || 'localhost',
+var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
+
+//Reporting
+app.use(morgan('combined'));
 
 //External Routing
 webapp.get('/', function (req, res, next) {
@@ -25,6 +29,7 @@ webapp.get('/', function (req, res, next) {
 webapp.use('/public', express.static(__dirname + '/public'));
 
 //Webapp Initialize
-webapp.listen(3000, function () {
-	console.log('started');
-});
+app.listen(port, ip);
+console.log('working');
+
+module.exports = webapp;

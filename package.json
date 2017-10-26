@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
-  "scripts": {},
+  "scripts": {
+    "start": "node server.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/briandavidjoyner/diapers_new.git"
@@ -16,6 +18,7 @@
   "homepage": "https://github.com/briandavidjoyner/diapers_new#readme",
   "dependencies": {
     "express": "^4.16.2",
+    "morgan": "^1.9.0",
     "promise": "^8.0.1"
   }
 }
