@@ -12,18 +12,10 @@ var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 webapp.use(morgan('combined'));
 
 //External Routing
-webapp.get('/', function (req, res, next) {
-  
-  var options = {};
 
-  res.sendFile(__dirname + '/public/views/pages/index.html', options, function (err) {
-    if (err) {
-      next(err);
-    } else {
-      return;
-    }
-  });
-
+webapp.get('/', function(req, res) {
+    console.log(__dirname);
+    res.sendFile(__dirname + '/public/views/pages/index.html');
 });
 
 webapp.use('/public', express.static(__dirname + '/public'));
