@@ -15,13 +15,14 @@ webapp.use(morgan('combined'));
 
 webapp.get('/', function(req, res) {
     console.log(__dirname);
-    res.sendFile(__dirname + '/public/views/pages/index.html');
+    //res.sendFile(__dirname + '/public/views/pages/index.html');
+    res.send('works');
 });
 
 webapp.use('/public', express.static(__dirname + '/public'));
 
 //Webapp Initialize
 webapp.listen(port, ip);
-console.log('working');
+console.log('working again');
 
 module.exports = webapp;
