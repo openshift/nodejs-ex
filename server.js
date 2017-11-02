@@ -23,6 +23,6 @@ webapp.use('/public', express.static(__dirname + '/public'));
 
 //Webapp Initialize
 webapp.listen(port, ip);
-console.log('working again');
+console.log('live on ip: ' + ip + ':' + port);
 
 module.exports = webapp;
