@@ -12,7 +12,7 @@ var port = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || 8080;
 //webapp.use(morgan('combined'));
 
 //External Routing
-webapp.get('/test', function (req, res) {
+webapp.get('*', function (req, res) {
   console.log('works');
   res.send('Hello World!');
 });
