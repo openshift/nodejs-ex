@@ -6,7 +6,7 @@ var  morgan  = require('morgan');
 
 //OpenShift Settings
 var ip = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 'localhost';
-var port = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || 3000;
+var port = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || 8080;
 
 //Reporting
 webapp.use(morgan('combined'));
