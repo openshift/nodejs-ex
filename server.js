@@ -5,8 +5,8 @@ var	Promise = require('promise');
 //var  morgan  = require('morgan');
 
 //OpenShift Settings
-var ip = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || process.env.DIAPERSAPP_SERVICE_HOST || '0.0.0.0';
-var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || process.env.DIAPERSAPP_SERVICE_PORT_8080_TCP || 8080;
+var ip = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
+var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
 
 //Reporting
 //webapp.use(morgan('combined'));
