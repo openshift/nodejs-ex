@@ -2,24 +2,22 @@
 var express = require('express');
 var	webapp = express();
 var	Promise = require('promise');
-var  morgan  = require('morgan');
+//var  morgan  = require('morgan');
 
 //OpenShift Settings
 var ip = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 'localhost';
 var port = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || 8080;
 
 //Reporting
-webapp.use(morgan('combined'));
+//webapp.use(morgan('combined'));
 
 //External Routing
 
-webapp.get('/', function(req, res) {
-    console.log('route correct');
-    //res.sendFile(__dirname + '/public/views/pages/index.html');
-    res.send('works');
+app.get('/test', function (req, res) {
+  res.send('Hello World!');
 });
 
-webapp.use('/public', express.static(__dirname + '/public'));
+//webapp.use('/public', express.static(__dirname + '/public'));
 
 //Webapp Initialize
 webapp.listen(port, ip);
