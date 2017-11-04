@@ -2,18 +2,18 @@
 var express = require('express');
 var	webapp = express();
 var	Promise = require('promise');
-var  morgan  = require('morgan');
+//var  morgan  = require('morgan');
 
 //OpenShift Settings
-var ip = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0'
+var ip = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
 
 //Reporting
-webapp.use(morgan('combined'));
+//webapp.use(morgan('combined'));
 
 //External Routing
 webapp.get('/', function (req, res) {
-  console.log('works still?');
+  console.log('works as expected');
   res.send('Hello World Again!');
 });
 
