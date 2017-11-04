@@ -13,6 +13,7 @@ var port = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || 8080;
 
 //External Routing
 webapp.get('/test', function (req, res) {
+  console.log('works');
   res.send('Hello World!');
 });
 
