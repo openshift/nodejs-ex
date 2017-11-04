@@ -1,7 +1,7 @@
 //Dependencies
 var express = require('express');
 var	webapp = express();
-var	Promise = require('promise');
+//var	Promise = require('promise');
 //var  morgan  = require('morgan');
 
 //OpenShift Settings
