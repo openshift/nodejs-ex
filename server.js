@@ -6,7 +6,7 @@ var	Promise = require('promise');
 
 //OpenShift Settings
 var ip = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0'
-var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
+var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
 
 //Reporting
 //webapp.use(morgan('combined'));
