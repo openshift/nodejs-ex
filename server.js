@@ -14,7 +14,8 @@ var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
 //External Routing
 webapp.get('/', function (req, res) {
   console.log('works as expected');
-  res.send('Hello World Again!');
+  res.send('<p>some html</p>');
+  //res.send('Hello World Again!');
 });
 
 //webapp.use('/public', express.static(__dirname + '/public'));
