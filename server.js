@@ -4,6 +4,8 @@ var	webapp = express();
 var	Promise = require('promise');
 var  morgan  = require('morgan');
 
+console.log('process.env = ' + process.env);
+
 //OpenShift Settings
 var ip = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 'localhost';
 var port = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || 8080;
