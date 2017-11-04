@@ -5,7 +5,7 @@ var	Promise = require('promise');
 //var  morgan  = require('morgan');
 
 //OpenShift Settings
-var ip = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '172.30.241.106'
+var ip = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0'
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
 
 //Reporting
