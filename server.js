@@ -23,5 +23,6 @@ webapp.get('/', function (req, res) {
 webapp.listen(port, ip);
 //console.log('live on ip: ' + ip + ':' + port);
 console.log('Server running on http://%s:%s', ip, port);
+console.log(JSON.stringify(process.env));
 
 module.exports = webapp;
