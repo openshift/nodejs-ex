@@ -14,11 +14,11 @@ var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
 //External Routing
 app.get('/', function (req, res) {
   console.log('works as expected');
-  res.send('<p>some html</p>');
+  res.sendFile(__dirname + '/public/views/pages/index.html');
   //res.send('Hello World Again!');
 });
 
-//app.use('/public', express.static(__dirname + '/public'));
+app.use('/public', express.static(__dirname + '/public'));
 
 //app Initialize
 app.listen(port, ip);
