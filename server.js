@@ -12,13 +12,13 @@ var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
 //app.use(morgan('combined'));
 
 //External Routing
-app.get('/', function (req, res) {
+app.use('/public', express.static(__dirname + '/public'));
+
+app.get('*', function (req, res) {
   console.log('works as expected');
   res.sendFile(__dirname + '/public/views/pages/index.html');
   //res.send('Hello World Again!');
 });
-
-app.use('/public', express.static(__dirname + '/public'));
 
 //app Initialize
 app.listen(port, ip);
