@@ -93,7 +93,7 @@ app.get('/pagecount', function (req, res) {
 });
 
 app.get('/timeline', function (req, res) {
-  res.render('timeline.html', { events: event });
+  res.render('timeline.html', { events: 'event' });
 });
 
 // error handling
