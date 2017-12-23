@@ -1,5 +1,5 @@
 {
-  "name": "nodejs-ex",
+  "name": "history-timeline",
   "version": "0.0.1",
   "description": "Node.js sample app for OpenShift 3",
   "main": "server.js",
