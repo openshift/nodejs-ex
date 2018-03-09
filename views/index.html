@@ -211,9 +211,28 @@ pre {
 }
 
 </style>
-
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>       
 </head>
 <body>
+  <script>  
+    var socket = io.connect('http://localhost:3000');
+    socket.emit('join', 'room1');//emit from client every one recives this notice 
+
+    socket.on('roomcount', function(message) {
+      alert("message from server its the room count " +message);
+    });
+    var room = "abc123";
+
+    socket.on('connect', function() {
+   // Connected, let's sign-up for to receive messages for this room
+   socket.emit('join', room);
+   });
+   socket.on('message', function(data) {
+   alert('Incoming message from someone who has the same room name:', data);
+  });
+
+</script>
+
 
 <section class='container'>
           <hgroup>

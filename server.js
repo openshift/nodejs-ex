@@ -32,6 +32,40 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
 
   }
 }
+console.log('test socket');
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
+var roomno = 0;
+io.on('connection', function(client){
+  console.log('Client connected...');
+  var room = "abc123";
+  client.on('join', function(data) {
+    console.log("Default Room  : "+data);
+    client.join(data);
+  });
+
+  roomno++;
+  
+  io.sockets.emit('roomcount',roomno);//to emit to client
+
+  io.sockets.in(room).emit('message', 'what is going on, party people?');//the in is the room it self emit is the message to the room
+
+
+
+  client.on('event', function(data){});
+  client.on('disconnect', function(){
+     console.log('test disconect socket');
+      roomno--;
+    });
+
+});
+
+
+
+
+server.listen(3000);
+
+
 var db = null,
     dbDetails = new Object();
 
@@ -56,6 +90,9 @@ var initDb = function(callback) {
   });
 };
 //app.get('/', (req, res) => res.send('Hello World!'));
+
+
+
 
 
 app.get('/', function (req, res) {
