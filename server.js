@@ -66,7 +66,7 @@ io.on('connection', function(client){
 
 server.listen(3000);
 
-alert(ip+":"+port);
+console.log(ip+":"+port);
 
 var db = null,
     dbDetails = new Object();
