@@ -65,7 +65,7 @@ io.on('connection', function(client){
 
 
 //server.listen(3000);
-server.listen(8080, process.env.OPENSHIFT_NODEJS_IP);
+server.listen(port,ip);
 
 
 
