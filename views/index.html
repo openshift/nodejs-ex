@@ -212,7 +212,7 @@ pre {
 
 </style>
   <script>
-      var ws = new WebSocket('ws://localhost:8083');
+      var ws = new WebSocket('ws://'+hostname+':8083');
       ws.onmessage = function (event) {
         alert(event.data);
       };
