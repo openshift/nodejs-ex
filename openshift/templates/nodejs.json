@@ -36,6 +36,11 @@
             "name": "web",
             "port": 8080,
             "targetPort": 8080
+          },
+          {
+            "name": "web",
+            "port": 3000,
+            "targetPort": 3000
           }
         ],
         "selector": {
@@ -184,6 +189,8 @@
                 "ports": [
                   {
                     "containerPort": 8080
+                  },
+                  {
                     "containerPort": 3000
                   }
                 ],
