@@ -36,6 +36,11 @@
             "name": "web",
             "port": 8080,
             "targetPort": 8080
+          },
+           {
+            "name": "web2",
+            "port": 3000,
+            "targetPort": 3000
           }
         ],
         "selector": {
