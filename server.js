@@ -52,7 +52,7 @@ wss.on('connection', function connection(ws, req) {
   ws.send('something');
 });
 
-server.listen(8080, function listening() {
+server.listen(3000, function listening() {
   console.log('Listening on %d', server.address().port);
 });
 
