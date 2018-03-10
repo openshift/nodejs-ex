@@ -35,7 +35,7 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
 console.log('test socket');
 
 var server = require('http').createServer(app);
-var io = require('socket.io')(server);
+/*var io = require('socket.io')(server);
 var roomno = 0;
 io.on('connection', function(client){
   console.log('Client connected...');
@@ -67,7 +67,7 @@ io.on('connection', function(client){
 //server.listen(3000);
 server.listen(8080);
 
-
+*/
 
 
 console.log(ip+":"+port);
