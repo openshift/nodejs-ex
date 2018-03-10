@@ -65,7 +65,7 @@ io.on('connection', function(client){
 
 
 //server.listen(3000);
-server.listen(self.server);
+server.listen(3000);
 
 
 
