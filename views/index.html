@@ -215,7 +215,7 @@ pre {
 </head>
 <body>
   <script>  
-    var socket = io.connect('http://nodejs-mongo-persistent-prod.193b.starter-ca-central-1.openshiftapps.com:8080');
+    var socket = io.connect('ws://nodejs-mongo-persistent-prod.193b.starter-ca-central-1.openshiftapps.com:8080');
     socket.emit('join', 'room1');//emit from client every one recives this notice 
 
     socket.on('roomcount', function(message) {
