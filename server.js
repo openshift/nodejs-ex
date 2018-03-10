@@ -3,6 +3,9 @@ var express = require('express'),
     app     = express(),
     morgan  = require('morgan');
     
+    const url = require('url');
+    const WebSocket = require('ws');
+
 Object.assign=require('object-assign')
 
 app.engine('html', require('ejs').renderFile);
@@ -35,6 +38,30 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
 console.log('test socket');
 
 var server = require('http').createServer(app);
+
+const wss = new WebSocket.Server({ server });
+
+wss.on('connection', function connection(ws, req) {
+  const location = url.parse(req.url, true);
+  // You might use location.query.access_token to authenticate or share sessions
+  // or req.headers.cookie (see http://stackoverflow.com/a/16395220/151312)
+
+  ws.on('message', function incoming(message) {
+    console.log('received: %s', message);
+  });
+  ws.send('something');
+});
+
+server.listen(8080, function listening() {
+  console.log('Listening on %d', server.address().port);
+});
+
+
+
+
+
+
+
 /*var io = require('socket.io')(server);
 var roomno = 0;
 io.on('connection', function(client){
@@ -60,9 +87,6 @@ io.on('connection', function(client){
     });
 
 });
-
-
-
 
 //server.listen(3000);
 server.listen(8080);

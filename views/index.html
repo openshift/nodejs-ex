@@ -211,6 +211,14 @@ pre {
 }
 
 </style>
+  <script>
+      var ws = new WebSocket('ws://localhost:8080');
+      ws.onmessage = function (event) {
+        alert(event.data);
+      };
+    </script>
+
+
   <!--
  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>       
   -->
