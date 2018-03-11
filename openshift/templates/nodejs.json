@@ -36,12 +36,8 @@
             "name": "web",
             "port": 8080,
             "targetPort": 8080
-          },
-          {
-            "name": "web2",
-            "port": 3000,
-            "targetPort": 3000
           }
+          
         ],
         "selector": {
           "name": "${NAME}"
@@ -209,22 +205,7 @@
                         "path": "/",
                         "port": 8080
                     }
-                },
-                 "readinessProbe2": {
-                  "timeoutSeconds": 3,
-                  "initialDelaySeconds": 3,
-                  "httpGet": {
-                    "path": "/",
-                    "port": 3000
-                  }
-                },
-                "livenessProbe2": {
-                    "timeoutSeconds": 3,
-                    "initialDelaySeconds": 30,
-                    "httpGet": {
-                        "path": "/",
-                        "port": 3000
-                    }
+                }
                 },
                 "resources": {
                     "limits": {
