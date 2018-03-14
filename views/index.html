@@ -219,13 +219,15 @@ pre {
       };
     </script>
 
-
   <!--
  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>       
   -->
 </head>
 <body>
-  <!--
+
+ 
+
+  <!--unused not needed
   <script>  
     var socket = io.connect('ws://www.nodejs-mongo-persistent-prod.193b.starter-ca-central-1.openshiftapps.com:8000',{'forceNew':true });
     socket.emit('join', 'room1');//emit from client every one recives this notice 
@@ -245,12 +247,35 @@ pre {
 
 </script>
 -->
+<head>
+  <script src="https://simplewebrtc.com/latest-v2.js"></script> 
+  <script>
+    var webrtc = new SimpleWebRTC({
+  // the id/element dom element that will hold "our" video
+  localVideoEl: 'localVideo',
+  // the id/element dom element that will hold remote videos
+  remoteVideosEl: 'remotesVideos',
+  // immediately ask for camera access
+  autoRequestMedia: true
+});
+webrtc.on('readyToCall', function () {
+  // you can name it anything
+  webrtc.joinRoom('your awesome room name');
+});
 
+  </script>
+</head>
+<body>
+  <video height="300" id="localVideo"></video>
+  <div id="remotesVideos"></div>
+</body>
 
 <section class='container'>
           <hgroup>
             <h1>Welcome to your Node.js application on OpenShift</h1>
           </hgroup>
+
+ 
 
 
         <div class="row">
@@ -340,3 +365,4 @@ $ git push</pre>
 </section>
 </body>
 </html>
+

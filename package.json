@@ -13,7 +13,9 @@
     "morgan": "^1.7.0",
     "object-assign": "4.1.0",
     "socket.io": "^2.0.4",
-    "ws": "^5.0.0"
+    "ws": "^5.0.0",
+    "bufferutil": "^3.0.3",
+    "utf-8-validate": "^4.0.0"
   },
   "engine": {
     "node": "*",
@@ -25,7 +27,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/openshift/nodejs-ex.git"
+    "url": "git+ssh://git@github.com/openshift/nodejs-ex.git"
   },
   "author": "Steve Speicher <sspeiche@gmail.com>",
   "license": "CC-BY-1.0",
@@ -36,5 +38,9 @@
   "optionalDependencies": {
     "bufferutil": "^3.0.3",
     "utf-8-validate": "^4.0.0"
-  }
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "devDependencies": {}
 }
