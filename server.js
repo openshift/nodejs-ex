@@ -32,10 +32,25 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
     // Provide UI label that excludes user id and pw
     mongoURLLabel += mongoHost + ':' + mongoPort + '/' + mongoDatabase;
     mongoURL += mongoHost + ':' +  mongoPort + '/' + mongoDatabase;
-
+    console.log("Pass "+mongoPassword);
+    console.log("MongoUrl "+mongoUser);
+    console.log("MongoUrl "+mongoURL);
+  }else{
+    console.log('Mongo Not Connected');
   }
 }
+else{
+  console.log('Mongo Not Connected');
+}
 console.log('test socket');
+
+
+
+
+
+
+
+
 
 var server = require('http').createServer(app);
 
