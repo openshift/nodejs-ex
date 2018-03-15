@@ -185,9 +185,6 @@
                 "ports": [
                   {
                     "containerPort": 8080
-                  },
-                  {
-                    "containerPort2": 3000
                   }
                 ],
                 "readinessProbe": {
