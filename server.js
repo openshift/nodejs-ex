@@ -13,6 +13,8 @@ Object.assign=require('object-assign')
 
 app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined'))
+//you can get the user and password from Application>secrect
+//you can get the IP from the Cluster IP
 
 var mongoDB = 'mongodb://userODO:SLkhNIbks6EDAAeK@172.30.77.50:27017/sampledb';//creates if not exist
 // if OPENSHIFT env variables are present, use the available connection info:
