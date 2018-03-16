@@ -50,12 +50,13 @@ var Kitten = mongoose.model('Kitten', kittySchema);
 
 
 //adding item to db
+for(var i=0;i<10;i++){
 var fluffy = new Kitten({ name: 'fluffy' });
   fluffy.save(function (err, fluffy) {
     if (err) return console.error(err);
     
   });
-
+}
 
 
 Kitten.find({ name: /^fluff/ },function(err,res){//call backs
