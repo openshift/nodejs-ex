@@ -14,7 +14,7 @@ Object.assign=require('object-assign')
 app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined'))
 
-var mongoDB = 'mongodb://127.0.0.1/geo';//creates if not exist
+var mongoDB = '127.0.0.1:27017/' + process.env.OPENSHIFT_APP_NAME;//creates if not exist
 mongoose.connect(mongoDB);
 
 
