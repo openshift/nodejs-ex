@@ -14,7 +14,7 @@ Object.assign=require('object-assign')
 app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined'))
 
-var mongoDB = 'mongodb://userODO:SLkhNIbks6EDAAeK@127.0.0.1:27017/sampledb';//creates if not exist
+var mongoDB = 'mongodb://userODO:SLkhNIbks6EDAAeK@172.30.77.50:27017/sampledb';//creates if not exist
 // if OPENSHIFT env variables are present, use the available connection info:
 /*if (process.env.OPENSHIFT_MONGODB_DB_URL) {
     url = process.env.OPENSHIFT_MONGODB_DB_URL +
