@@ -5,14 +5,79 @@ var express = require('express'),
     
     const url = require('url');
     const WebSocket = require('ws');
+var mongoose   = require('mongoose');
+
+
 
 Object.assign=require('object-assign')
 
 app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined'))
+
+var mongoDB = 'mongodb://127.0.0.1/geo';//creates if not exist
+mongoose.connect(mongoDB);
+
+
+// Get Mongoose to use the global promise library
+mongoose.Promise = global.Promise;
+//Get the default connection
+var db = mongoose.connection;
+
+//Bind connection to error event (to get notification of connection errors)
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
+db.once('open', function() {
+  // we're connected!
+    console.log('Connected mongo');
+});
+
+
+//creating schema
+var kittySchema = mongoose.Schema({
+  name: String
+});
+var Kitten = mongoose.model('Kitten', kittySchema);
+
+
+//adding item to db
+var fluffy = new Kitten({ name: 'fluffy' });
+  fluffy.save(function (err, fluffy) {
+    if (err) return console.error(err);
+    
+  });
+
+
+
+Kitten.find({ name: /^fluff/ },function(err,res){//call backs
+  if (err){ return console.error(err);}
+}).skip(2).limit(10).sort({ _id : 1})//chaining
+.then(function(doc){
+  console.log("----------");
+  console.log(JSON.stringify({items:doc}));
+  console.log("----------");
+  console.log({items:doc});
+});
+
+var query = { _id: '5aabff12b42d05095069c27c' };
+Kitten.update(query, { name: 'jason bourne' }, function(err,doc){//reverse remove
+  if (err) {return console.error(err);}
+  console.log("Updated Matchs: ");
+},function(err,doc){
+
+});
+
+var query2 = { _id: '5aabff12b42d05095069c27c' };
+Kitten.findOneAndUpdate(query2, { name: 'jason bourne2' }, function(err,doc){//findOneAndRemove
+  console.log("Updated One: ");
+},function(err,doc){
+});
+
+
+/*
 console.log(process.env.mongoURL);
 console.log(process.env.OPENSHIFT_NODEJS_PORT);
 console.log(process.env.OPENSHIFT_NODEJS_IP);
+console.log(process.env.OPENSHIFT_MONGODB_DB_URL);*/
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
     mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL,
@@ -135,6 +200,7 @@ var initDb = function(callback) {
   });
 };
 //app.get('/', (req, res) => res.send('Hello World!'));
+
 
 
 

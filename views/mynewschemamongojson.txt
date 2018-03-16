@@ -1,0 +1,65 @@
+[{
+	"_id": "",
+	"RequestTicket": {
+		"Review": {
+			"Content": "",
+			"ID": "",
+			"Title": "",
+			"Type": "",
+			"UserName": ""
+		},
+		"Notification": {
+			"ID": "",
+			"RequestTicketUUID": "",
+			"UserName": ""
+		},
+		"Category": "",
+		"Closed": {
+			"CloseBy": "",
+			"CloseReason": ""
+		},
+		"Completed": {
+			"Date": "",
+			"Time": ""
+		},
+		"Destination": "",
+		"Origin": "",
+		"Request": {
+			"Date": "",
+			"Time": ""
+		},
+		"Status": "",
+		"Task": "task",
+		"UUID": "",
+		"ID": ""
+	},
+	"AccountStatus": "",
+	"BasicInformation": {
+		"Address": "",
+		"Birthday": "",
+		"City": "",
+		"Email": "",
+		"Name": "",
+		"Surname": "",
+		"PhoneNumber": "",
+		"Role": "",
+		"FacebookLink ": ""
+		
+
+	},
+	"isVerified": "",
+	"Location": "",
+	"OnlineStatus": "",
+	"Password": "",
+	"RegisterDate": "",
+	"Role": "",
+	"SecurityQuestion": "",
+	"UserName": "",
+	"UUID": "",
+	"UserLog": {
+		"ID": "",
+		"IP": "",
+		"Time": "",
+		"Date": ""
+	}
+}]
