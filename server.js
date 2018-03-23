@@ -121,12 +121,10 @@ for(var i=0;i<10;i++){
 var fluffy = new Kitten({ name: 'fluffy'+i });
   fluffy.save(function (err, fluffy) {
     if (err) return console.error(err);
-    
+     console.log(i);
   });
-    console.log(i);
+   
 }
-
-
 Kitten.find({ name: /^fluff/ },function(err,res){//call backs
   if (err){ return console.error(err);}
 }).skip(2).limit(10).sort({ _id : 1})//chaining
@@ -136,15 +134,12 @@ Kitten.find({ name: /^fluff/ },function(err,res){//call backs
   console.log("----------");
   console.log({items:doc});
 });
-
 var query = { _id: '5aabff12b42d05095069c27c' };
 Kitten.update(query, { name: 'jason bourne' }, function(err,doc){//reverse remove
   if (err) {return console.error(err);}
   console.log("Updated Matchs: ");
 },function(err,doc){
-
 });
-
 var query2 = { _id: '5aabff12b42d05095069c27c' };
 Kitten.findOneAndUpdate(query2, { name: 'jason bourne2' }, function(err,doc){//findOneAndRemove
   console.log("Updated One: ");
