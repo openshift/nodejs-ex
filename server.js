@@ -126,7 +126,7 @@ for(let i=0;i<10;i++){
 }
 Kitten.find({ name: /^fluff },function(err,res){//call backs
   if (err){ return console.error(err);}
-}).skip(2).limit(10).sort({ _id : 1})//chaining
+}).skip(2).limit(1000).sort({ _id : 1})//chaining
 .then(function(doc){
   console.log("----------");
   console.log(JSON.stringify({items:doc}));
