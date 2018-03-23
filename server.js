@@ -117,7 +117,7 @@ var Kitten = mongoose.model('Kitten', kittySchema);
 
 
 //adding item to db
-for(i=0;i<10;i++){
+for(let i=0;i<10;i++){
     let fluffy = new Kitten({ name: 'fluffy'+i });
       fluffy.save(function (err, fluffy) {
         if (err) return console.error(err);
