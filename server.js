@@ -90,7 +90,13 @@ mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 
 mongoose.connection.on('connected', function(){ console.log('connected');});
-mongoose.connection.on('error', function(error){  console.log("connection error :" +error);});
+mongoose.connection.on('error', function(error){  
+    console.log("------------");
+    console.log("connection error :" +error);
+    console.log("you can get the user and password from Application>secrect ");
+    console.log("you can get the IP from the Cluster IP")
+    console.log("------------")
+});
 mongoose.connection.on('disconnected', function(){  console.log('disconected');});
 
 //Bind connection to error event (to get notification of connection errors)
