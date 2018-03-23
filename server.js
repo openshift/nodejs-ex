@@ -16,6 +16,67 @@ app.use(morgan('combined'))
 //you can get the user and password from Application>secrect
 //you can get the IP from the Cluster IP
 
+
+/*
+console.log(process.env.mongoURL);
+console.log(process.env.OPENSHIFT_NODEJS_PORT);
+console.log(process.env.OPENSHIFT_NODEJS_IP);
+console.log(process.env.OPENSHIFT_MONGODB_DB_URL);*/
+var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
+    ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
+    mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL,
+    mongoURLLabel = "";
+/*
+if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
+  var mongoServiceName = process.env.DATABASE_SERVICE_NAME.toUpperCase(),
+      mongoHost = process.env[mongoServiceName + '_SERVICE_HOST'],
+      mongoPort = process.env[mongoServiceName + '_SERVICE_PORT'],
+      mongoDatabase = process.env[mongoServiceName + '_DATABASE'],
+      mongoPassword = process.env[mongoServiceName + '_PASSWORD']
+      mongoUser = process.env[mongoServiceName + '_USER'];
+      
+  if (mongoHost && mongoPort && mongoDatabase) {
+    mongoURLLabel = mongoURL = 'mongodb://';
+    if (mongoUser && mongoPassword) {
+      mongoURL += mongoUser + ':' + mongoPassword + '@';
+    }
+    // Provide UI label that excludes user id and pw
+    mongoURLLabel += mongoHost + ':' + mongoPort + '/' + mongoDatabase;
+    mongoURL += mongoHost + ':' +  mongoPort + '/' + mongoDatabase;
+   
+  }else{
+    console.log('Mongo Not Connected');
+  }
+}
+else{
+  console.log('Mongo null');
+}
+console.log('test socket');
+
+*/
+
+var server = require('http').createServer(app);
+
+
+const wss = new WebSocket.Server({ server });
+
+wss.on('connection', function connection(ws, req) {
+  const location = url.parse(req.url, true);
+  // You might use location.query.access_token to authenticate or share sessions
+  // or req.headers.cookie (see http://stackoverflow.com/a/16395220/151312)
+
+  ws.on('message', function incoming(message) {
+    console.log('received: %s', message);
+  });
+  ws.send('something');
+});
+
+server.listen(8080, function listening() {
+  console.log('Listening on %d', server.address().port);
+});
+
+
+
 var mongoDB = 'mongodb://userQNU:ORwhNq7eYeyuyTx5@172.30.49.151:27017/sampledb';//creates if not exist
 // if OPENSHIFT env variables are present, use the available connection info:
 /*if (process.env.OPENSHIFT_MONGODB_DB_URL) {
@@ -82,72 +143,6 @@ Kitten.findOneAndUpdate(query2, { name: 'jason bourne2' }, function(err,doc){//f
   console.log("Updated One: ");
 },function(err,doc){
 });
-
-
-/*
-console.log(process.env.mongoURL);
-console.log(process.env.OPENSHIFT_NODEJS_PORT);
-console.log(process.env.OPENSHIFT_NODEJS_IP);
-console.log(process.env.OPENSHIFT_MONGODB_DB_URL);*/
-var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
-    ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
-    mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL,
-    mongoURLLabel = "";
-/*
-if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
-  var mongoServiceName = process.env.DATABASE_SERVICE_NAME.toUpperCase(),
-      mongoHost = process.env[mongoServiceName + '_SERVICE_HOST'],
-      mongoPort = process.env[mongoServiceName + '_SERVICE_PORT'],
-      mongoDatabase = process.env[mongoServiceName + '_DATABASE'],
-      mongoPassword = process.env[mongoServiceName + '_PASSWORD']
-      mongoUser = process.env[mongoServiceName + '_USER'];
-      
-  if (mongoHost && mongoPort && mongoDatabase) {
-    mongoURLLabel = mongoURL = 'mongodb://';
-    if (mongoUser && mongoPassword) {
-      mongoURL += mongoUser + ':' + mongoPassword + '@';
-    }
-    // Provide UI label that excludes user id and pw
-    mongoURLLabel += mongoHost + ':' + mongoPort + '/' + mongoDatabase;
-    mongoURL += mongoHost + ':' +  mongoPort + '/' + mongoDatabase;
-   
-  }else{
-    console.log('Mongo Not Connected');
-  }
-}
-else{
-  console.log('Mongo null');
-}
-console.log('test socket');
-
-*/
-
-
-
-
-
-
-
-var server = require('http').createServer(app);
-
-const wss = new WebSocket.Server({ server });
-
-wss.on('connection', function connection(ws, req) {
-  const location = url.parse(req.url, true);
-  // You might use location.query.access_token to authenticate or share sessions
-  // or req.headers.cookie (see http://stackoverflow.com/a/16395220/151312)
-
-  ws.on('message', function incoming(message) {
-    console.log('received: %s', message);
-  });
-  ws.send('something');
-});
-
-server.listen(8080, function listening() {
-  console.log('Listening on %d', server.address().port);
-});
-
-
 
 
 
