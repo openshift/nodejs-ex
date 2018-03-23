@@ -123,6 +123,7 @@ var fluffy = new Kitten({ name: 'fluffy' });
     if (err) return console.error(err);
     
   });
+    console.log(i);
 }
 
 
