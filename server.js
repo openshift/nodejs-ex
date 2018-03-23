@@ -75,7 +75,7 @@ server.listen(8080, function listening() {
   console.log('Listening on %d', server.address().port);
 });
 
-var mongoDB = 'mongodb://userQNU:ORwhNq7eYeyuyTx5@172.30.1.1:27017/sampledb';//creates if not exist
+var mongoDB = 'mongodb://userQNU:ORwhNq7eYeyuyTx5@172.30.1.1/sampledb';//creates if not exist
 console.log("real MongoUrl "+process.env.OPENSHIFT_MONGODB_DB_URL);
 console.log("Attempt to Connect to mongodb : "+mongoDB);
 mongoose.connect(mongoDB);
