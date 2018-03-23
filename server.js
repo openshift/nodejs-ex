@@ -75,12 +75,8 @@ server.listen(8080, function listening() {
   console.log('Listening on %d', server.address().port);
 });
 
-var mongoDB = 'mongodb://userQNU:ORwhNq7eYeyuyTx5@172.30.49.151:27017/sampledb';//creates if not exist
-// if OPENSHIFT env variables are present, use the available connection info:
-/*if (process.env.OPENSHIFT_MONGODB_DB_URL) {
-    url = process.env.OPENSHIFT_MONGODB_DB_URL +
-    process.env.OPENSHIFT_APP_NAME;
-}*/
+var mongoDB = 'mongodb://userQNU:yasLIUbmpocdTTWo@172.30.49.151:27017/sampledb';//creates if not exist
+console.log("real MongoUrl "+process.env.OPENSHIFT_MONGODB_DB_URL);
 console.log("Attempt to Connect to mongodb : "+mongoDB);
 mongoose.connect(mongoDB);
 console.log("Mongose Connection state : "+mongoose.connection.readyState);
