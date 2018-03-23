@@ -75,8 +75,6 @@ server.listen(8080, function listening() {
   console.log('Listening on %d', server.address().port);
 });
 
-
-
 var mongoDB = 'mongodb://userQNU:ORwhNq7eYeyuyTx5@172.30.49.151:27017/sampledb';//creates if not exist
 // if OPENSHIFT env variables are present, use the available connection info:
 /*if (process.env.OPENSHIFT_MONGODB_DB_URL) {
@@ -92,15 +90,19 @@ mongoose.Promise = global.Promise;
 //Get the default connection
 var db = mongoose.connection;
 
-//Bind connection to error event (to get notification of connection errors)
-db.on('error', function(){
-    console.error.bind(console, 'MongoDB connection error:');
-});
+mongoose.connection.on('connected', function(){ console.log('connected');});
+mongoose.connection.on('error', function(){  console.log('error');});
+mongoose.connection.on('disconnected', function(){  console.log('disconected');});
 
+//Bind connection to error event (to get notification of connection errors)
+/*db.on('error', function(){
+    console.error.bind(console, 'MongoDB connection error:');
+});*/
+/*
 db.once('open', function() {
   // we're connected!
     console.log('Connected mongo');
-});
+});*/
 
 
 //creating schema
