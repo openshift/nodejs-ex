@@ -124,7 +124,7 @@ for(let i=0;i<10;i++){
       });
     console.log(i);
 }
-Kitten.find({ name: /^fluff },function(err,res){//call backs
+Kitten.find({ name: /^fluff/ },function(err,res){//call backs
   if (err){ return console.error(err);}
 }).skip(2).limit(1000).sort({ _id : 1})//chaining
 .then(function(doc){
