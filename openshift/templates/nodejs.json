@@ -5,17 +5,17 @@
     "name": "nodejs-example",
     "annotations": {
       "openshift.io/display-name": "Node.js",
-      "description": "An example Node.js application with no database. For more information about using this template, including OpenShift considerations, see https://github.com/openshift/nodejs-ex/blob/master/README.md.",
+      "description": "An example Node.js application with no database. For more information about using this template, including OpenShift considerations, see https://github.com/ernesto-pama/nodejs-ex/blob/master/README.md.",
       "tags": "quickstart,nodejs",
       "iconClass": "icon-nodejs",
       "openshift.io/long-description": "This template defines resources needed to develop a NodeJS application, including a build configuration and application deployment configuration.  It does not include a database.",
       "openshift.io/provider-display-name": "Red Hat, Inc.",
-      "openshift.io/documentation-url": "https://github.com/openshift/nodejs-ex",
+      "openshift.io/documentation-url": "https://github.com/ernesto-pama/nodejs-ex",
       "openshift.io/support-url": "https://access.redhat.com",
       "template.openshift.io/bindable": "false"
     }
   },
-  "message": "The following service(s) have been created in your project: ${NAME}.\n\nFor more information about using this template, including OpenShift considerations, see https://github.com/openshift/nodejs-ex/blob/master/README.md.",
+  "message": "The following service(s) have been created in your project: ${NAME}.\n\nFor more information about using this template, including OpenShift considerations, see https://github.com/ernesto-pama/nodejs-ex/blob/master/README.md.",
   "labels": {
       "template": "nodejs-example",
       "app": "nodejs-example"
@@ -243,7 +243,7 @@
       "displayName": "Git Repository URL",
       "description": "The URL of the repository with your application source code.",
       "required": true,
-      "value": "https://github.com/openshift/nodejs-ex.git"
+      "value": "https://github.com/ernesto-pama/nodejs-ex.git"
     },
     {
       "name": "SOURCE_REPOSITORY_REF",
