@@ -13,8 +13,7 @@ Object.assign=require('object-assign')
 
 app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined'))
-//you can get the user and password from Application>secrect
-//you can get the IP from the Cluster IP
+
 
 
 /*
@@ -74,6 +73,10 @@ wss.on('connection', function connection(ws, req) {
 server.listen(8080, function listening() {
   console.log('Listening on %d', server.address().port);
 });
+
+//IMPORTANT for mongodb Connection in openshift
+//you can get the user and password from Application>secrect
+//you can get the IP from the Cluster IP
 
 var mongoDB = 'mongodb://userQNU:ORwhNq7eYeyuyTx5@172.30.253.141:27017/sampledb';//creates if not exist
 console.log("real MongoUrl "+process.env.OPENSHIFT_MONGODB_DB_URL);
