@@ -118,12 +118,11 @@ var Kitten = mongoose.model('Kitten', kittySchema);
 
 //adding item to db
 for(i=0;i<10;i++){
-var fluffy = new Kitten({ name: 'fluffy'+i });
-  fluffy.save(function (err, fluffy) {
-    if (err) return console.error(err);
-     console.log(i);
-  });
-   
+    let fluffy = new Kitten({ name: 'fluffy'+i });
+      fluffy.save(function (err, fluffy) {
+        if (err) return console.error(err);
+      });
+    console.log(i);
 }
 Kitten.find({ name: /^fluff/ },function(err,res){//call backs
   if (err){ return console.error(err);}
