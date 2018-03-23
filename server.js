@@ -85,7 +85,7 @@ var mongoDB = 'mongodb://userQNU:ORwhNq7eYeyuyTx5@172.30.49.151:27017/sampledb';
 }*/
 console.log("Attempt to Connect to mongodb : "+mongoDB);
 mongoose.connect(mongoDB);
-
+console.log("Mongose Connection state : "+mongoose.connection.readyState);
 
 // Get Mongoose to use the global promise library
 mongoose.Promise = global.Promise;
