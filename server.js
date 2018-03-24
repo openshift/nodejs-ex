@@ -14,7 +14,7 @@ Object.assign=require('object-assign')
 app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined'))
 
-console.log(mongoConnection.ConnectionString());
+console.log(mongoConnection.ConnectionString);
 
 /*
 console.log(process.env.mongoURL);
