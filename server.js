@@ -159,9 +159,8 @@ Employee.find({ name: /^test/ },function(err,res){//call backs
   if (err){ return console.error(err);}
 }).then(function(doc){
   console.log("-----employee external-----");
-  console.log(JSON.stringify({items:doc}));
+  console.log(JSON.stringify({items:doc}, undefined, '\t'));
   console.log("----------");
-  console.log({items:doc});
 });
 
 
