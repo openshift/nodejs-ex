@@ -147,13 +147,13 @@ Kitten.findOneAndUpdate(query2, { name: 'jason bourne2' }, function(err,doc){//f
 });
 
 
-let emp = new Employee({ name: 'test External Model' });
+let emp = new genericTestModel.Employee({ name: 'test External Model' });
 emp.save(function (err, fluffy) {
   if (err) return console.error("generic test Model "+err);
 });
 emp.find({ name: /^fluff/ },function(err,res){//call backs
   if (err){ return console.error(err);}
-});
+})
 
 
 /*var io = require('socket.io')(server);
