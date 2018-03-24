@@ -14,7 +14,7 @@ Object.assign=require('object-assign')
 app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined'))
 
-console.log(mongoConnection.ConnectionString);
+console.log(exports.ConnectionString());
 
 /*
 console.log(process.env.mongoURL);
@@ -78,7 +78,7 @@ server.listen(8080, function listening() {
 //you can get the user and password from Application>secrect
 //you can get the IP from the Cluster IP
 
-var mongoDB = mongoConnection.ConnectionString;//creates if not exist
+var mongoDB = exports.ConnectionString();//creates if not exist
 console.log("Attempt to Connect to mongodb : "+mongoDB);
 mongoose.connect(mongoDB);
 console.log("Mongose Connection state : "+mongoose.connection.readyState);
