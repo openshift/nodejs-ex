@@ -154,7 +154,7 @@ employee.save(function (err, fluffy) {
   if (err) return console.error("generic test Model "+err);
 });
 
-Employee.find({ name: /^generic/ },function(err,res){//call backs
+Employee.find({ name: /^test/ },function(err,res){//call backs
   if (err){ return console.error(err);}
 }).then(function(doc){
   console.log("-----employee external-----");
