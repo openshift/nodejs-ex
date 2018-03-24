@@ -7,6 +7,7 @@ var express = require('express'),
     const url = require('url');
     const WebSocket = require('ws');
 var mongoose   = require('mongoose');
+var graphql = require('graphql');
 var mongoConnection = require('./GlobalConstant/mongoConnection')
 var genericTestModel = require('./models/genericTestModel');
 
@@ -159,7 +160,7 @@ Employee.find({ name: /^test/ },function(err,res){//call backs
   if (err){ return console.error(err);}
 }).then(function(doc){
   console.log("-----employee external-----");
-  console.log(JSON.stringify({items:doc}, undefined, '\t'));
+  console.log(JSON.stringify({items:doc}, undefined, '\s'));
   console.log("----------");
 });
 
