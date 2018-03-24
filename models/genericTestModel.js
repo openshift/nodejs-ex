@@ -1,9 +1,9 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 var GlobalConstant = require('../GlobalConstant/mongoConnection');
-mongoose.connect(GlobalConstant.mongoConnection);
+mongoose.connect(GlobalConstant.ConnectionString);
 
-var employeeSchema = new Schema({
+let employeeSchema = new Schema({
     name: String,
     address: String,
     phone: String,

@@ -7,14 +7,14 @@ var express = require('express'),
     const WebSocket = require('ws');
 var mongoose   = require('mongoose');
 var mongoConnection = require('./GlobalConstant/mongoConnection')
-
+var genericTestModel = require('./models/genericTestModel');
 
 Object.assign=require('object-assign')
 
 app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined'))
 
-console.log(mongoConnection.mongoConnection());
+console.log(mongoConnection.ConnectionString());
 
 /*
 console.log(process.env.mongoURL);
@@ -78,7 +78,7 @@ server.listen(8080, function listening() {
 //you can get the user and password from Application>secrect
 //you can get the IP from the Cluster IP
 
-var mongoDB = 'mongodb://userQNU:ORwhNq7eYeyuyTx5@172.30.253.141:27017/sampledb';//creates if not exist
+var mongoDB = mongoConnection.ConnectionString;//creates if not exist
 console.log("Attempt to Connect to mongodb : "+mongoDB);
 mongoose.connect(mongoDB);
 console.log("Mongose Connection state : "+mongoose.connection.readyState);
@@ -145,7 +145,10 @@ Kitten.findOneAndUpdate(query2, { name: 'jason bourne2' }, function(err,doc){//f
 },function(err,doc){
 });
 
-
+let emp = new genericTestModel({ name: 'fluffy' });
+emp.save(function (err, fluffy) {
+  if (err) return console.error("generic test Model "+err);
+});
 
 
 
