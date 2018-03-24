@@ -149,6 +149,7 @@ let Employee= genericTestModel.employee;
 let ExtraInfo = genericTestModel.extraInfo;
 
 let extraInfo = new ExtraInfo({ name: 'extra info test' });
+extraInfo.save();
 let employee = new Employee({ name: 'test External Model',extraInfo:extraInfo });
 
 employee.save(function (err, fluffy) {
