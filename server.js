@@ -6,7 +6,7 @@ var express = require('express'),
     const url = require('url');
     const WebSocket = require('ws');
 var mongoose   = require('mongoose');
-
+var mongoConnection = require('./GlobalConstant/mongoConnection')
 
 
 Object.assign=require('object-assign')
@@ -14,7 +14,7 @@ Object.assign=require('object-assign')
 app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined'))
 
-
+console.log(mongoConnection.mongoConnection());
 
 /*
 console.log(process.env.mongoURL);
@@ -88,7 +88,7 @@ mongoose.Promise = global.Promise;
 //Get the default connection
 var db = mongoose.connection;
 
-mongoose.connection.on('connected', function(){ console.log('connected');});
+mongoose.connection.on('connected', function(){ console.log('connected mongoose');});
 mongoose.connection.on('error', function(error){  
     console.log("------------");
     console.log("connection error :" +error);
