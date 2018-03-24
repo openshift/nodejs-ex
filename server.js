@@ -145,10 +145,12 @@ Kitten.findOneAndUpdate(query2, { name: 'jason bourne2' }, function(err,doc){//f
 },function(err,doc){
 });
 
-var Employee= genericTestModel.employee;
-var x = genericTestModel.employeeSchema;
+let Employee= genericTestModel.employee;
+let ExtraInfo = genericTestModel.extraInfo;
 
-let employee = new Employee({ name: 'test External Model' });
+let extraInfo = new ExtraInfo({ name: 'extra info test' });
+
+let employee = new Employee({ name: 'test External Model',extraInfo:extraInfo });
 
 employee.save(function (err, fluffy) {
   if (err) return console.error("generic test Model "+err);

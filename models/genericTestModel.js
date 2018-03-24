@@ -3,11 +3,19 @@ var mongoose = require('mongoose'),
 var GlobalConstant = require('../GlobalConstant/mongoConnection');
 mongoose.connect(GlobalConstant.connectionStr);
 
-let employeeSchema = new Schema({
+let extraInfo = new Schema({
     name: String
+});
+
+let employeeSchema = new Schema({
+    name: String,
+    extraInfo:[extraInfo]
 
 });
+
+
 let employee= mongoose.model('Employee', employeeSchema);
 
+module.exports.extraInfo = extraInfo;
 module.exports.employeeSchema = employeeSchema;
 module.exports.employee = employee;
