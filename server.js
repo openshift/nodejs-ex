@@ -156,6 +156,11 @@ employee.save(function (err, fluffy) {
 
 Employee.find({ name: /^fluff/ },function(err,res){//call backs
   if (err){ return console.error(err);}
+}).then(function(doc){
+  console.log("----------");
+  console.log(JSON.stringify({items:doc}));
+  console.log("----------");
+  console.log({items:doc});
 });
 
 
