@@ -1,3 +1,5 @@
+import { Employee } from './models/genericTestModel';
+
 //  OpenShift sample Node application
 var express = require('express'),
     app     = express(),
@@ -77,7 +79,7 @@ server.listen(8080, function listening() {
 //you can get the user and password from Application>secrect
 //you can get the IP from the Cluster IP
 
-var mongoDB = mongoConnection.connectionStr;//creates if not exist
+var mongoDB = mongoConnection.conn;//creates if not exist
 console.log("Attempt to Connect to mongodb : "+mongoDB);
 mongoose.connect(mongoDB);
 console.log("Mongose Connection state : "+mongoose.connection.readyState);
@@ -144,11 +146,14 @@ Kitten.findOneAndUpdate(query2, { name: 'jason bourne2' }, function(err,doc){//f
 },function(err,doc){
 });
 
-let emp = new genericTestModel({ name: 'fluffy' });
+
+let emp = new Employee({ name: 'test External Model' });
 emp.save(function (err, fluffy) {
   if (err) return console.error("generic test Model "+err);
 });
-
+emp.find({ name: /^fluff/ },function(err,res){//call backs
+  if (err){ return console.error(err);}
+});
 
 
 /*var io = require('socket.io')(server);

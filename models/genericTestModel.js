@@ -1,7 +1,7 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 var GlobalConstant = require('../GlobalConstant/mongoConnection');
-mongoose.connect(GlobalConstant.ConnectionString);
+mongoose.connect(GlobalConstant.conn);
 
 let employeeSchema = new Schema({
     name: String,
@@ -10,4 +10,4 @@ let employeeSchema = new Schema({
     email: String
 });
 
-module.exports = mongoose.model('Employee', employeeSchema);
+module.exports.Employee = mongoose.model('Employee', employeeSchema);
