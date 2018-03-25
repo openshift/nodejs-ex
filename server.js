@@ -173,7 +173,7 @@ account.save(function (err, fluffy) {
   if (err) return console.error("test Account Model "+err);
 });
 
-Account.find({ UserName: /^test/ },function(err,res){//call backs
+Account.find({ UserName: undefined },function(err,res){//call backs
   if (err){ return console.error(err);}
 }).then(function(doc){
   console.log("-----account external-----");
