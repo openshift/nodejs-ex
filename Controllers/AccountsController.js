@@ -7,32 +7,28 @@ var mongoConnection = require('../GlobalConstant/mongoConnection');
 var express = require('express');
 var router = express.Router();
 
-
-
-
-
 router.get('/', function(req, res){
-
     res.send('GET route on things.');
  });
-
  router.get('/Create', function(req, res){
     createAccounttest() ;
     res.send('Get route Added User');
  });
-
  router.get('/Delete', function(req, res){
     dropAccount();
-    res.send('GET route on things.');
+    res.send('GET route Drop things.');
  });
 
+ router.get('/:id', function(req, res){
+    const id = req.params.id;
+    res.send('GET route Drop things.'+id);
+ });
 
  router.post('/', function(req, res){
     res.send('POST route on things.');
  });
 
 
-module.exports = router;
 function dropAccount(){
     let Account = AccountsModel.Account;
     Account.collection.drop();
@@ -192,4 +188,6 @@ function createAccounttest() {
         console.log("----------");
     });
 }
+
+module.exports = router;
 //ACCOUNTS CONTROLLER
