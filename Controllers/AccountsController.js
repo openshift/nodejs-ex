@@ -9,17 +9,34 @@ var router = express.Router();
 
 
 
+
+
 router.get('/', function(req, res){
-    createAccounttest();
+
     res.send('GET route on things.');
  });
+
+ router.get('/Create', function(req, res){
+    createAccounttest() ;
+    res.send('Get route Added User');
+ });
+
+ router.get('/Delete', function(req, res){
+    dropAccount();
+    res.send('GET route on things.');
+ });
+
+
  router.post('/', function(req, res){
     res.send('POST route on things.');
  });
 
 
 module.exports = router;
-
+function dropAccount(){
+    let Account = AccountsModel.Account;
+    Account.collection.drop();
+}
 function createAccounttest() {
     let Account = AccountsModel.Account;
     let Notification = AccountsModel.Notification;
