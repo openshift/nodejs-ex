@@ -2,6 +2,11 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 var GlobalConstant = require('../GlobalConstant/mongoConnection');
 mongoose.connect(GlobalConstant.connectionStr);
+
+let GeoSchema = new Schema({
+    latitude: { type: Number, default: 0  }, longitude: { type: Number, default: 0  }
+});
+
 let BasicInformationSchema = new Schema({
     Address: { type: String, default: undefined  },
     Birthday: { type: String, default: undefined  },
@@ -47,8 +52,8 @@ let RequestTicketSchema = new Schema({
     Completed:[CompletedSchema],
     Closed:[ClosedSchema],
     Review:[ReviewSchema],
-    Origin: { type: String, default: undefined  },
-    Destination: { type: String, default: undefined  },
+    Origin: [GeoSchema],
+    Destination:[GeoSchema],
     Status: { type: String, default: undefined  },
     Task: { type: String, default: undefined  },
     UUID:{ type: String, default: undefined  },
@@ -79,6 +84,7 @@ let Review= mongoose.model('Review', ReviewSchema);
 let RequestTicket= mongoose.model('RequestTicket', RequestTicketSchema);
 let UserLog= mongoose.model('UserLog', UserLogSchema);
 let BasicInformation= mongoose.model('BasicInformation', BasicInformationSchema);
+let Geo= mongoose.model('Geo', GeoSchema);
 
 module.exports.AccountSchema = AccountSchema;
 module.exports.NotificationSchema = NotificationSchema;
@@ -89,7 +95,7 @@ module.exports.ReviewSchema = ReviewSchema;
 module.exports.RequestTicketSchema = RequestTicketSchema;
 module.exports.UserLogSchema = UserLogSchema;
 module.exports.BasicInformationSchema = BasicInformationSchema;
-
+module.exports.GeoSchema = GeoSchema;
 
 module.exports.Account = Account;
 module.exports.Notification = Notification;
@@ -101,4 +107,4 @@ module.exports.RequestTicket = RequestTicket;
 module.exports.Request = Request;
 module.exports.UserLog = UserLog;
 module.exports.BasicInformation = BasicInformation;
-
+module.exports.Geo = Geo;

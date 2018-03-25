@@ -8,6 +8,7 @@ var express = require('express'),
     const WebSocket = require('ws');
 var mongoose   = require('mongoose');
 var graphql = require('graphql');
+
 var mongoConnection = require('./GlobalConstant/mongoConnection');
 var genericTestModel = require('./models/genericTestModel');
 var Accounts = require('./models/Accounts');
@@ -177,6 +178,7 @@ let Review= Accounts.Review;
 let RequestTicket= Accounts.RequestTicket;
 let UserLog= Accounts.UserLog;
 let BasicInformation= Accounts.BasicInformation;
+let Geo= Accounts.Geo;
 
 //--randomizer
 
@@ -198,9 +200,9 @@ let phone =fakerator.phone.number();
 let email = fakerator.internet.email();
 let state =fakerator.address.countryCode();
 let city = fakerator.address.city();
-let street =fakerator.address.street();
-let origin = fakerator.address.geoLocation();
-let destination = fakerator.address.geoLocation();
+let location = new Geo({latitude: fakerator.address.geoLocation().latitude, longitude: fakerator.address.geoLocation().longitude});
+let origin = new Geo({latitude: fakerator.address.geoLocation().latitude, longitude: fakerator.address.geoLocation().longitude});
+let destination = new Geo({latitude: fakerator.address.geoLocation().latitude, longitude: fakerator.address.geoLocation().longitude});
 let username =fakerator.internet.password(12);
 let password =fakerator.internet.password(12);
 let ipAddress = fakerator.internet.ip();
@@ -233,7 +235,7 @@ console.log(phone);
 console.log(email);
 console.log(state);
 console.log(city);
-console.log(street);
+console.log(location);
 console.log(origin);
 console.log(destination);
 console.log(username);
@@ -310,7 +312,7 @@ let account = new Account({
   RequestTicket:requestTicket,
   UserLog:userLog,
   AccountStatus:'Active',
-  Location: ''+street,
+  Location: ''+location,
   OnlineStatus: 'Online',
   Password: ''+password,
   RegisterDate: ''+registerDate,
@@ -324,6 +326,11 @@ let account = new Account({
 account.save(function (err, fluffy) {
   if (err) return console.error("test Account Model "+err);
 });
+
+
+
+
+
 
 Account.find({  },function(err,res){//call backs
   if (err){ return console.error(err);}
