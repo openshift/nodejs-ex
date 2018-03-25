@@ -243,7 +243,7 @@ let account = new Account({
   RegisterDate: '',
   Role: '',
   SecurityQuestion: '',
-  UserName: '',
+  UserName: 'test',
   UUID: ''
 });
 
