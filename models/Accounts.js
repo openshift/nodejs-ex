@@ -4,8 +4,8 @@ var GlobalConstant = require('../GlobalConstant/mongoConnection');
 mongoose.connect(GlobalConstant.connectionStr);
 
 let GeoSchema = new Schema({
-    latitude: { type: Number, default: 0  },
-    longitude: { type: Number, default: 0  }
+    latitude: { type: Number},
+    longitude: { type: Number}
 });
 
 let BasicInformationSchema = new Schema({
@@ -66,7 +66,7 @@ let AccountSchema = new Schema({
     RequestTicket:[RequestTicketSchema],
     UserLog:[UserLogSchema],
     AccountStatus:{ type: String, default: undefined  },
-    Location: { type: String, default: undefined  },
+    Location: [GeoSchema],
     OnlineStatus: { type: String, default: undefined },
     Password: { type: String, default: undefined  },
     RegisterDate: { type: String, default: undefined },
