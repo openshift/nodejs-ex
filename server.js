@@ -11,7 +11,8 @@ var graphql = require('graphql');
 var mongoConnection = require('./GlobalConstant/mongoConnection');
 var genericTestModel = require('./models/genericTestModel');
 var Accounts = require('./models/Accounts');
-
+var randomProfile = require('random-profile-generator');
+var fakerator = require("fakerator")();
 Object.assign=require('object-assign')
 
 app.engine('html', require('ejs').renderFile);
@@ -177,39 +178,76 @@ let RequestTicket= Accounts.RequestTicket;
 let UserLog= Accounts.UserLog;
 let BasicInformation= Accounts.BasicInformation;
 
+//--randomizer
+
+let gender = randomProfile.gender();
+let address = randomProfile.address();
+let birthday = randomProfile.birthday();
+let completedDate =  new Date().toLocaleDateString();
+let completedTime =  new Date().toLocaleTimeString();
+let requestedTime = new Date().toLocaleDateString();
+let requestedDate = new Date().toLocaleTimeString();
+let userLogTime = new Date().toLocaleTimeString();
+let userLogDate = new Date().toLocaleDateString();
+let registerDate = new Date().toLocaleDateString();
+
+
+let name = fakerator.names.firstName();
+let lastname =fakerator.names.lastName();
+let phone =fakerator.phone.number();
+let email = fakerator.internet.email();
+let state =fakerator.address.countryCode();
+let city = fakerator.address.city();
+let street =fakerator.address.street();
+let origin = fakerator.address.geoLocation();
+let destination = fakerator.address.geoLocation();
+let username =fakerator.internet.password(12);
+let password =fakerator.internet.password(12);
+let ipAddress = fakerator.internet.ip();
+let title = fakerator.lorem.sentence();
+let content = fakerator.lorem.sentence();
+let type = fakerator.lorem.sentence();
+let task = fakerator.lorem.sentence();
+let closeBy = 'closeBy';
+let closeReason = fakerator.lorem.sentence();
+let category = fakerator.lorem.sentence();
+let accountUuid = fakerator.misc.uuid();
+let requestTicketUUID = fakerator.misc.uuid();
+
+
 let basicInformation = new BasicInformation({
-  Address: '',
-  Birthday: '',
-  City: '',
-  Email: '',
-  Name: '',
-  Surname: '',
-  PhoneNumber: '',
-  Role: '',
+  Address: ''+address,
+  Birthday: ''+birthday,
+  City: ''+state,
+  Email: ''+email,
+  Name: ''+name,
+  Surname: ''+lastname,
+  PhoneNumber: ''+phone,
+  Role: 'Cleaner',
   FacebookLink: ''
 });
 let userLog = new UserLog({
-  IP: '',
-  Time: '',
-  Date: ''
+  IP: ''+ipAddress,
+  Time: ''+userLogTime,
+  Date: ''+userLogTime
 });
 let review = new Review({
-  Content: '',
-  Title: '',
-  Type: '',
-  UserName: '',
+  Content: ''+content,
+  Title: ''+title,
+  Type: ''+type,
+  UserName: ''+username,
 });
 let completed = new Completed({
-  Date: '',
-  Time: '',
+  Date: ''+completedDate,
+  Time: ''+completedTime,
 });
 let request = new Request({
-  Date: '',
-  Time: '',
+  Date: ''+requestedDate,
+  Time: ''+requestedTime,
 });
 let closed = new Closed({
-  CloseBy: '',
-  CloseReason: '',
+  CloseBy: ''+closeBy,
+  CloseReason: ''+closeReason,
 });
 let notification = new Notification({
   RequestTicketUUID:'',
@@ -223,12 +261,12 @@ let requestTicket = new RequestTicket({
   Completed:completed,
   Closed:closed,
   Review:review,
-  Origin: '',
-  Destination: '',
-  Status: '',
-  Task: '',
-  UUID:'',
-  Category:''
+  Origin: ''+origin,
+  Destination: ''+destination,
+  Status: 'Ongoing',
+  Task: ''+task,
+  UUID:''+requestTicketUUID,
+  Category:''+category
 });
 
 
@@ -236,16 +274,16 @@ let account = new Account({
   BasicInformation:basicInformation,
   RequestTicket:requestTicket,
   UserLog:userLog,
-  AccountStatus:'',
-  Location: '',
-  OnlineStatus: '',
-  Password: '',
-  RegisterDate: '',
-  Role: '',
-  SecurityQuestion: '',
-  UserName: 'test',
-  UUID: ''
+  AccountStatus:'Active',
+  Location: ''+street,
+  OnlineStatus: 'Online',
+  Password: ''+password,
+  RegisterDate: ''+registerDate,
+  SecurityQuestion: 'SecurityQuestion',
+  UserName: ''+username,
+  UUID: ''+accountUuid
 });
+
 
 
 account.save(function (err, fluffy) {
