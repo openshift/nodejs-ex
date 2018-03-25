@@ -215,6 +215,41 @@ let accountUuid = fakerator.misc.uuid();
 let requestTicketUUID = fakerator.misc.uuid();
 
 
+//--randomizer test
+console.log("---randomizetest---");
+console.log(gender);
+console.log(address);
+console.log(birthday);
+console.log(completedDate);
+console.log(completedTime);
+console.log(requestedDate);
+console.log(requestedTime);
+console.log(userLogTime);
+console.log(userLogDate);
+console.log(registerDate);
+console.log(name);
+console.log(lastname);
+console.log(phone);
+console.log(email);
+console.log(state);
+console.log(city);
+console.log(street);
+console.log(origin);
+console.log(destination);
+console.log(username);
+console.log(password);
+console.log(ipAddress);
+console.log(title);
+console.log(content);
+console.log(type);
+console.log(task);
+console.log(closeBy);
+console.log(closeReason);
+console.log(category);
+console.log(accountUuid);
+console.log(requestTicketUUID);
+console.log("------");
+
 let basicInformation = new BasicInformation({
   Address: ''+address,
   Birthday: ''+birthday,
