@@ -97,6 +97,7 @@ module.exports.Closed = Closed;
 module.exports.Request = Request;
 module.exports.Completed = Completed;
 module.exports.Review = Review;
+module.exports.RequestTicket = RequestTicket;
 module.exports.Request = Request;
 module.exports.UserLog = UserLog;
 module.exports.BasicInformation = BasicInformation;

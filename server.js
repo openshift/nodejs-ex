@@ -168,7 +168,86 @@ Employee.find({ name: /^test/ },function(err,res){//call backs
 
 
 let Account = Accounts.Account;
-let account = new Account({UserName:'test'});
+let Notification= Accounts.Notification;
+let Closed=Accounts.Closed;
+let Request= Accounts.Request;
+let Completed= Accounts.Completed;
+let Review= Accounts.Review;
+let RequestTicket= Accounts.RequestTicket;
+let UserLog= Accounts.UserLog;
+let BasicInformation= Accounts.BasicInformation;
+
+let basicInformation = new BasicInformation({
+  Address: '',
+  Birthday: '',
+  City: '',
+  Email: '',
+  Name: '',
+  Surname: '',
+  PhoneNumber: '',
+  Role: '',
+  FacebookLink: ''
+});
+let userLog = new UserLog({
+  IP: '',
+  Time: '',
+  Date: ''
+});
+let review = new Review({
+  Content: '',
+  Title: '',
+  Type: '',
+  UserName: '',
+});
+let completed = new Completed({
+  Date: '',
+  Time: '',
+});
+let request = new Request({
+  Date: '',
+  Time: '',
+});
+let closed = new Closed({
+  CloseBy: '',
+  CloseReason: '',
+});
+let notification = new Notification({
+  RequestTicketUUID:'',
+  UserName: '',
+});
+
+
+let requestTicket = new RequestTicket({
+  Request:request,
+  Notification:notification,
+  Completed:completed,
+  Closed:closed,
+  Review:review,
+  Origin: '',
+  Destination: '',
+  Status: '',
+  Task: '',
+  UUID:'',
+  Category:''
+});
+
+
+let account = new Account({
+  BasicInformation:basicInformation,
+  RequestTicket:requestTicket,
+  UserLog:userLog,
+  AccountStatus:'',
+  Location: '',
+  OnlineStatus: '',
+  Password: '',
+  RegisterDate: '',
+  Role: '',
+  SecurityQuestion: '',
+  UserName: '',
+  UUID: ''
+});
+
+
 account.save(function (err, fluffy) {
   if (err) return console.error("test Account Model "+err);
 });
