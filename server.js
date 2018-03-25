@@ -270,7 +270,7 @@ let review = new Review({
   Content: ''+content,
   Title: ''+title,
   Type: ''+type,
-  UserName: ''+username,
+  UserName: ''+username
 });
 let completed = new Completed({
   Date: ''+completedDate,
@@ -282,11 +282,11 @@ let request = new Request({
 });
 let closed = new Closed({
   CloseBy: ''+closeBy,
-  CloseReason: ''+closeReason,
+  CloseReason: ''+closeReason
 });
 let notification = new Notification({
   RequestTicketUUID:'',
-  UserName: '',
+  UserName: ''
 });
 
 
@@ -325,7 +325,7 @@ account.save(function (err, fluffy) {
   if (err) return console.error("test Account Model "+err);
 });
 
-Account.find({ UserName:  /^test/ },function(err,res){//call backs
+Account.find({  },function(err,res){//call backs
   if (err){ return console.error(err);}
 }).then(function(doc){
   console.log("-----account external-----");
