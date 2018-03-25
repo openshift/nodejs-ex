@@ -1,3 +1,5 @@
+//ACCOUNTS MODEL
+
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 var GlobalConstant = require('../GlobalConstant/mongoConnection');
@@ -65,8 +67,8 @@ let AccountSchema = new Schema({
     BasicInformation:[BasicInformationSchema],
     RequestTicket:[RequestTicketSchema],
     UserLog:[UserLogSchema],
+    Location: [GeoSchema],    
     AccountStatus:{ type: String, default: undefined  },
-    Location: [GeoSchema],
     OnlineStatus: { type: String, default: undefined },
     Password: { type: String, default: undefined  },
     RegisterDate: { type: String, default: undefined },
@@ -109,3 +111,6 @@ module.exports.Request = Request;
 module.exports.UserLog = UserLog;
 module.exports.BasicInformation = BasicInformation;
 module.exports.Geo = Geo;
+
+
+//ACCOUNTS MODEL

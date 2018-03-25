@@ -8,10 +8,13 @@ var express = require('express'),
     const WebSocket = require('ws');
 var mongoose   = require('mongoose');
 var graphql = require('graphql');
+var AccountsController = require('./Controllers/AccountsController.js');
+
+var routertest = require('./Controllers/routetest.js');
 
 var mongoConnection = require('./GlobalConstant/mongoConnection');
 var genericTestModel = require('./models/genericTestModel');
-var Accounts = require('./models/Accounts');
+
 var randomProfile = require('random-profile-generator');
 var fakerator = require("fakerator")();
 Object.assign=require('object-assign')
@@ -169,178 +172,6 @@ Employee.find({ name: /^test/ },function(err,res){//call backs
 
 
 
-let Account = Accounts.Account;
-let Notification= Accounts.Notification;
-let Closed=Accounts.Closed;
-let Request= Accounts.Request;
-let Completed= Accounts.Completed;
-let Review= Accounts.Review;
-let RequestTicket= Accounts.RequestTicket;
-let UserLog= Accounts.UserLog;
-let BasicInformation= Accounts.BasicInformation;
-let Geo= Accounts.Geo;
-
-//--randomizer
-
-let gender = randomProfile.gender();
-let address = randomProfile.address();
-let birthday = randomProfile.birthday();
-let completedDate =  new Date().toLocaleDateString();
-let completedTime =  new Date().toLocaleTimeString();
-let requestedTime = new Date().toLocaleDateString();
-let requestedDate = new Date().toLocaleTimeString();
-let userLogTime = new Date().toLocaleTimeString();
-let userLogDate = new Date().toLocaleDateString();
-let registerDate = new Date().toLocaleDateString();
-
-
-let name = fakerator.names.firstName();
-let lastname =fakerator.names.lastName();
-let phone =fakerator.phone.number();
-let email = fakerator.internet.email();
-let state =fakerator.address.countryCode();
-let city = fakerator.address.city();
-let location = new Geo({latitude: fakerator.address.geoLocation().latitude, longitude: fakerator.address.geoLocation().longitude});
-let origin = new Geo({latitude: fakerator.address.geoLocation().latitude, longitude: fakerator.address.geoLocation().longitude});
-let destination = new Geo({latitude: fakerator.address.geoLocation().latitude, longitude: fakerator.address.geoLocation().longitude});
-let username =fakerator.internet.password(12);
-let password =fakerator.internet.password(12);
-let ipAddress = fakerator.internet.ip();
-let title = fakerator.lorem.sentence();
-let content = fakerator.lorem.sentence();
-let type = fakerator.lorem.sentence();
-let task = fakerator.lorem.sentence();
-let closeBy = 'closeBy';
-let closeReason = fakerator.lorem.sentence();
-let category = fakerator.lorem.sentence();
-let accountUuid = fakerator.misc.uuid();
-let requestTicketUUID = fakerator.misc.uuid();
-
-
-//--randomizer test
-console.log("---randomizetest---");
-console.log(gender);
-console.log(address);
-console.log(birthday);
-console.log(completedDate);
-console.log(completedTime);
-console.log(requestedDate);
-console.log(requestedTime);
-console.log(userLogTime);
-console.log(userLogDate);
-console.log(registerDate);
-console.log(name);
-console.log(lastname);
-console.log(phone);
-console.log(email);
-console.log(state);
-console.log(city);
-console.log(location);
-console.log(origin);
-console.log(destination);
-console.log(username);
-console.log(password);
-console.log(ipAddress);
-console.log(title);
-console.log(content);
-console.log(type);
-console.log(task);
-console.log(closeBy);
-console.log(closeReason);
-console.log(category);
-console.log(accountUuid);
-console.log(requestTicketUUID);
-console.log("------");
-
-let basicInformation = new BasicInformation({
-  Address: ''+address,
-  Birthday: ''+birthday,
-  City: ''+state,
-  Email: ''+email,
-  Name: ''+name,
-  Surname: ''+lastname,
-  PhoneNumber: ''+phone,
-  Role: 'Cleaner',
-  FacebookLink: ''
-});
-let userLog = new UserLog({
-  IP: ''+ipAddress,
-  Time: ''+userLogTime,
-  Date: ''+userLogTime
-});
-let review = new Review({
-  Content: ''+content,
-  Title: ''+title,
-  Type: ''+type,
-  UserName: ''+username
-});
-let completed = new Completed({
-  Date: ''+completedDate,
-  Time: ''+completedTime,
-});
-let request = new Request({
-  Date: ''+requestedDate,
-  Time: ''+requestedTime,
-});
-let closed = new Closed({
-  CloseBy: ''+closeBy,
-  CloseReason: ''+closeReason
-});
-let notification = new Notification({
-  RequestTicketUUID:'',
-  UserName: ''
-});
-
-
-let requestTicket = new RequestTicket({
-  Request:request,
-  Notification:notification,
-  Completed:completed,
-  Closed:closed,
-  Review:review,
-  Origin: origin,
-  Destination: destination,
-  Status: 'Ongoing',
-  Task: ''+task,
-  UUID:''+requestTicketUUID,
-  Category:''+category
-});
-
-
-let account = new Account({
-  BasicInformation:basicInformation,
-  RequestTicket:requestTicket,
-  UserLog:userLog,
-  AccountStatus:'Active',
-  Location: location,
-  OnlineStatus: 'Online',
-  Password: ''+password,
-  RegisterDate: ''+registerDate,
-  SecurityQuestion: 'SecurityQuestion',
-  UserName: ''+username,
-  UUID: ''+accountUuid
-});
-
-
-
-account.save(function (err, fluffy) {
-  if (err) return console.error("test Account Model "+err);
-});
-
-
-
-
-
-
-Account.find({  },function(err,res){//call backs
-  if (err){ return console.error(err);}
-}).then(function(doc){
-  console.log("-----account external-----");
-  console.log(JSON.stringify({items:doc}, undefined, '\ '));
-  console.log("----------");
-});
-
-
 
 /*var io = require('socket.io')(server);
 var roomno = 0;
@@ -426,6 +257,10 @@ app.get('/', function (req, res) {
     res.render('index.html', { pageCountMessage : null});
   }
 });
+app.use('/routetest', routertest);
+app.use('/AccountsController', AccountsController);
+
+
 
 app.get('/pagecount', function (req, res) {
   // try to initialize the db on every request if it's not already
