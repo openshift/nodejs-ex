@@ -44,8 +44,6 @@
 		"PhoneNumber": "",
 		"Role": "",
 		"FacebookLink ": ""
-		
-
 	},
 	"isVerified": "",
 	"Location": "",

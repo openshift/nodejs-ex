@@ -8,8 +8,9 @@ var express = require('express'),
     const WebSocket = require('ws');
 var mongoose   = require('mongoose');
 var graphql = require('graphql');
-var mongoConnection = require('./GlobalConstant/mongoConnection')
+var mongoConnection = require('./GlobalConstant/mongoConnection');
 var genericTestModel = require('./models/genericTestModel');
+var Accounts = require('./models/Accounts');
 
 Object.assign=require('object-assign')
 
@@ -163,6 +164,23 @@ Employee.find({ name: /^test/ },function(err,res){//call backs
   console.log(JSON.stringify({items:doc}, undefined, '\s'));
   console.log("----------");
 });
+
+
+
+let Account = Accounts.Account;
+let account = new Account();
+account.save(function (err, fluffy) {
+  if (err) return console.error("Account test Model "+err);
+});
+
+Account.find({ UserName: /^test/ },function(err,res){//call backs
+  if (err){ return console.error(err);}
+}).then(function(doc){
+  console.log("-----account external-----");
+  console.log(JSON.stringify({items:doc}, undefined, '\s'));
+  console.log("----------");
+});
+
 
 
 /*var io = require('socket.io')(server);

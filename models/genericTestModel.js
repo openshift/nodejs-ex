@@ -15,7 +15,8 @@ let employeeSchema = new Schema({
 
 
 let employee= mongoose.model('Employee', employeeSchema);
-let extraInfo= mongoose.model('ExtraInfo', employeeSchema);
+let extraInfo= mongoose.model('ExtraInfo', extraInfoSchema);
+
 module.exports.extraInfo = extraInfoSchema;
 module.exports.employeeSchema = employeeSchema;
 module.exports.employee = employee;
