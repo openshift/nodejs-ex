@@ -14,15 +14,32 @@ router.get('/', function(req, res){
     createAccounttest() ;
     res.send('Get route Added User');
  });
+ router.get('/Update', function(req, res){
+
+    res.send('GET route Update things.');
+ });
+ router.get('/List', function(req, res){
+    let Account = AccountsModel.Account;
+    let listed =Account.collection.find();
+    res.send(listed);
+ });
+
+
  router.get('/Delete', function(req, res){
     dropAccount();
     res.send('GET route Drop things.');
  });
 
- router.get('/:id', function(req, res){
+ router.get('/:id', function(req, res){//this still uses a route not a query string
     const id = req.params.id;
     res.send('GET route Drop things.'+id);
  });
+ 
+ router.get('/:id', function(req, res){//this still uses a route not a query string
+    const id = req.params.id;
+    res.send('GET route Drop things.'+id);
+ });
+
 
  router.post('/', function(req, res){
     res.send('POST route on things.');
@@ -182,7 +199,7 @@ function createAccounttest() {
         if (err) {
             return console.error(err);
         }
-    }).then(function (doc) {
+    }).exec().then(function (doc) {
         console.log("-----account external-----");
         console.log(JSON.stringify({ items: doc }, undefined, '\ '));
         console.log("----------");

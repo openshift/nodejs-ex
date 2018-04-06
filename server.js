@@ -77,6 +77,8 @@ wss.on('connection', function connection(ws, req) {
   ws.send('something');
 });
 
+
+
 server.listen(8080, function listening() {
   console.log('Listening on %d', server.address().port);
 });
@@ -103,6 +105,8 @@ mongoose.connection.on('error', function(error){
     console.log("you can get the IP from the Cluster IP")
     console.log("------------")
 });
+
+
 mongoose.connection.on('disconnected', function(){  console.log('disconected');});
 
 //Bind connection to error event (to get notification of connection errors)
@@ -233,10 +237,6 @@ var initDb = function(callback) {
 //app.get('/', (req, res) => res.send('Hello World!'));
 
 
-
-
-
-
 app.get('/', function (req, res) {
   // try to initialize the db on every request if it's not already
   // initialized.
@@ -259,8 +259,6 @@ app.get('/', function (req, res) {
 });
 app.use('/routetest', routertest);
 app.use('/AccountsController', AccountsController);
-
-
 
 app.get('/pagecount', function (req, res) {
   // try to initialize the db on every request if it's not already
