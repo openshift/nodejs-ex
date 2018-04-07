@@ -11,8 +11,8 @@ var server = require('http').createServer(app);
 const wss = new WebSocket.Server({ server });
 
 router.get('/', function(req, res){
-  res.send(path.join(__dirname+'/SocketController.html'));
-// res.sendFile(path.join(__dirname+'/SocketController.html'));
+  res.send(path.join(__dirname+'/../views/SocketController.html'));
+ //res.sendFile(path.join(__dirname+'/SocketController.html'));
 });
 
 wss.on('connection', function connection(ws, req) {
