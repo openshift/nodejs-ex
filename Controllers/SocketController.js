@@ -22,6 +22,6 @@ wss.on('connection', function connection(ws, req) {
 });
 
 router.get('/', function(req, res){
-  res.send('GET route on things.');
+ // res.send('GET route on things.');
 });
 module.exports = router;
