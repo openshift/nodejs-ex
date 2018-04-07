@@ -1,15 +1,16 @@
 var express = require('express'),
     app     = express(),
     morgan  = require('morgan');
-
+var path    = require("path");
 var router = express.Router();
 const WebSocket = require('ws');
-
+app.engine('html', require('ejs').renderFile);
+app.use(morgan('combined'));
 
 var server = require('http').createServer(app);
 const wss = new WebSocket.Server({ server });
 
-router.get('/SocketController', function(req, res){
+router.get('/', function(req, res){
   res.send('SocketController.html');
 // res.sendFile(path.join(__dirname+'/SocketController.html'));
 });
