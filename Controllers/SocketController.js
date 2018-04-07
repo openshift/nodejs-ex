@@ -1,7 +1,9 @@
 var express = require('express');
 var router = express.Router();
 const WebSocket = require('ws');
-var server = require('http');
+app.engine('html', require('ejs').renderFile);
+app.use(morgan('combined'))
+var server = require('http').createServer(app);
 const wss = new WebSocket.Server({ server });
 
 wss.on('connection', function connection(ws, req) {
@@ -13,5 +15,9 @@ wss.on('connection', function connection(ws, req) {
     console.log('received: %s', message);
   });
   ws.send('something');
+});
+
+router.get('/', function(req, res){
+  res.send('GET route on things.');
 });
 module.exports = router;
