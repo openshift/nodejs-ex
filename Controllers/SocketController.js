@@ -20,8 +20,8 @@ wss.on('connection', function connection(ws, req) {
   });
   ws.send('something');
 });
-
+/*
 router.get('/', function(req, res){
- // res.send('GET route on things.');
-});
+  res.send('GET route on things.');
+});*/
 module.exports = router;
