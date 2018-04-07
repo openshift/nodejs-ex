@@ -21,7 +21,17 @@ router.get('/', function(req, res){
  router.get('/List', function(req, res){
     let Account = AccountsModel.Account;
     let listed =Account.collection.find();
-    res.send(listed);
+    listed.find({},function(err,res){//call backs
+        if (err){ return console.error(err);}
+      })
+      .then(function(doc){
+        console.log("----------");
+        console.log(JSON.stringify({items:doc}));
+        res.send(JSON.stringify({items:doc}));
+        console.log("----------");
+        console.log({items:doc});
+      });
+    
  });
 
 
@@ -35,10 +45,6 @@ router.get('/', function(req, res){
     res.send('GET route Drop things.'+id);
  });
  
- router.get('/:id', function(req, res){//this still uses a route not a query string
-    const id = req.params.id;
-    res.send('GET route Drop things.'+id);
- });
 
 
  router.post('/', function(req, res){
