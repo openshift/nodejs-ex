@@ -15,7 +15,6 @@ router.get('/', function(req, res){
     res.send('Get route Added User');
  });
  router.get('/Update', function(req, res){
-
     res.send('GET route Update things.');
  });
  router.get('/List', function(req, res){
@@ -34,19 +33,20 @@ router.get('/', function(req, res){
  });
 
  router.get('/User/:UserID', function(req, res){
+    
     let Account = AccountsModel.Account;
     const id = req.params.UserID;
     let listed =Account;
+    
     listed.find({ _id: id },function(err,res){//call backs
         if (err){ return console.error(err);}
-      })
+      }).select('-UserLog').select('-Password')//the - is to exclude feilds 
       .then(function(doc){
         console.log("----------");
         console.log(JSON.stringify({items:doc}, undefined, '\ '));
         res.send('<pre>'+JSON.stringify({items:doc}, undefined, '\ ')+'</pre>');
         console.log("----------"); 
       });
-    
  });
 
 
