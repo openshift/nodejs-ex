@@ -26,10 +26,9 @@ router.get('/', function(req, res){
       })
       .then(function(doc){
         console.log("----------");
-        console.log(JSON.stringify({items:doc}));
-        res.send(JSON.stringify({items:doc}));
+        console.log(JSON.stringify({items:doc}, undefined, '\ '));
+        res.send(JSON.stringify({items:doc}, undefined, '\ '));
         console.log("----------");
-        console.log({items:doc});
       });
     
  });
