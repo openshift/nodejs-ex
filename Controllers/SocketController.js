@@ -4,8 +4,7 @@ var express = require('express'),
 
 var router = express.Router();
 const WebSocket = require('ws');
-app.engine('html', require('ejs').renderFile);
-app.use(morgan('combined'));
+
 
 var server = require('http').createServer(app);
 const wss = new WebSocket.Server({ server });
