@@ -33,7 +33,7 @@ router.get('/', function(req, res){
     
  });
 
- router.get('/Get/:UserID', function(req, res){
+ router.get('/User/:UserID', function(req, res){
     let Account = AccountsModel.Account;
     const id = req.params.UserID;
     let listed =Account;
