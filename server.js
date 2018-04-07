@@ -9,6 +9,7 @@ var express = require('express'),
 var mongoose   = require('mongoose');
 var graphql = require('graphql');
 var AccountsController = require('./Controllers/AccountsController.js');
+var SocketController = require('./Controllers/SocketController.js');
 
 var routertest = require('./Controllers/routetest.js');
 
@@ -259,6 +260,7 @@ app.get('/', function (req, res) {
 });
 app.use('/routetest', routertest);
 app.use('/AccountsController', AccountsController);
+app.use('/SocketController', SocketController);
 
 app.get('/pagecount', function (req, res) {
   // try to initialize the db on every request if it's not already
