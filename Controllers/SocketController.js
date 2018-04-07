@@ -10,6 +10,11 @@ app.use(morgan('combined'));
 var server = require('http').createServer(app);
 const wss = new WebSocket.Server({ server });
 
+router.get('/SocketController', function(req, res){
+  res.send(path.join(__dirname+'/SocketController.html'));
+// res.sendFile(path.join(__dirname+'/SocketController.html'));
+});
+
 wss.on('connection', function connection(ws, req) {
   const location = url.parse(req.url, true);
   // You might use location.query.access_token to authenticate or share sessions
@@ -21,8 +26,5 @@ wss.on('connection', function connection(ws, req) {
   ws.send('something');
 });
 
-router.get('/SocketController', function(req, res){
-    res.send(path.join(__dirname+'/SocketController.html'));
- // res.sendFile(path.join(__dirname+'/SocketController.html'));
-});
+
 module.exports = router;
