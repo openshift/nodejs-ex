@@ -20,7 +20,7 @@ router.get('/', function(req, res){
  });
  router.get('/List', function(req, res){
     let Account = AccountsModel.Account;
-    let listed =Account.collection.find();
+    let listed =Account.collection;
     listed.find({},function(err,res){//call backs
         if (err){ return console.error(err);}
       })
