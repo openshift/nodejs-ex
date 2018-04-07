@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const WebSocket = require('ws');
 var server = require('http');
 const wss = new WebSocket.Server({ server });
 
@@ -13,5 +14,4 @@ wss.on('connection', function connection(ws, req) {
   });
   ws.send('something');
 });
-
 module.exports = router;
