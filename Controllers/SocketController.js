@@ -22,6 +22,7 @@ wss.on('connection', function connection(ws, req) {
 });
 
 router.get('/SocketController', function(req, res){
+  
   res.sendFile(path.join(__dirname+'/SocketController.html'));
 });
 module.exports = router;
