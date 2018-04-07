@@ -1,4 +1,7 @@
-var express = require('express');
+var express = require('express'),
+    app     = express(),
+    morgan  = require('morgan');
+    
 var router = express.Router();
 const WebSocket = require('ws');
 app.engine('html', require('ejs').renderFile);
