@@ -1,7 +1,7 @@
 var express = require('express'),
     app     = express(),
     morgan  = require('morgan');
-    
+var path    = require("path");
 var router = express.Router();
 const WebSocket = require('ws');
 app.engine('html', require('ejs').renderFile);
@@ -20,8 +20,8 @@ wss.on('connection', function connection(ws, req) {
   });
   ws.send('something');
 });
-/*
-router.get('/', function(req, res){
-  res.send('GET route on things.');
-});*/
+
+router.get('/SocketController', function(req, res){
+  res.sendFile(path.join(__dirname+'/SocketController.html'));
+});
 module.exports = router;
