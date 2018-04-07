@@ -33,6 +33,22 @@ router.get('/', function(req, res){
     
  });
 
+ router.get('/Get:UserID', function(req, res){
+    let Account = AccountsModel.Account;
+    const id = req.params.UserID;
+    let listed =Account;
+    listed.find({ name: id },function(err,res){//call backs
+        if (err){ return console.error(err);}
+      })
+      .then(function(doc){
+        console.log("----------");
+        console.log(JSON.stringify({items:doc}, undefined, '\ '));
+        res.send('<pre>'+JSON.stringify({items:doc}, undefined, '\ ')+'</pre>');
+        console.log("----------"); 
+      });
+    
+ });
+
 
  router.get('/Delete', function(req, res){
     dropAccount();
