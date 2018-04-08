@@ -2,13 +2,14 @@
     <script>
         var hostname = window.document.location.hostname+"/SocketController";
          var ws = new WebSocket('wss://'+hostname);
+         
+         ws.on('open', function open() {
+           ws.send('something');
+           });
+
          ws.onmessage = function (event) {
            alert(event.data);//something from server
          };
-
-         ws.on('open', function open() {
-           ws.send('something');
-          });
         
        </script>
 </head>
