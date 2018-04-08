@@ -3,7 +3,6 @@
 var express = require('express'),
     app     = express(),
     morgan  = require('morgan');
-    
     const url = require('url');
     const WebSocket = require('ws');
 var mongoose   = require('mongoose');
@@ -64,13 +63,21 @@ console.log('test socket');
 
 var server = require('http').createServer(app);
 const wss = new WebSocket.Server({ server });
+wss.on('connection', function connection(ws) {
+  ws.on('messageFromClient', function incoming(message) {
+    console.log('received: %s', message);
+  });
+});
+
+
+/*
 wss.on('connection', function connection(ws, req) {
   const location = url.parse(req.url, true);
   ws.on('message', function incoming(message) {
     console.log('received: %s', message);
   });
-  ws.send('something');
-});
+  ws.send('something');//send to the new connect
+});*/
 
 
 
