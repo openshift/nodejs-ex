@@ -4,10 +4,7 @@
          var ws = new WebSocket('wss://'+hostname);
          ws.onmessage = function (event) {
            alert(event.data);//something from server
-         };
-         ws.on('messageFromClient', function open() {
            ws.send('something from client');
-        });
-
+         };
        </script>
 </head>

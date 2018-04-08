@@ -64,7 +64,7 @@ console.log('test socket');
 var server = require('http').createServer(app);
 const wss = new WebSocket.Server({ server });
 wss.on('connection', function connection(ws) {
-  ws.on('messageFromClient', function incoming(message) {
+  ws.on('message', function incoming(message) {
     console.log('received: %s', message);
   });
 });
