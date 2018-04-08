@@ -5,7 +5,7 @@
          ws.onmessage = function (event) {
            alert(event.data);//something from server
          };
-         ws.on('connection', function open() {
+         ws.on('open', function open() {
            ws.send('something from client');
           });
         
