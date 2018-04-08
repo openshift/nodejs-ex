@@ -1,20 +1,17 @@
 var express = require('express'),
     http = require("https"),
-    app     = express(),
+    //app     = express(),
     morgan  = require('morgan');
 var path    = require("path");
-var router = express.Router();
-app.engine('html', require('ejs').renderFile);
-app.use(morgan('combined'));
 
-//var server = require('http').createServer(app);
-//const wss = new WebSocket.Server({ server });
+var router = express.Router();
 
 router.get('/', function(req, res){
   let url = path.join(__dirname+'/../views/SocketController.html');
   //res.send(url);
  res.sendFile(url);
 });
+
 /*
 wss.on('connection', function connection(ws, req) {
   const location = url.parse(req.url, true);
