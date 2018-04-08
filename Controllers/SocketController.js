@@ -4,7 +4,6 @@ var express = require('express'),
     morgan  = require('morgan');
 var path    = require("path");
 var router = express.Router();
-const WebSocket = require('ws');
 app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined'));
 
