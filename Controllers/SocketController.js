@@ -1,4 +1,12 @@
+var fs = require('fs');
+
+var options = {
+    key: fs.readFileSync('fake-keys/privatekey.pem'),
+    cert: fs.readFileSync('fake-keys/certificate.pem')
+};
+
 var express = require('express'),
+    http = require("https"),
     app     = express(),
     morgan  = require('morgan');
 var path    = require("path");
@@ -7,7 +15,7 @@ const WebSocket = require('ws');
 app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined'));
 
-var server = require('http').createServer(app);
+var server = require('http').createServer(options,app);
 const wss = new WebSocket.Server({ server });
 
 router.get('/', function(req, res){
