@@ -60,7 +60,6 @@ else{
 console.log('test socket');
 
 */
-
 var server = require('http').createServer(app);
 const wss = new WebSocket.Server({ server });
 wss.on('connection', function connection(ws) {
@@ -69,7 +68,6 @@ wss.on('connection', function connection(ws) {
   });
   ws.send('something');//send to the new connect
 });
-
 
 /*
 wss.on('connection', function connection(ws, req) {
