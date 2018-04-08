@@ -3,6 +3,15 @@ var express = require('express'),
     //app     = express(),
     morgan  = require('morgan');
 var path    = require("path");
+/*var fs = require('fs');
+var options = {
+  key: fs.readFileSync('/etc/apache2/ssl/server.key'),
+  cert: fs.readFileSync('/etc/apache2/ssl/server.crt'),
+  requestCert: false,
+  rejectUnauthorized: false
+};
+*/
+
 
 var router = express.Router();
 
