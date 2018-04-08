@@ -6,13 +6,9 @@
            alert(event.data);//something from server
          };
 
-         ws.broadcast = function broadcast(data) {
-           ws.clients.forEach(function each(client) {
-              if (client.readyState === WebSocket.OPEN) {
-                client.send(data);
-              }
-            });
-};
+         ws.on('open', function open() {
+           ws.send('something');
+          });
         
        </script>
 </head>
