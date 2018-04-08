@@ -11,8 +11,6 @@ var options = {
   rejectUnauthorized: false
 };
 */
-
-
 var router = express.Router();
 
 router.get('/', function(req, res){
