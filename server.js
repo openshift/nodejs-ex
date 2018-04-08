@@ -63,8 +63,8 @@ console.log('test socket');
 var server = require('http').createServer(app);
 const wss = new WebSocket.Server({ server });
 wss.on('connection', function connection(ws) {
-  ws.send('something');//send to the new connect
-  
+  ws.send('something to client');//send to the new connect
+
   ws.on('message', function incoming(data) {
     console.log(data);
   });
