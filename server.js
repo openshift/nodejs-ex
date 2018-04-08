@@ -9,7 +9,7 @@ var express = require('express'),
 var mongoose   = require('mongoose');
 var graphql = require('graphql');
 var AccountsController = require('./Controllers/AccountsController.js');
-var SocketController = require('./Controllers/SocketController.js')(server);
+var SocketController = require('./Controllers/SocketController.js');
 
 var routertest = require('./Controllers/routetest.js');
 
