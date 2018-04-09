@@ -6,6 +6,7 @@ var express = require('express'),
     const url = require('url');
     const WebSocket = require('ws');
 var mongoose   = require('mongoose');
+var asyncInterval = require('asyncinterval');
 var graphql = require('graphql');
 var AccountsController = require('./Controllers/AccountsController.js');
 var SocketController = require('./Controllers/SocketController.js');
@@ -21,6 +22,11 @@ Object.assign=require('object-assign')
 
 app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined'))
+
+
+ 
+
+
 
 
 /*
@@ -181,7 +187,21 @@ Employee.find({ name: /^test/ },function(err,res){//call backs
   console.log("----------");
 });
 
+var interval = asyncInterval(function(done){
+    
+  // don't worry, we only enter here one call at a time. 
+  doSomething(function(err){
 
+      // after we finish our async function, let asyncInterval know 
+      // this will tell asyncInterval to schedule the next interval 
+      done();
+  });
+}, 5, 10);
+
+// optional timeout 
+interval.onTimeout(function(){
+  // log timeout here 
+});
 
 
 /*var io = require('socket.io')(server);
