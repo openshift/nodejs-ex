@@ -25,7 +25,13 @@ app.use(morgan('combined'))
 
 
  
-
+const interval = require('interval-promise')
+ 
+// Run a function 10 times with 1 second between each iteration
+interval(async () => {
+    await someOtherPromiseReturningFunction()
+    await another()
+}, 1000, {iterations: 10})
 
 
 
