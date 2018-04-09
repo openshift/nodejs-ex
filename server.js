@@ -24,7 +24,7 @@ app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined'))
 
 const interval = require('interval-promise');
-interval(async () => {
+interval(async (iteration, stop) => {
     console.log('test');
 }, 2000);
 console.log('asyn?');
