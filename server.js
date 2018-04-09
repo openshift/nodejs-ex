@@ -6,7 +6,7 @@ var express = require('express'),
     const url = require('url');
     const WebSocket = require('ws');
 var mongoose   = require('mongoose');
-
+var async = require("async");
 var graphql = require('graphql');
 var AccountsController = require('./Controllers/AccountsController.js');
 var SocketController = require('./Controllers/SocketController.js');
