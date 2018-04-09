@@ -23,19 +23,11 @@ Object.assign=require('object-assign')
 app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined'))
 
-
- 
 const interval = require('interval-promise');
- 
-
-//const stoppedExternally = () => { stoppedExternally = true }
-
 interval(async () => {
     console.log('test');
 }, 2000);
-
 console.log('asyn?');
-
 /*
 console.log(process.env.mongoURL);
 console.log(process.env.OPENSHIFT_NODEJS_PORT);
