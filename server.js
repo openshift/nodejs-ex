@@ -27,14 +27,14 @@ app.use(morgan('combined'))
  
 const interval = require('interval-promise');
  
-let stoppedExternally = false
-const stoppedExternally = () => { stoppedExternally = true }
+
+//const stoppedExternally = () => { stoppedExternally = true }
 
 interval(async (iteration, stop) => {
-
+/*
     if (stoppedExternally) {
         stop()
-    }
+    }*/
     
     // ... normal functionality ...
     console.log('Repeating test');
