@@ -32,9 +32,9 @@ const interval = require('interval-promise');
 
 interval(async () => {
     console.log('test');
-}, 1000, {iterations: 10});
+}, 2000);
 
-
+console.log('asyn?');
 
 /*
 console.log(process.env.mongoURL);
