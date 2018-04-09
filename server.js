@@ -30,24 +30,9 @@ const interval = require('interval-promise');
 
 //const stoppedExternally = () => { stoppedExternally = true }
 
-interval(async (iteration, stop) => {
-/*
-    if (stoppedExternally) {
-        stop()
-    }*/
-    
-    // ... normal functionality ...
-    console.log('Repeating test');
-    
-}, 1000);
-/*
-// Some other work...
-someOtherWork().then(() => {
-
-    // Now that our "other work" is done, we can stop our interval above with:
-//stopExternally()
-
-});*/
+interval(async () => {
+    console.log('test');
+}, 1000, {iterations: 10});
 
 
 
