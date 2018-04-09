@@ -27,11 +27,27 @@ app.use(morgan('combined'))
  
 const interval = require('interval-promise')
  
-// Run a function 10 times with 1 second between each iteration
-interval(async () => {
-    await someOtherPromiseReturningFunction()
-    await another()
-}, 1000, {iterations: 10})
+let stoppedExternally = false
+const stoppedExternally = () => { stoppedExternally = true }
+
+interval(async (iteration, stop) => {
+
+    if (stoppedExternally) {
+        stop()
+    }
+    
+    // ... normal functionality ...
+    console.log('Repeating test');
+    
+}, 1000)
+
+// Some other work...
+someOtherWork().then(() => {
+
+    // Now that our "other work" is done, we can stop our interval above with:
+    stopExternally()
+
+})
 
 
 
