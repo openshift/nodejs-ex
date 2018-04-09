@@ -23,10 +23,11 @@ Object.assign=require('object-assign')
 app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined'))
 
-const interval = require('interval-promise');
-interval(async (iteration, stop) => {
-    console.log('test');
-}, 2000);
+function request() {
+  console.log('test');
+}
+
+setInterval(request, 1000);
 console.log('asyn?');
 /*
 console.log(process.env.mongoURL);
