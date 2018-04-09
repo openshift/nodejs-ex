@@ -39,15 +39,15 @@ interval(async (iteration, stop) => {
     // ... normal functionality ...
     console.log('Repeating test');
     
-}, 1000)
-
+}, 1000);
+/*
 // Some other work...
 someOtherWork().then(() => {
 
     // Now that our "other work" is done, we can stop our interval above with:
-    stopExternally()
+//stopExternally()
 
-});
+});*/
 
 
 
