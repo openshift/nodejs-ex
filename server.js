@@ -25,7 +25,7 @@ app.use(morgan('combined'))
 
 
  
-const interval = require('interval-promise')
+const interval = require('interval-promise');
  
 let stoppedExternally = false
 const stoppedExternally = () => { stoppedExternally = true }
@@ -47,7 +47,7 @@ someOtherWork().then(() => {
     // Now that our "other work" is done, we can stop our interval above with:
     stopExternally()
 
-})
+});
 
 
 
