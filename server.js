@@ -368,7 +368,10 @@ app.get('/vuetest', function (req, res) {
       res.render('vuetest.html');
 });
 
-
+app.get('/routedMenu', function (req, res) {
+  res.setHeader('Content-Type', 'application/json');
+  res.send(JSON.stringify({ a: 1 }));
+});
 
 
 app.use('/routetest', routertest);
