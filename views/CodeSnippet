@@ -1,0 +1,191 @@
+
+/*best non blocking infinte  for single function
+async.forever(
+  function(next) {
+      // next is suitable for passing to things that need a callback(err [, whatever]);
+      // it will result in this function being called again.
+      console.log('test forever');
+      loopTest();
+      setTimeout(function() {
+        next();//self execute again
+    }, 500);
+  },
+  function(err) {
+      // if next is called with a value in its first parameter, it will appear
+      // in here as 'err', and execution will stop.
+  }
+);
+setInterval(()=>{console.log('good not blocked.')},1000);//to test if its not blocked 
+*/
+
+
+/*
+//async for loop non blocking
+function loopTest() {//slow testing
+  var test = 0
+  for (var i=0; i<=10000000; i++) {
+      test +=1
+  }
+  return test
+}
+var functs = [];
+function HelloWorldOne(callback){
+ setTimeout(function(){
+      console.log("HelloWorld - One");
+      loopTest();
+      callback();
+  }, Math.floor(1000));
+}
+for(var i=0;i<100;i++){
+  functs.push(HelloWorldOne);
+}
+console.log('parallel');
+async.parallel(functs, function(){
+  console.log("Executed all calls in parallel.");
+});
+*/
+
+/*async example with setInterval
+function SendClientList() {
+  console.log('test');
+}
+function promiseClientTime() {
+  return new Promise(resolve => {
+    setInterval(SendClientList, 1000);
+    resolve('resolved');//result after the operation similar to return
+  });
+}
+async function asyncClientInterval() {
+  console.log('calling');
+  var result = await promiseClientTime();
+  console.log(result);//resust from premise
+}
+asyncClientInterval();// async looping test
+*/
+
+
+/*
+iterate object non blocking
+great for objects
+
+var dataObj =[];
+for(var i =0;i<1000;i++){//create object
+  dataObj.push(i);
+}
+async.eachSeries(Object.keys(dataObj),async function (item, callback){ 
+    setTimeout(function() {
+      console.log(item);
+      loopTest();
+      callback(); 
+  }, 10);
+  // tell async that that particular element of the iterator is done
+}, function(err) {
+  console.log('iterating done');
+});  
+
+setInterval(()=>{console.log('good not blocked.')},1000);//to test if its not blocked 
+
+
+
+*/
+
+/*
+forever eachseries 
+important the time delay in eachseries is the delay on each item thats why it exit very often
+frees usage more often for other operation
+eachseries is bad for large array iteration on slow setTimeout because it iterates 1 then frees up before iterating again by 1
+eachseries is good if its fast/short setTimeout large or small array
+best for array order matters 
+
+
+var dataObj =[];
+for(var i =0;i<5;i++){//create object
+  dataObj.push(i);
+}
+setInterval(()=>{
+   console.log('good not blocked.')
+ },100);//to test if its not blocked 
+async.forever(
+  function(next) {
+      async.eachSeries(Object.keys(dataObj),async function (item, callback){ 
+        setTimeout(function() {
+        //  console.log(item);
+          callback(); 
+      }, 1000);
+      // tell async that that particular element of the iterator is done
+      }, function(err) {
+      console.log('iterate done');
+      next();
+      });  
+  },
+  function(err) {
+      // if next is called with a value in its first parameter, it will appear
+      // in here as 'err', and execution will stop.
+  }
+);
+*/
+/* forever each
+important the timer delay inside each is the exit time of all sets
+this runs in parallel while eachSeries runs in series while being async
+best for non consistent time of each loop
+
+ do not put the computation inside the setInterval
+it freezes slightly when switching back to a thread for heavy ones
+best for heavy computation large array non often accessed
+must be heavy enough to consider this most of the time eachSeries works best
+might still be slow on heavy computation thread if its really heavy if its too heavy use somthing else
+
+
+var dataObj =[];
+for(var i =0;i<5;i++){//create object
+  dataObj.push(i);
+}
+setInterval(()=>{
+   console.log('good not blocked.')
+ },100);//to test if its not blocked 
+async.forever(
+  function(next) {
+      async.each(Object.keys(dataObj),async function (item, callback){ 
+        setTimeout(function() {
+          console.log(item);
+          callback(); 
+      }, 1000);
+      // tell async that that particular element of the iterator is done
+      }, function(err) {
+      console.log('iterate done');
+      next();
+      });  
+  },
+  function(err) {
+      // if next is called with a value in its first parameter, it will appear
+      // in here as 'err', and execution will stop.
+  }
+);
+
+*/
+
+
+/*
+  parallel forever
+  
+var dataObj =[];
+for(var i =0;i<5;i++){//create object
+  dataObj.push(i);
+}
+setInterval(()=>{
+   console.log('good not blocked.')
+ },100);//to test if its not blocked 
+async.forever(
+  function(next) {
+    async.parallel(functs, function(){
+      console.log("Executed all calls in parallel.");
+      next();
+    });
+  },
+  function(err) {
+      // if next is called with a value in its first parameter, it will appear
+      // in here as 'err', and execution will stop.
+  }
+);
+
+*/

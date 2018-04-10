@@ -5,6 +5,10 @@ var express = require('express'),
     morgan  = require('morgan');
     const url = require('url');
     const WebSocket = require('ws');
+var os = require('os');
+var os = require('os-utils');
+
+
 var mongoose   = require('mongoose');
 var async = require("async");
 var graphql = require('graphql');
@@ -23,12 +27,14 @@ Object.assign=require('object-assign')
 app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined'))
 
-function request() {
-  console.log('test');
+function loopTest() {//slow testing
+  var test = 0
+  for (var i=0; i<=100000; i++) {
+      test +=1
+  }
+  return test
 }
 
-setInterval(request, 1000);
-console.log('asyn?');
 /*
 console.log(process.env.mongoURL);
 console.log(process.env.OPENSHIFT_NODEJS_PORT);
@@ -66,6 +72,12 @@ else{
 console.log('test socket');
 
 */
+
+
+
+
+
+
 var server = require('http').createServer(app);
 const wss = new WebSocket.Server({ server });
 wss.on('connection', function connection(ws) {
@@ -89,6 +101,88 @@ wss.on('connection', function connection(ws, req) {
   });
   ws.send('something');//send to the new connect
 });*/
+/*
+async.forever(
+  function(next) {
+      // next is suitable for passing to things that need a callback(err [, whatever]);
+      // it will result in this function being called again.
+      console.log('test forever');
+      loopTest();
+      setTimeout(function() {
+        next();//self execute again
+    }, 500);
+  },
+  function(err) {
+      // if next is called with a value in its first parameter, it will appear
+      // in here as 'err', and execution will stop.
+  }
+);
+*/
+
+
+
+var functs = [];
+function HelloWorldOne(callback){
+ setTimeout(function(){
+    //  console.log("HelloWorld - One");
+      loopTest();
+      callback();
+  }, Math.floor(1000));
+}
+for(var i=0;i<5;i++){
+  functs.push(HelloWorldOne);
+}
+
+  
+var dataObj =[];
+for(var i =0;i<10000;i++){//create object
+  dataObj.push(i);
+}
+/*
+setInterval(()=>{
+   console.log('good not blocked.')
+ },100);//to test if its not blocked 
+*/
+
+/*
+ async.forever(
+  function(next) {
+
+    setTimeout(function() {
+      console.log('good not blocked.');
+      os.cpuUsage(function(v){
+        console.log( 'CPU Usage (%): ' + v+ " Usage "+os.freemem() );
+      });
+      next();
+    }, 1000);
+  },
+  function(err) {
+      // if next is called with a value in its first parameter, it will appear
+      // in here as 'err', and execution will stop.
+  }
+ );
+*/
+
+async.forever(
+  function(next) {
+      async.each(Object.keys(dataObj),async function (item, callback){ 
+       loopTest();//operation here
+        setTimeout(function() {
+        //  console.log(item);
+          callback();
+         
+      }, 5000);
+      // tell async that that particular element of the iterator is done
+      }, function(err) {
+      console.log('iterate done----------------');
+      next();
+      });  
+  },
+  function(err) {
+      // if next is called with a value in its first parameter, it will appear
+      // in here as 'err', and execution will stop.
+  }
+);
 
 
 
