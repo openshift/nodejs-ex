@@ -162,7 +162,6 @@ setInterval(()=>{
   }
  );
 */
-
 async.forever(
   function(next) {
       async.each(Object.keys(dataObj),async function (item, callback){ 
