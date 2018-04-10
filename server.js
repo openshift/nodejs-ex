@@ -361,6 +361,16 @@ app.get('/', function (req, res) {
     res.render('index.html', { pageCountMessage : null});
   }
 });
+
+
+app.get('/vuetest', function (req, res) {
+  
+      res.render('vuetest.html');
+});
+
+
+
+
 app.use('/routetest', routertest);
 app.use('/AccountsController', AccountsController);
 app.use('/SocketController', SocketController);
