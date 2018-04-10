@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 </head>
 <body>
+<body>
+
   <div id="app">
     <v-app>
       <v-content>
@@ -361,11 +363,14 @@
             <scatter-chart></scatter-chart>
             
       </div>
-
+    
 
     </v-app>
-    
+ 
   </div>
+
+</body>
+
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
   <script src="https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"></script>
@@ -373,7 +378,7 @@
   <script src="https://unpkg.com/vue/dist/vue.js"></script>
   <script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
   <script  type="text/javascript">
-    
+    window.onload = function () {
 Vue.component('line-chart', {
   extends: VueChartJs.Line,
   mounted () {
@@ -497,20 +502,22 @@ Vue.component('scatter-chart', {
     }, {responsive: true, maintainAspectRatio: false})
   }
 });
-
-
-var vm = new Vue({
-  el: '.app',
-  data: {
-    message: 'Hello World'
-  }
-})
-
-
     new Vue({
       el: '#app',
       data () {
         return {
+          valid: false,
+      name: '',
+      nameRules: [
+        v => !!v || 'Name is required',
+        v => v.length <= 10 || 'Name must be less than 10 characters'
+      ],
+      email: '',
+      emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+      ],
+
         value1: 0,
         value2: 0,
         items: [
@@ -677,6 +684,7 @@ var vm = new Vue({
       }
     }
     })
+}
   </script>
 </body>
 </html>
