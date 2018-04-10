@@ -7,8 +7,6 @@ var express = require('express'),
     const WebSocket = require('ws');
 var os = require('os');
 var os = require('os-utils');
-
-
 var mongoose   = require('mongoose');
 var async = require("async");
 var graphql = require('graphql');
