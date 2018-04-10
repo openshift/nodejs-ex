@@ -72,7 +72,7 @@ var dataObj =[];
 for(var i =0;i<1000;i++){//create object
   dataObj.push(i);
 }
-async.eachSeries(Object.keys(dataObj),async function (item, callback){ 
+async.eachSeries(Object.keys(dataObj), function (item, callback){ 
     setTimeout(function() {
       console.log(item);
       loopTest();
@@ -107,7 +107,7 @@ setInterval(()=>{
  },100);//to test if its not blocked 
 async.forever(
   function(next) {
-      async.eachSeries(Object.keys(dataObj),async function (item, callback){ 
+      async.eachSeries(Object.keys(dataObj), function (item, callback){ 
         setTimeout(function() {
         //  console.log(item);
           callback(); 
@@ -145,7 +145,7 @@ setInterval(()=>{
  },100);//to test if its not blocked 
 async.forever(
   function(next) {
-      async.each(Object.keys(dataObj),async function (item, callback){ 
+      async.each(Object.keys(dataObj), function (item, callback){ 
         setTimeout(function() {
           console.log(item);
           callback(); 

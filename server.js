@@ -164,7 +164,7 @@ setInterval(()=>{
 */
 async.forever(
   function(next) {
-      async.each(Object.keys(dataObj),async function (item, callback){ 
+      async.each(Object.keys(dataObj), function (item, callback){ 
        loopTest();//operation here
         setTimeout(function() {
         //  console.log(item);
