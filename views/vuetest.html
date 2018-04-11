@@ -349,7 +349,11 @@
         <v-spacer></v-spacer>
         <div>&copy; {{ new Date().getFullYear() }}</div>
       </v-footer>
-
+      <div>
+          <button-counter></button-counter>
+          <button-counter></button-counter>
+          <button-counter></button-counter>
+      </div>
       
       <div>
             {{ message }}
@@ -363,8 +367,33 @@
             <scatter-chart></scatter-chart>
             
       </div>
-    
-
+     <div>
+        <button-counter></button-counter>
+        <button-counter></button-counter>
+        <button-counter></button-counter>
+     </div>
+     <div v-if="Math.random() > 0.5">
+        Now you see me
+      </div>
+      <div v-else>
+        Now you don't
+      </div>
+      <div>
+          <li v-for="item in items3">
+              {{ item.message }}
+            </li>
+          
+      </div>
+      <div>
+          <span v-for="n in 10">{{ n }} </span>
+      </div>
+      <div>
+          <button v-on:click="counter += 1">Add 1</button>
+          <p>The button above has been clicked {{ counter }} times.</p>
+      </div>
+      <div>
+          <button v-on:click="greet">Greet</button>
+      </div>
     </v-app>
  
   </div>
@@ -377,6 +406,10 @@
 
   <script src="https://unpkg.com/vue/dist/vue.js"></script>
   <script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
+
+  <script src="../public/js/clientapp.js"></script>
+
+
   <script  type="text/javascript">
     window.onload = function () {
 Vue.component('line-chart', {
@@ -502,10 +535,22 @@ Vue.component('scatter-chart', {
     }, {responsive: true, maintainAspectRatio: false})
   }
 });
+//custom component using inlined template similar to the vue chartjs but the template is abstracted in chartjs
+Vue.component('button-counter', {
+  data: function () {
+    return {
+      count: 0
+    }
+  },
+  template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+});
+
     new Vue({
       el: '#app',
       data () {
         return {
+          count: 0,
+          counter: 0,
           valid: false,
       name: '',
       nameRules: [
@@ -673,18 +718,32 @@ Vue.component('scatter-chart', {
             src: 'https://picsum.photos/200/300/?random'
           }
         ],
-        card_text: 'Lorem ipsum dolor sit amet, brute iriure accusata ne mea. Eos suavitate referrentur ad, te duo agam libris qualisque, utroque quaestio accommodare no qui. Et percipit laboramus usu, no invidunt verterem nominati mel. Dolorem ancillae an mei, ut putant invenire splendide mel, ea nec propriae adipisci. Ignota salutandi accusamus in sed, et per malis fuisset, qui id ludus appareat.'
+        card_text: 'Lorem ipsum dolor sit amet, brute iriure accusata ne mea. Eos suavitate referrentur ad, te duo agam libris qualisque, utroque quaestio accommodare no qui. Et percipit laboramus usu, no invidunt verterem nominati mel. Dolorem ancillae an mei, ut putant invenire splendide mel, ea nec propriae adipisci. Ignota salutandi accusamus in sed, et per malis fuisset, qui id ludus appareat.',
+        items3: [
+      { message: 'Foo' },
+      { message: 'Bar' }
+    ]
         }
 
     },
+
     methods: {
       next () {
         const active = parseInt(this.active)
         this.active = (active < 2 ? active + 1 : 0).toString()
+      },
+      greet(event) {
+      // `this` inside methods points to the Vue instance
+      alert('Hello ' + this.name + '!');
       }
     }
-    })
+  })
 }
+
+
+
+
   </script>
+
 </body>
 </html>
