@@ -1,0 +1,319 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/async/2.6.0/async.js"></script>
+
+<body>
+    <div id="app">
+        <v-app>
+            <line-chart :chart-data="datavalues"></line-chart>
+        </v-app>
+        <button v-on:click="additem()">additem</button>
+        <button v-on:click="testset"></button>
+    </div>
+   
+</body>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+<script src="https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"></script>
+
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
+
+<script type="text/javascript">
+ Vue.component('line-chart', {
+  extends: VueChartJs.Line,
+  props: ['chartData'],
+  mounted () {
+    this.render()
+  },
+  watch: {
+    'chartData' (to, from) {
+      this.render()
+    }
+  },
+  methods: {
+    render () {
+      this.renderChart({
+        //you can pass the this.chartData instead if you want to scale it with the values
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+  
+
+        datasets: [
+          {
+            label: 'Data One',
+           
+            fill: true,
+          backgroundColor: "rgba(179,181,198,0.2)",
+          borderColor: "rgba(179,181,198,1)",
+          pointBorderColor: "#fff",
+          pointBackgroundColor: "rgba(179,181,198,1)",
+            data: this.chartData //[40, 39, 10, 40, 39, 80, 40]
+          }
+        ]
+      },
+       {responsive: true,
+        maintainAspectRatio: false,
+
+        legend: { display: false },
+          title: {
+          display: true,
+          text: 'Predicted world population (millions) in 2050'
+        },
+
+        animation: {
+         // easing: 'easeInOutCubic',
+        //  duration: 1000 zero is off 1000 is default speed
+        }
+      }
+
+    )
+    }
+  },
+})
+ var vm=   new Vue({
+      el: '#app',
+      data: { 
+        datavalues: [40, 39, 10, 40, 39, 80, 40],
+        count: 0,
+        counter: 0,
+        valid: false,
+        name: '',
+        nameRules: [
+          v => !!v || 'Name is required',
+          v => v.length <= 10 || 'Name must be less than 10 characters'
+        ],
+        email: '',
+        emailRules: [
+          v => !!v || 'E-mail is required',
+          v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+        ],
+
+        value1: 0,
+        value2: 0,
+        items: [
+        { text: 'State 1' },
+        { text: 'State 2' },
+        { text: 'State 3' },
+        { text: 'State 4' },
+        { text: 'State 5' },
+        { text: 'State 6' },
+        { text: 'State 7' }
+      ],
+      states: [
+        'Alabama', 'Alaska', 'American Samoa', 'Arizona',
+        'Arkansas', 'California', 'Colorado', 'Connecticut',
+        'Delaware', 'District of Columbia', 'Federated States of Micronesia',
+        'Florida', 'Georgia', 'Guam', 'Hawaii', 'Idaho',
+        'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky',
+        'Louisiana', 'Maine', 'Marshall Islands', 'Maryland',
+        'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi',
+        'Missouri', 'Montana', 'Nebraska', 'Nevada',
+        'New Hampshire', 'New Jersey', 'New Mexico', 'New York',
+        'North Carolina', 'North Dakota', 'Northern Mariana Islands', 'Ohio',
+        'Oklahoma', 'Oregon', 'Palau', 'Pennsylvania', 'Puerto Rico',
+        'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee',
+        'Texas', 'Utah', 'Vermont', 'Virgin Island', 'Virginia',
+        'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+      ],
+        checkbox: true,
+        radioGroup: 1,
+        switch1: true,
+        picker: null,
+        landscape: false,
+        reactive: false,
+        active: null,
+        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+        page: 1,
+        headers: [
+          {
+            text: 'Dessert (100g serving)',
+            align: 'left',
+            sortable: false,
+            value: 'name'
+          },
+          { text: 'Calories', value: 'calories' },
+          { text: 'Fat (g)', value: 'fat' },
+          { text: 'Carbs (g)', value: 'carbs' },
+          { text: 'Protein (g)', value: 'protein' },
+          { text: 'Iron (%)', value: 'iron' }
+        ],
+        items2: [
+          {
+            value: false,
+            name: 'Frozen Yogurt',
+            calories: 159,
+            fat: 6.0,
+            carbs: 24,
+            protein: 4.0,
+            iron: '1%'
+          },
+          {
+            value: false,
+            name: 'Ice cream sandwich',
+            calories: 237,
+            fat: 9.0,
+            carbs: 37,
+            protein: 4.3,
+            iron: '1%'
+          },
+          {
+            value: false,
+            name: 'Eclair',
+            calories: 262,
+            fat: 16.0,
+            carbs: 23,
+            protein: 6.0,
+            iron: '7%'
+          },
+          {
+            value: false,
+            name: 'Cupcake',
+            calories: 305,
+            fat: 3.7,
+            carbs: 67,
+            protein: 4.3,
+            iron: '8%'
+          },
+          {
+            value: false,
+            name: 'Gingerbread',
+            calories: 356,
+            fat: 16.0,
+            carbs: 49,
+            protein: 3.9,
+            iron: '16%'
+          },
+          {
+            value: false,
+            name: 'Jelly bean',
+            calories: 375,
+            fat: 0.0,
+            carbs: 94,
+            protein: 0.0,
+            iron: '0%'
+          },
+          {
+            value: false,
+            name: 'Lollipop',
+            calories: 392,
+            fat: 0.2,
+            carbs: 98,
+            protein: 0,
+            iron: '2%'
+          },
+          {
+            value: false,
+            name: 'Honeycomb',
+            calories: 408,
+            fat: 3.2,
+            carbs: 87,
+            protein: 6.5,
+            iron: '45%'
+          },
+          {
+            value: false,
+            name: 'Donut',
+            calories: 452,
+            fat: 25.0,
+            carbs: 51,
+            protein: 4.9,
+            iron: '22%'
+          },
+          {
+            value: false,
+            name: 'KitKat',
+            calories: 518,
+            fat: 26.0,
+            carbs: 65,
+            protein: 7,
+            iron: '6%'
+          }
+        ],
+        items3: [
+          {
+            src: 'https://picsum.photos/200/300/?random'
+          },
+          {
+            src: 'https://picsum.photos/200/300/?random'
+          },
+          {
+            src: 'https://picsum.photos/200/300/?random'
+          },
+          {
+            src: 'https://picsum.photos/200/300/?random'
+          }
+        ],
+        card_text: 'Lorem ipsum dolor sit amet, brute iriure accusata ne mea. Eos suavitate referrentur ad, te duo agam libris qualisque, utroque quaestio accommodare no qui. Et percipit laboramus usu, no invidunt verterem nominati mel. Dolorem ancillae an mei, ut putant invenire splendide mel, ea nec propriae adipisci. Ignota salutandi accusamus in sed, et per malis fuisset, qui id ludus appareat.',
+        items3: [
+      { message: 'Foo' },
+      { message: 'Bar' }
+    ],
+    todos: [
+      {
+        id: 1,
+        title: 'Do the dishes',
+      },
+      {
+        id: 2,
+        title: 'Take out the trash',
+      },
+      {
+        id: 3,
+        title: 'Mow the lawn'
+      }
+    ]
+    },
+    created() {
+    //here is where you put upon creation
+  },
+
+    methods: {
+      next () {
+        const active = parseInt(this.active)
+        this.active = (active < 2 ? active + 1 : 0).toString()
+      },
+      greet(event) {
+      // `this` inside methods points to the Vue instance
+      alert('Hello ' + this.name + '!');
+      },
+      additem(){
+        this.count++;
+        this.todos.push({
+        id: 4,
+        title: 'something'
+        });
+        alert("to do count "+this.todos.length);
+        alert("Single value append " +this.count);
+      },
+      testset(){
+        var values = Array.from({length: 400}, () => Math.floor(Math.random() * 40));
+        this.datavalues = values;
+        //alert('clicked');
+      }
+    }
+  })
+
+
+</script>
+
+<script>
+    async.forever(
+      function(next) {
+          // next is suitable for passing to things that need a callback(err [, whatever]);
+          // it will result in this function being called again.
+          //console.log('test forever');
+          vm.testset();
+          setTimeout(function() {
+            next();//self execute again
+        }, 1000);
+      },
+      function(err) {
+          // if next is called with a value in its first parameter, it will appear
+          // in here as 'err', and execution will stop.
+      }
+    );
+    function getRandomArbitrary(min, max) {
+        return Math.random() * (max - min) + min;
+    }
+    
+    </script>

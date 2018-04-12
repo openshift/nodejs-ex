@@ -1,0 +1,97 @@
+<head>
+        <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
+        <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+<body>
+
+        <div id="app">
+            <v-app>
+                <label class="label" for="email">Email</label>
+                <p :class="{ 'control': true }">
+                    <input v-validate="'required|email'" :class="{'input': true, 'is-danger': errors.has('email') }" name="email" type="text" placeholder="Email">
+                    <span v-show="errors.has('email')" class="help is-danger">{{ errors.first('email') }}</span>
+                </p>
+                
+                  <!---->
+                
+                <input name="name" v-model="name" v-validate="'required|alpha'" :class="{'input': true, 'is-danger': errors.has('name') }" type="text" placeholder="Name">
+                <i v-show="errors.has('name')" class="fa fa-warning"></i>
+                <span v-show="errors.has('name')" class="help is-danger">{{ errors.first('name') }}</span>
+                
+
+                  <!---->
+
+                <input name="phone" v-model="phone" v-validate="'required|numeric'" :class="{'input': true, 'is-danger': errors.has('phone') }" type="text" placeholder="Phone">
+                <i v-show="errors.has('phone')" class="fa fa-warning"></i>
+                <span v-show="errors.has('phone')" class="help is-danger">{{ errors.first('phone') }}</span>
+
+                  <!---->
+
+                <input name="url" v-model="url" v-validate="'required|url'" :class="{'input': true, 'is-danger': errors.has('url') }" type="text" placeholder="Website">
+                <i v-show="errors.has('url')" class="fa fa-warning"></i>
+                <span v-show="errors.has('url')" class="help is-danger">{{ errors.first('url') }}</span>
+                
+
+                  <!---->
+                <label class="checkbox">
+                        <input name="terms" v-validate="'required'" type="checkbox">
+                        I agree to the terms and conditions.
+                    </label>
+                    <span class="help is-danger" v-show="errors.has('terms')">{{ errors.first('terms') }}</span>
+
+                
+                <!---->
+
+
+                <legend :class="{ 'error': errors.has('radio_group_1') }">Radio Group 1</legend>
+                    <p class="control">
+                        <label class="radio">
+                            <input name="radio_group_1" v-validate="'required|in:1,2'" value="1" type="radio">
+                            Option 1
+                        </label>
+                        <label class="radio">
+                            <input name="radio_group_1" value="2" type="radio">
+                            Option 2
+                        </label>
+                        <label class="radio">
+                            <input name="radio_group_1" value="3" type="radio">
+                            Option 3
+                        </label>
+                    </p>
+                <span class="help is-danger" v-show="errors.has('radio_group_1')">{{ errors.first('radio_group_1') }}</span>
+
+            </v-app>
+               
+        </div>
+</body>
+
+
+
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vee-validate@latest/dist/vee-validate.js"></script>
+<script>
+     Vue.use(VeeValidate); // good to go. to use the plugin
+     var vm=   new Vue({
+      el: '#app',
+      data: function () {
+            return {
+            count: 0
+            }
+        },
+        methods: {
+            validateBeforeSubmit() {
+            this.$validator.validateAll().then((result) => {
+                if (result) {
+                // eslint-disable-next-line
+                alert('Form Submitted!');
+                return;
+                }
+
+                alert('Correct them errors!');
+            });
+            }
+        }
+     });
+</script>
