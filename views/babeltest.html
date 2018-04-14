@@ -1,0 +1,113 @@
+<div id="output"></div>
+<!-- Load Babel -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+<script type="text/babel"> 
+const getMessage = () => "Hello World";
+document.getElementById('output').innerHTML = getMessage();
+var evens = [2,4,6];
+var odds = evens.map(v => v + 1);
+var nums = evens.map((v, i) => v + i);
+
+console.log(evens);
+console.log(odds);
+console.log(nums);
+
+
+Number.EPSILON
+Number.isInteger(Infinity) // false
+Number.isNaN("NaN") // false
+
+Math.acosh(3) // 1.762747174039086
+Math.hypot(3, 4) // 5
+Math.imul(Math.pow(2, 32) - 1, Math.pow(2, 32) - 2) // 2
+
+"abcde".includes("cd") // true
+"abc".repeat(3) // "abcabcabc"
+
+
+    function timeout(duration = 0) {
+        return new Promise((resolve, reject) => {
+            setTimeout(resolve, duration);
+        })
+    }
+
+    var p = timeout(1000).then(() => {
+        return timeout(2000);
+    }).then(() => {
+        throw new Error("hmm");
+    }).catch(err => {
+        return Promise.all([timeout(100), timeout(200)]);
+    })
+/*
+function f() {//the error is ment to error for existing variables un comment to test
+  {
+    let x;
+    {
+      // this is ok since it's a block scoped name
+      const x = "sneaky";
+      // error, was just defined with `const` above
+      x = "foo";
+    }
+    // this is ok since it was declared with `let`
+    x = "bar";
+    // error, already declared above in this block
+    let x = "inner";
+  }
+}
+//f();
+*/
+
+
+// Expression bodies
+var odds = evens.map(v => v + 1);
+var nums = evens.map((v, i) => v + i);
+var fives =[];
+// Statement bodies
+nums.forEach(v => {
+  if (v % 5 === 0)
+    fives.push(v);
+});
+
+// Lexical this
+var bob = {
+  _name: "Bob",
+  _friends: [],
+  printFriends() {
+    this._friends.forEach(f =>
+      console.log(this._name + " knows " + f));
+  }
+};
+
+// Lexical arguments
+function square() {
+  let example = () => {
+    let numbers = [];
+    for (let number of arguments) {
+      numbers.push(number * number);
+    }
+
+    return numbers;
+  };
+
+  return example();
+}
+
+console.log(square(2, 4, 7.5, 8, 11.5, 21)); // returns: [4, 16, 56.25, 64, 132.25, 441]
+
+
+var b = 0b11; // binary integer literal
+var o = 0o7; // octal integer literal
+
+let a = do {
+  if(x > 10) {
+    'big';
+  } else {
+    'small';
+  }
+};
+// is equivalent to:
+let a = x > 10 ? 'big' : 'small';
+
+
+</script>
