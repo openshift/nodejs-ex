@@ -334,20 +334,9 @@ app.get('/', function (req, res) {
 
 
 app.get('/vuetest', function (req, res) {
+  
       res.render('vuetest.html');
 });
-
-app.get('/asyncclient', function (req, res) {
-  res.render('asyncclient.html');
-});
-
-app.get('/plotlytest', function (req, res) {
-  res.render('plotlytest.html');
-});
-app.get('/vuevaliddate', function (req, res) {
-  res.render('vuevaliddate.html');
-});
-
 
 app.get('/jsontest', function (req, res) {
   res.setHeader('Content-Type', 'application/json');
