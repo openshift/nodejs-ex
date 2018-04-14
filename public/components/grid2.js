@@ -1,0 +1,1 @@
+const grid2 = { template: '<div>grid2</div>' }//example of external litteral template routed

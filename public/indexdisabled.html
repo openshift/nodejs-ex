@@ -1,0 +1,85 @@
+<!--script src="./js/clientapp.js"></script>-->
+<div id="app">
+  <h1>Hello App!</h1>
+  <p>
+    <!-- use router-link component for navigation. -->
+    <!-- specify the link by passing the `to` prop. -->
+    <!-- `<router-link>` will be rendered as an `<a>` tag by default -->
+    <router-link to="/foo">Go to Foo</router-link>
+    <router-link to="/bar">Go to Bar</router-link>
+    <router-link to="/grid2">Go to Bar</router-link>
+    
+
+  </p>
+  <div>
+      <blog-post
+      v-for="post in posts"
+      v-bind:key="post.id"
+      v-bind:title="post.title"
+    ></blog-post>
+  </div>
+
+  <!-- route outlet -->
+  <!-- component matched by the route will render here -->
+  <router-view></router-view>
+    <m></m>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue-router/3.0.1/vue-router.min.js"></script>
+<script src="./components/grid2.js"></script>
+
+<script>
+  //Vue.Components dosn't need to be assigned because it gets assigned in new Vew right away
+Vue.component('blog-post', {
+  props: ['title'],
+  template: '<h3>{{ title }}</h3>'
+})
+
+
+// 1. Define route components.
+// These can be imported from other files
+const Foo = { template: '<div>foo</div>' };
+const Bar= { template: '<div>Bar</div>' };
+
+
+// 2. Define some routes
+// Each route should map to a component. The "component" can
+// either be an actual component constructor created via
+// Vue.extend(), or just a component options object.
+// We'll talk about nested routes later.
+const routes = [
+  { path: '/foo', component: Foo },//internal routing example
+  { path: '/bar', component: Bar },//internal routing example
+  { path: '/grid2', component: grid2 },// external routing template example
+]
+
+// 3. Create the router instance and pass the `routes` option
+// You can pass in additional options here, but let's
+// keep it simple for now.
+const router = new VueRouter({
+  mode: 'history',
+  routes
+});
+
+// 4. Create and mount the root instance.
+// Make sure to inject the router with the router option to make the
+// whole app router-aware.
+const app = new Vue({
+  el:'#app',
+  router,
+  data: {
+    msg: 'Hello World',
+    title:'someTitile',
+    posts: [
+      { id: 1, title: 'My journey with Vue' },
+      { id: 2, title: 'Blogging with Vue' },
+      { id: 3, title: 'Why Vue is so fun' },
+    ],
+  },components:{
+    m:'m'
+  }
+});
+
+// Now the app has started!
+</script>

@@ -2,14 +2,17 @@
 //  OpenShift sample Node application
 var express = require('express'),
     app     = express(),
+    isDevelopment = process.env.NODE_ENV !== "production",
     morgan  = require('morgan');
     const url = require('url');
     const WebSocket = require('ws');
+
 var os = require('os');
 //var osutil = require('os-utils');//not working on remote
 var mongoose   = require('mongoose');
 var async = require("async");
 var graphql = require('graphql');
+
 var AccountsController = require('./Controllers/AccountsController.js');
 var SocketController = require('./Controllers/SocketController.js');
 
@@ -21,9 +24,18 @@ var genericTestModel = require('./models/genericTestModel');
 var randomProfile = require('random-profile-generator');
 var fakerator = require("fakerator")();
 Object.assign=require('object-assign')
+require("babel-register");// may not be working untested
 
 app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined'))
+
+
+const Vue = require('vue');
+
+Vue.config.productionTip = false;
+
+
+
 
 function loopTest() {//slow testing
   var test = 0
@@ -56,7 +68,7 @@ wss.on('connection', function connection(ws) {
   ws.on('message', function incoming(data) {
     console.log(data);
   });
-  
+
 });
 
 
@@ -100,7 +112,7 @@ for(var i=0;i<5;i++){
   functs.push(HelloWorldOne);
 }
 
-  
+
 var dataObj =[];
 for(var i =0;i<10000;i++){//create object
   dataObj.push(i);
@@ -108,7 +120,7 @@ for(var i =0;i<10000;i++){//create object
 /*
 setInterval(()=>{
    console.log('good not blocked.')
- },100);//to test if its not blocked 
+ },100);//to test if its not blocked
 */
 
 /*
@@ -131,18 +143,18 @@ setInterval(()=>{
 */
 async.forever(
   function(next) {
-      async.each(Object.keys(dataObj), function (item, callback){ 
+      async.each(Object.keys(dataObj), function (item, callback){
        loopTest();//operation here
         setTimeout(function() {
         //  console.log(item);
           callback();
-         
+
       }, 5000);
       // tell async that that particular element of the iterator is done
       }, function(err) {
       console.log('iterate done----------------');
       next();
-      });  
+      });
   },
   function(err) {
       // if next is called with a value in its first parameter, it will appear
@@ -171,7 +183,7 @@ mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 
 mongoose.connection.on('connected', function(){ console.log('connected mongoose');});
-mongoose.connection.on('error', function(error){  
+mongoose.connection.on('error', function(error){
     console.log("------------");
     console.log("connection error :" +error);
     console.log("you can get the user and password from Application>secrect ");
@@ -261,7 +273,7 @@ io.on('connection', function(client){
   });
 
   roomno++;
-  
+
   io.sockets.emit('roomcount',roomno);//to emit to client
 
   io.sockets.in(room).emit('message', 'what is going on, party people?');//the in is the room it self emit is the message to the room
@@ -311,6 +323,9 @@ var initDb = function(callback) {
 
 app.use("/public", express.static(__dirname + "/public"));//so we can include external client side js or css files without routing it manually w
 
+
+
+
 app.get('/', function (req, res) {
   // try to initialize the db on every request if it's not already
   // initialized.
@@ -346,6 +361,12 @@ app.get('/plotlytest', function (req, res) {
 });
 app.get('/vuevaliddate', function (req, res) {
   res.render('vuevaliddate.html');
+});
+app.get('/babeltest', function (req, res) {
+  res.render('babeltest.html');
+});
+app.get('/vue-webpack', function (req, res) {
+  res.render('babeltest.html');
 });
 
 

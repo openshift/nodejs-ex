@@ -1,53 +1,46 @@
 {
   "name": "nodejs-ex",
-  "version": "0.0.1",
-  "description": "Node.js sample app for OpenShift 3",
-  "main": "server.js",
-  "dependencies": {
-    "bufferutil": "^3.0.3",
-    "chai": "^3.5.0",
-    "chai-http": "^2.0.1",
-    "ejs": "^2.4.1",
-    "express": "^4.13.4",
-    "fakerator": "^0.3.0",
-    "graphql": "^0.13.2",
-    "mocha": "^2.4.5",
-    "mongodb": "^2.1.16",
-    "mongoose": "^5.0.11",
-    "morgan": "^1.7.0",
-    "npm": "^5.7.1",
-    "object-assign": "4.1.0",
-    "random-profile-generator": "^2.3.0",
-    "random-word": "^2.0.0",
-    "random-word-generator": "^0.9.9",
-    "socket.io": "^2.0.4",
-    "utf-8-validate": "^4.0.0",
-    "ws": "^5.1.0"
-  },
-  "engine": {
-    "node": "*",
-    "npm": "*"
-  },
+  "description": "A Vue.js project",
+  "version": "1.0.0",
+  "author": "cariaga.info@gmail.com <cariaga.info@gmail.com>",
+  "license": "MIT",
+  "private": true,
   "scripts": {
+    "postinstall": "npm run build",
     "start": "node server.js",
-    "test": "IP=0.0.0.0 PORT=3030 mocha --timeout 5000 tests/*_test.js"
+    "build:server": "babel server-es6.js --out-file server.js",
+    "build:client": "webpack -p --config webpack.prod.config.js --progress",
+    "build": "better-npm-run build",
+    "clean": "rimraf dist/* && rimraf server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/openshift/nodejs-ex.git"
+  "dependencies": {
+    "vue": "^2.5.11",
+    "vue-router":"^2.7.0"
   },
-  "author": "Steve Speicher <sspeiche@gmail.com>",
-  "license": "CC-BY-1.0",
-  "bugs": {
-    "url": "http://github.com/openshift/nodejs-ex/issues"
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-stage-3": "^6.24.1",
+    "cross-env": "^5.0.5",
+    "css-loader": "^0.28.7",
+    "file-loader": "^1.1.4",
+    "vue-loader": "^13.0.5",
+    "vue-template-compiler": "^2.4.4",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.9.1"
   },
-  "homepage": "http://github.com/openshift/nodejs-ex",
-  "optionalDependencies": {
-    "bufferutil": "^3.0.3",
-    "utf-8-validate": "^4.0.0"
-  },
-  "directories": {
-    "test": "tests"
-  },
-  "devDependencies": {}
+  "betterScripts": {
+    "build": {
+      "command": "npm run clean && npm run build:server && npm run build:client",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    }
+  }
 }

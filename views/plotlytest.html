@@ -44,6 +44,7 @@
       </div>
 <div id="myDiv16"></div>
 <div id="hoverinfo" style="margin-left:80px;"></div>
+<div id="graph4"></div>
 <script>
     TESTER = document.getElementById('tester');
 
@@ -1002,4 +1003,31 @@ myPlot.on('plotly_hover', function(data){
  .on('plotly_unhover', function(data){
     hoverInfo.innerHTML = '';
 });
+</script>
+
+<script>
+  function rand() {
+  return Math.random();
+}
+
+Plotly.plot('graph', [{
+  x: [-3, -2,-1],
+  y: [1,2,3].map(rand)
+}, {
+  x: [-3, -2,-1],
+  y: [1,2,3].map(rand)
+}]);
+
+var cnt = 0;
+
+var interval = setInterval(function() {
+  
+  Plotly.extendTraces('graph4', {
+    x: [[cnt], [cnt]],
+    y: [[rand()], [rand()]]
+  }, [0, 1], 200)
+
+  cnt++
+  if(cnt === 5000) clearInterval(interval);
+}, 10);
 </script>
