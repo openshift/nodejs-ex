@@ -321,7 +321,7 @@ var initDb = function(callback) {
 };
 //app.get('/', (req, res) => res.send('Hello World!'));
 
-//app.use("/public", express.static(__dirname + "/public"));//so we can include external client side js or css files without routing it manually w
+app.use("/public", express.static(__dirname + "/public"));//so we can include external client side js or css files without routing it manually w
 
 
 
