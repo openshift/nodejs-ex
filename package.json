@@ -6,12 +6,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "postinstall": "npm run build",
-    "start": "node server.js",
-    "build:server": "babel server-es6.js --out-file server.js",
-    "build:client": "webpack -p --config webpack.prod.config.js --progress",
-    "build": "better-npm-run build",
-    "clean": "rimraf dist/* && rimraf server.js"
+    "start": "node server.js"
   },
   "dependencies": {
     "vue": "^2.5.11",
