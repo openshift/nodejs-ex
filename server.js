@@ -350,9 +350,7 @@ app.get('/vuevaliddate', function (req, res) {
 app.get('/babeltest', function (req, res) {
   res.render('babeltest.html');
 });
-app.get('/vue-webpack', function (req, res) {
-  res.render('babeltest.html');
-});
+
 
 
 app.get('/jsontest', function (req, res) {
