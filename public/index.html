@@ -8,8 +8,8 @@
       <router-link to="/foo">Go to Foo</router-link>
       <router-link to="/bar">Go to Bar</router-link>
       <router-link to="/grid2">Go to Bar</router-link>
-      
-  
+      <router-link to="/user/20">Go to Bar</router-link><!--example of routing with parameters-->
+      <router-link to="/user/30">Go to Bar</router-link><!--example of routing with parameters-->
     </p>
     <div>
         <blog-post
@@ -18,7 +18,11 @@
         v-bind:title="post.title"
       ></blog-post>
     </div>
+    <div>
+      <my-component></my-component>
+    </div>
   
+
     <!-- route outlet -->
     <!-- component matched by the route will render here -->
     <router-view></router-view>
@@ -29,32 +33,66 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-router/3.0.1/vue-router.min.js"></script>
   <script src="./components/grid2.js"></script>
   
+  <script type="text/x-template" id="my-component">
+    <div>My component template example</div>
+
+  </script>
+
   <script>
     //Vue.Components dosn't need to be assigned because it gets assigned in new Vew right away
-  Vue.component('blog-post', {
+  Vue.component('blog-post', {//string example
     props: ['title'],
     template: '<h3>{{ title }}</h3>'
-  })
+  });
+Vue.component('my-component', {//x-template example
+  template: '#my-component'
+});
   // 1. Define route components.
   // These can be imported from other files
   const Foo = { template: '<div>foo</div>' };
   const Bar= { template: '<div>Bar</div>' };
+
+  const User = {   
+    props: ['id'], //parms with routing  
+    template: '<div>User {{ id }}</div>',
+    created: function () {//will trigger only on creation will not re acess if already created goes hand in hand with watch
+    alert('upon creation test event from routing with params');
+    },
+    watch: {//watchers are used to check routing parameter changes instead of creation goes hand in hand with watch
+    '$route' (to, from) {//will trigger only on pre created and same url but with diffrent params
+      // react to route changes...
+      alert('upon re routed test event from routing with params');
+    }
+  }
+}
+
   // 2. Define some routes
   // Each route should map to a component. The "component" can
   // either be an actual component constructor created via
   // Vue.extend(), or just a component options object.
   // We'll talk about nested routes later.
   const routes = [
+
     { path: '/foo', component: Foo },//internal routing example
     { path: '/bar', component: Bar },//internal routing example
     { path: '/grid2', component: grid2 },// external routing template example
+  
+    { path: '/user/:id',//example of routing with parameters
+          components: {default: User},
+          props: { default: true }     
+    }     
   ]
   // 3. Create the router instance and pass the `routes` option
   // You can pass in additional options here, but let's
   // keep it simple for now.
   const router = new VueRouter({
-    mode: 'history',
-    routes
+    //hash mode will always use the # in the url when accessing the route the tag route link should look alot like the path in routes above
+    //hash mode works with back and direct link access from url BUT it needs the hash to navigate
+    //if a non existing url acess the route without any found link in hash mode e.g public/#/asf it will return the index.html
+
+    mode: 'hash',
+    routes,//we just seperate the route on its on variable to simplify it
+   // base: window.location.pathName,
   });
   // 4. Create and mount the root instance.
   // Make sure to inject the router with the router option to make the
