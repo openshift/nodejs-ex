@@ -30,8 +30,8 @@
   },
   "scripts": {
     "prewatch":"echo inlined example and pre watched example",
-    "build" :"webpack --mode production --progress --colors  ./scripts/tryingwebpack.js",
-    "dev" :"webpack --mode development --progress --colors  ./scripts/tryingwebpack.js",
+    "build" :"webpack --mode production --display-error-details --progress --colors  ./scripts/tryingwebpack.js",
+    "dev" :"webpack --mode development --display-error-details --progress --colors  ./scripts/tryingwebpack.js",
     "watch":"node scripts/watch.js",
     "postwatch":"echo happends after everything finished for watch",
     "start": "node server.js",
