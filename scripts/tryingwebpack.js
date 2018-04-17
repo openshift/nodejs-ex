@@ -1,0 +1,1 @@
+alert('webpack and webpack dev server worked');
