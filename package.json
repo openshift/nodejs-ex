@@ -22,7 +22,8 @@
     "random-word-generator": "^0.9.9",
     "socket.io": "^2.0.4",
     "utf-8-validate": "^4.0.0",
-    "ws": "^5.1.0"
+    "ws": "^5.1.0",
+    "webpack": "^4.0.1"
   },
   "engine": {
     "node": "*",
