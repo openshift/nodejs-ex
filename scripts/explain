@@ -1,0 +1,2 @@
+//do your npm run script here npm didn't add this automatically its a custom folder location for running scripts or automations
+//pre is used to invoke first e.g prewatch then watch will execute
