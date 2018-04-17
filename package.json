@@ -30,7 +30,8 @@
   },
   "scripts": {
     "prewatch":"echo inlined example and pre watched example",
-    "build-js" :"webpack ./scripts/tryingwebpack.js bundle.js",
+    "build" :"webpack --mode production --progress --colors  ./scripts/tryingwebpack.js",
+    "dev" :"webpack --mode development --progress --colors  ./scripts/tryingwebpack.js",
     "watch":"node scripts/watch.js",
     "postwatch":"echo happends after everything finished for watch",
     "start": "node server.js",
@@ -58,5 +59,7 @@
   "directories": {
     "test": "tests"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "webpack": "^4.0.1"
+  }
 }

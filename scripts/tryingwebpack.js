@@ -1,1 +1,1 @@
- alert('webpack and webpack dev server worked');
+ console.log('webpack  worked');
