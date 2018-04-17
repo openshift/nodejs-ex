@@ -1,1 +1,1 @@
-alert('webpack and webpack dev server worked');
+ alert('webpack and webpack dev server worked');
