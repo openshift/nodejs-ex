@@ -30,11 +30,16 @@
   },
   "scripts": {
     "prewatch":"echo inlined example and pre watched example",
-    "build-js" :"",
+    "build-js" :"webpack ./scripts/watch.js ./build/js/bundle.js",
     "watch":"node scripts/watch.js",
     "postwatch":"echo happends after everything finished for watch",
     "start": "node server.js",
-    "test": "IP=0.0.0.0 PORT=3030 mocha --timeout 5000 tests/*_test.js"
+    "test": "IP=0.0.0.0 PORT=3030 mocha --timeout 5000 tests/*_test.js",
+    "pretest": "echo 'about to run the test...'",
+    "posttest": "echo 'the test has been run!'",
+    "somthing1":"echo somthing1 code",
+    "somthing2":"echo somthing2 code2",
+    "buildBothSameTime":"npm run somthing1 &&npm run somthing2 && echo stacking upscripts example"
   },
   "repository": {
     "type": "git",
