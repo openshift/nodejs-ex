@@ -30,7 +30,7 @@
   },
   "scripts": {
     "prewatch":"echo inlined example and pre watched example",
-    "build-js" :"webpack ./scripts/watch.js ./build/js/bundle.js",
+    "build-js" :"webpack-dev-server ./scripts/watch.js",
     "watch":"node scripts/watch.js",
     "postwatch":"echo happends after everything finished for watch",
     "start": "node server.js",
