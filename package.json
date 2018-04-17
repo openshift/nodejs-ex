@@ -30,6 +30,7 @@
   },
   "scripts": {
     "prewatch":"echo inlined example and pre watched example",
+    "build-js" :"",
     "watch":"node scripts/watch.js",
     "postwatch":"echo happends after everything finished for watch",
     "start": "node server.js",
