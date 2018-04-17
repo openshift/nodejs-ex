@@ -1,2 +1,3 @@
 //do your npm run script here npm didn't add this automatically its a custom folder location for running scripts or automations
 //pre is used to invoke first e.g prewatch then watch will execute
+//make sure you don't have too many npm script in npm package json script because it will confuse people unless you can stack them up to in sequence
