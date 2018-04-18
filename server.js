@@ -45,7 +45,7 @@ var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     mongoURLLabel = "";
 
 
-
+/*
 var server = require('http').createServer(app);
 let clients = [];
 const wss = new WebSocket.Server({ server });
@@ -62,7 +62,7 @@ wss.on('connection', function connection(ws) {
   ws.on('message', function incoming(data) {
     console.log(data);
   });
-});
+});*/
 
 
 /*
