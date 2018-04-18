@@ -49,23 +49,29 @@ var server = require('http').createServer(app);
 
 
 
-/*use the socket controller instead
+//use the socket controller instead
 let clients = [];
 const wss = new WebSocket.Server({ server });
+const wss = new WebSocket.Server({ server });
 wss.on('connection', function connection(ws) {
-  ws.send('something to client');//send to the new connect
+  const location = url.parse(req.url, true);
+  // You might use location.query.access_token to authenticate or share sessions
+  // or req.headers.cookie (see http://stackoverflow.com/a/16395220/151312)
   ws.onopen = function() {
     console.log('open');
     console.log("clients "+JSON.stringify(wss.clients));
   }
+  
   ws.onclose = function() {
     console.log('close');
+    console.log("clients "+JSON.stringify(wss.clients));
   }
 
-  ws.on('message', function incoming(data) {
-    console.log(data);
+  ws.on('message', function incoming(message) {
+    //console.log('received: %s', message);
   });
-});*/
+ // ws.send('something');
+});
 
 
 /*
