@@ -47,17 +47,21 @@ var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
 
 
 var server = require('http').createServer(app);
+let clients = [];
 const wss = new WebSocket.Server({ server });
 wss.on('connection', function connection(ws) {
   ws.send('something to client');//send to the new connect
   ws.onopen = function() {
-    console.log('open')
-}
+    console.log('open');
+    console.log("clients "+JSON.stringify(wss.clients));
+  }
+  ws.onclose = function() {
+    console.log('close');
+  }
 
   ws.on('message', function incoming(data) {
     console.log(data);
   });
-  
 });
 
 
