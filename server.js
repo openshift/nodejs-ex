@@ -45,7 +45,7 @@ var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     mongoURLLabel = "";
 
 
-/*
+/*use the socket controller instead
 var server = require('http').createServer(app);
 let clients = [];
 const wss = new WebSocket.Server({ server });
