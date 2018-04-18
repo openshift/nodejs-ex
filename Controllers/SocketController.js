@@ -1,6 +1,6 @@
 var express = require('express'),
     http = require("https"),
-    //app     = express(),
+    app     = express(),
     
     morgan  = require('morgan');
 var path    = require("path");
@@ -12,8 +12,10 @@ router.get('/', function(req, res){
   //res.send(url);
  res.sendFile(url);
 });
-/*
+
+
 let clients = [];
+var server = require('http').createServer(app);
 const wss = new WebSocket.Server({ server });
 wss.on('connection', function connection(ws) {
   const location = url.parse(req.url, true);
@@ -34,6 +36,6 @@ wss.on('connection', function connection(ws) {
   });
  // ws.send('something');
 });
-*/
+
 
 module.exports = router;
