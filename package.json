@@ -59,8 +59,5 @@
   },
   "directories": {
     "test": "tests"
-  },
-  "devDependencies": {
-    "webpack": "^4.0.1"
   }
 }

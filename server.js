@@ -20,6 +20,7 @@ var genericTestModel = require('./models/genericTestModel');
 
 var randomProfile = require('random-profile-generator');
 var fakerator = require("fakerator")();
+
 Object.assign=require('object-assign')
 
 app.engine('html', require('ejs').renderFile);
@@ -309,6 +310,7 @@ var initDb = function(callback) {
 };
 //app.get('/', (req, res) => res.send('Hello World!'));
 
+app.use("/dist", express.static(__dirname + "/dist"));
 app.use("/public", express.static(__dirname + "/public"));//so we can include external client side js or css files without routing it manually w
 app.use("/Dashboard", express.static(__dirname + "/Dashboard"));//so we can include external client side js or css files without routing it manually w
 
