@@ -31,8 +31,9 @@
   },
   "scripts": {
     "prewatch":"echo inlined example and pre watched example",
-    "build" :"webpack --mode production --display-error-details --progress --colors  ./scripts/tryingwebpack.js",
-    "dev" :"webpack --mode development --display-error-details --progress --colors  ./scripts/tryingwebpack.js",
+    "build" :"webpack --mode production --display-error-details --progress --colors ./scripts/mylibrary.js",
+    "dev" :"webpack --mode development --display-error-details --progress --colors  ./scripts/mylibrary.js",
+    "prestart":"npm run build",
     "watch":"node scripts/watch.js",
     "postwatch":"echo happends after everything finished for watch",
     "start": "node server.js",
@@ -41,7 +42,8 @@
     "posttest": "echo 'the test has been run!'",
     "somthing1":"echo somthing1 code",
     "somthing2":"echo somthing2 code2",
-    "buildBothSameTime":"npm run somthing1 &&npm run somthing2 && echo stacking upscripts example"
+    "buildBothSameTime":"npm run somthing1 &&npm run somthing2 && echo stacking up scripts example"
+
   },
   "repository": {
     "type": "git",
@@ -57,6 +59,7 @@
     "bufferutil": "^3.0.3",
     "utf-8-validate": "^4.0.0"
   },
+
   "directories": {
     "test": "tests"
   }

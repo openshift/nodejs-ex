@@ -358,6 +358,9 @@ app.get('/babeltest', function (req, res) {
 app.get('/webpackdevservertest', function (req, res){
   res.render('webpackdevservertest.html');
 });
+app.get('/estest', function (req, res){
+  res.render('estest.html');
+});
 
 
 app.get('/jsontest', function (req, res) {
