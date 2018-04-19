@@ -59,7 +59,6 @@ wss.on('connection', function connection(ws) {
   // or req.headers.cookie (see http://stackoverflow.com/a/16395220/151312)
   ws.onopen = function() {
     console.log('open');
-    
     console.log("clients "+JSON.stringify(wss.clients));
   }
   
