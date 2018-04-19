@@ -74,7 +74,7 @@ wss.on('connection', function connection(ws) {
     //console.log('received: %s', message);
     console.log("clients length "+clients.length);
     clients.forEach(function(client) {
-      client.send('some data broadcasted because someone connected '+'my UUID '+client);
+      client.send('some data broadcasted because someone connected '+'my UUID '+client.id);
     });
   });
    ws.send('connected');
