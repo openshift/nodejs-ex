@@ -54,9 +54,21 @@ var server = require('http').createServer(app);
 //the socketcontroller.js calls this while socketcontroller.js is called by socketcontroller.html
 let clients =[];
 let totalclient;
+
+function noop() {}
+
+function heartbeat() {
+  this.isAlive = true;
+}
+
+
 const wss = new WebSocket.Server({ server });
 wss.on('connection', function connection(ws,req) {
   const ip = req.connection.remoteAddress;
+
+  ws.isAlive = true;
+  ws.on('pong', heartbeat);
+
   // You might use location.query.access_token to authenticate or share sessions
   // or req.headers.cookie (see http://stackoverflow.com/a/16395220/151312)
   ws.id = uuid.v4();//append a property to a client to know the diffrences
@@ -79,13 +91,36 @@ wss.on('connection', function connection(ws,req) {
     
     wss.clients.forEach(function(client) {//we loop in wss because we need the latest connections
       if (client !== ws && client.readyState === WebSocket.OPEN) {//makes sure its ready
-      client.send('some data broadcasted because someone connected '+'my UUID '+client.id);
+      client.send('some data broadcasted because someone connected '+'my UUID '+client.id, function ack(error) {
+        // If error is not defined, the send has been completed, otherwise the error
+        // object will indicate what failed.
+      });
+      
       };
     });
   });
   
-   ws.send('connected');
+   ws.send('connected', function ack(error) {//send the message with error check
+    // If error is not defined, the send has been completed, otherwise the error
+    // object will indicate what failed.
+  });
+  
+
+  const interval = setInterval(function ping() {//for disconnection check
+    wss.clients.forEach(function each(ws) {
+      if (ws.isAlive === false) return ws.terminate();
+
+      ws.isAlive = false;
+      ws.ping(noop);
+    });
+  }, 30000);
+
 });
+
+
+
+
+
 
 //----sockets end here
 
