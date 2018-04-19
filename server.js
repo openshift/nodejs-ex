@@ -104,20 +104,16 @@ wss.on('connection', function connection(ws,req) {
     // If error is not defined, the send has been completed, otherwise the error
     // object will indicate what failed.
   });
-  
-
-  const interval = setInterval(function ping() {//for disconnection check
-    wss.clients.forEach(function each(ws) {
-      if (ws.isAlive === false) return ws.terminate();
-
-      ws.isAlive = false;
-      ws.ping(noop);
-    });
-  }, 30000);
-
 });
 
+const interval = setInterval(function ping() {
+  wss.clients.forEach(function each(ws) {
+    if (ws.isAlive === false) return ws.terminate();
 
+    ws.isAlive = false;
+    ws.ping(noop);
+  });
+}, 30000);
 
 
 
