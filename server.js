@@ -71,13 +71,18 @@ wss.on('connection', function connection(ws,req) {
   // You might use location.query.access_token to authenticate or share sessions
   // or req.headers.cookie (see http://stackoverflow.com/a/16395220/151312)
   ws.id = uuid.v4();//append a property to a client to know the diffrences
+
+
+
   clients.push(ws);
   ws.onopen = function() {
     console.log('open');
     totalclient++;
   }
-  ws.onclose = function() {
-    console.log('close');
+  ws.onclose = function(client) {
+    
+    console.log('close client ');
+    console.log('id closed :'+clients.find(client).id); 
    totalclient--;
   }
   ws.on('error', function(err) {
@@ -86,7 +91,7 @@ wss.on('connection', function connection(ws,req) {
 
   ws.on('message', function incoming(message) {
     //console.log('received: %s', message);
-    console.log("clients length "+clients.length);
+    console.log("clients length "+totalclient);
     
     clients.forEach(function(client) {//we loop in wss because we need the latest connections
       if (client.readyState === WebSocket.OPEN) {//makes sure its ready
