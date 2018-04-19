@@ -55,6 +55,9 @@ var server = require('http').createServer(app);
 let clients =[];
 const wss = new WebSocket.Server({ server });
 wss.on('connection', function connection(ws) {
+  if (ws.readyState === 1) {
+  
+  }
   // You might use location.query.access_token to authenticate or share sessions
   // or req.headers.cookie (see http://stackoverflow.com/a/16395220/151312)
   ws.id = uuid.v4();//append a property to a client to know the diffrences
