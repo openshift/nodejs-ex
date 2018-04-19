@@ -89,7 +89,7 @@ wss.on('connection', function connection(ws,req) {
     console.log("clients length "+clients.length);
     
     wss.clients.forEach(function(client) {//we loop in wss because we need the latest connections
-      if (client !== ws && client.readyState === WebSocket.OPEN) {//makes sure its ready
+      if (client.readyState === WebSocket.OPEN) {//makes sure its ready
       client.send('some data broadcasted because someone connected', function ack(error) {
         // If error is not defined, the send has been completed, otherwise the error
         // object will indicate what failed.
