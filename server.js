@@ -54,7 +54,7 @@ let clients =[];
 
 const wss = new WebSocket.Server({ server });
 wss.on('connection', function connection(ws) {
-  ws.setKeepAlive(true);
+ 
 
   // You might use location.query.access_token to authenticate or share sessions
   // or req.headers.cookie (see http://stackoverflow.com/a/16395220/151312)
@@ -73,8 +73,8 @@ wss.on('connection', function connection(ws) {
 
   ws.on('message', function incoming(message) {
     //console.log('received: %s', message);
-
-    console.log("clients "+clients.length);
+    console.log("clients "+JSON.stringify(clients));
+    console.log("clients length "+clients.length);
   });
    ws.send('connected');
 });
