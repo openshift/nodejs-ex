@@ -55,9 +55,7 @@ var server = require('http').createServer(app);
 let clients =[];
 const wss = new WebSocket.Server({ server });
 wss.on('connection', function connection(ws) {
-  if (ws.readyState === 0) {
-    return;
-  }
+
   // You might use location.query.access_token to authenticate or share sessions
   // or req.headers.cookie (see http://stackoverflow.com/a/16395220/151312)
   ws.id = uuid.v4();//append a property to a client to know the diffrences
@@ -77,7 +75,8 @@ wss.on('connection', function connection(ws) {
   ws.on('message', function incoming(message) {
     //console.log('received: %s', message);
     console.log("clients length "+clients.length);
-    clients.forEach(function(client) {
+    
+    wss.clients.forEach(function(client) {
       if (client !== ws && client.readyState === WebSocket.OPEN) {
       client.send('some data broadcasted because someone connected '+'my UUID '+client.id);
       };
