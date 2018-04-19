@@ -61,13 +61,11 @@ wss.on('connection', function connection(ws) {
   // You might use location.query.access_token to authenticate or share sessions
   // or req.headers.cookie (see http://stackoverflow.com/a/16395220/151312)
   ws.id = uuid.v4();//append a property to a client to know the diffrences
-
   clients.push(ws);
   ws.onopen = function() {
     console.log('open');
     
   }
-  
   ws.onclose = function() {
     console.log('close');
    
@@ -80,9 +78,12 @@ wss.on('connection', function connection(ws) {
     //console.log('received: %s', message);
     console.log("clients length "+clients.length);
     clients.forEach(function(client) {
+      if (client !== ws && client.readyState === WebSocket.OPEN) {
       client.send('some data broadcasted because someone connected '+'my UUID '+client.id);
+      };
     });
   });
+  
    ws.send('connected');
 });
 
