@@ -53,6 +53,7 @@ var server = require('http').createServer(app);
 
 //the socketcontroller.js calls this while socketcontroller.js is called by socketcontroller.html
 let clients =[];
+let totalclient;
 const wss = new WebSocket.Server({ server });
 wss.on('connection', function connection(ws) {
 
@@ -62,11 +63,11 @@ wss.on('connection', function connection(ws) {
   clients.push(ws);
   ws.onopen = function() {
     console.log('open');
-    
+    totalclient++;
   }
   ws.onclose = function() {
     console.log('close');
-   
+   totalclient--;
   }
   ws.on('error', function(err) {
     console.debug('Found error: ' + err);
@@ -76,8 +77,8 @@ wss.on('connection', function connection(ws) {
     //console.log('received: %s', message);
     console.log("clients length "+clients.length);
     
-    wss.clients.forEach(function(client) {
-      if (client !== ws && client.readyState === WebSocket.OPEN) {
+    wss.clients.forEach(function(client) {//we loop in wss because we need the latest connections
+      if (client !== ws && client.readyState === WebSocket.OPEN) {//makes sure its ready
       client.send('some data broadcasted because someone connected '+'my UUID '+client.id);
       };
     });
