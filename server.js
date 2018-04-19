@@ -56,9 +56,10 @@ const wss = new WebSocket.Server({ server });
 wss.on('connection', function connection(ws) {
   // You might use location.query.access_token to authenticate or share sessions
   // or req.headers.cookie (see http://stackoverflow.com/a/16395220/151312)
+  clients.push(ws);
   ws.onopen = function() {
     console.log('open');
-    clients.push(ws);
+    
   }
   
   ws.onclose = function() {
