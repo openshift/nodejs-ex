@@ -53,6 +53,8 @@ var server = require('http').createServer(app);
 
 //the socketcontroller.js calls this while socketcontroller.js is called by socketcontroller.html
 let clients =[];
+let clientsTrueObject=[];
+
 let totalclient;
 
 function noop() {}
@@ -75,6 +77,7 @@ wss.on('connection', function connection(ws,req) {
 
 
   clients.push(ws);
+  clientsTrueObject.push(ws);
   ws.onopen = function() {
     console.log('open');
     totalclient++;
@@ -82,7 +85,7 @@ wss.on('connection', function connection(ws,req) {
   ws.onclose = function(client) {
     
     console.log('close client ');
-    console.log('id closed :'+ws.clients.length); 
+    console.log('id closed index of: '+clientsTrueObject.indexOf(client)); 
    totalclient--;
   }
   ws.on('error', function(err) {
