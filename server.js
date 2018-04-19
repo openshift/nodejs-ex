@@ -69,7 +69,7 @@ wss.on('connection', function connection(ws) {
   ws.on('message', function incoming(message) {
     //console.log('received: %s', message);
 
-    console.log("clients "+clients.count());
+    console.log("clients "+clients.length);
   });
    ws.send('connected');
 });
