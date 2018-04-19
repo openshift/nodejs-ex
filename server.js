@@ -73,12 +73,9 @@ wss.on('connection', function connection(ws) {
     //console.log('received: %s', message);
     console.log("clients "+JSON.stringify(clients));
     console.log("clients length "+clients.length);
-
-
     clients.forEach(function(client) {
       client.send('some data broadcasted');
     });
-
   });
    ws.send('connected');
 });
