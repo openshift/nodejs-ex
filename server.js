@@ -69,6 +69,9 @@ wss.on('connection', function connection(ws) {
     console.log('close');
    
   }
+  ws.on('error', function(err) {
+    console.debug('Found error: ' + err);
+});
 
   ws.on('message', function incoming(message) {
     //console.log('received: %s', message);
