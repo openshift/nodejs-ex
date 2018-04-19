@@ -13,7 +13,7 @@ router.get('/', function(req, res){
  res.sendFile(url);
 });
 
-
+/*deprected Must be part of the server.js 
 let clients = [];
 var server = require('http').createServer(app);
 const wss = new WebSocket.Server({ server });
@@ -35,7 +35,7 @@ wss.on('connection', function connection(ws) {
     //console.log('received: %s', message);
   });
   ws.send('something');
-});
+});*/
 
 
 module.exports = router;

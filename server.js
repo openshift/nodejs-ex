@@ -47,10 +47,10 @@ var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
 var server = require('http').createServer(app);
 
 
+//-----sockets start here
 
 
-//use the socket controller instead
-/*let clients = [];
+let clients = [];
 const wss = new WebSocket.Server({ server });
 
 wss.on('connection', function connection(ws) {
@@ -59,6 +59,7 @@ wss.on('connection', function connection(ws) {
   // or req.headers.cookie (see http://stackoverflow.com/a/16395220/151312)
   ws.onopen = function() {
     console.log('open');
+    
     console.log("clients "+JSON.stringify(wss.clients));
   }
   
@@ -71,17 +72,11 @@ wss.on('connection', function connection(ws) {
     //console.log('received: %s', message);
   });
    ws.send('something');
-});*/
+});
+
+//----sockets end here
 
 
-/*
-wss.on('connection', function connection(ws, req) {
-  const location = url.parse(req.url, true);
-  ws.on('message', function incoming(message) {
-    console.log('received: %s', message);
-  });
-  ws.send('something');//send to the new connect
-});*/
 /*
 async.forever(
   function(next) {
