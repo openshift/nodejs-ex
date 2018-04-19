@@ -82,7 +82,7 @@ wss.on('connection', function connection(ws,req) {
   ws.onclose = function(client) {
     
     console.log('close client ');
-    console.log('id closed :'+clients.find(client).id); 
+    console.log('id closed :'+ws.clients.length); 
    totalclient--;
   }
   ws.on('error', function(err) {
