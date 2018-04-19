@@ -5,6 +5,8 @@ var express = require('express'),
     morgan  = require('morgan');
     const url = require('url');
     const WebSocket = require('ws');
+const uuidv4 = require('uuid/v4');
+
 var os = require('os');
 //var osutil = require('os-utils');//not working on remote
 var mongoose   = require('mongoose');
