@@ -50,7 +50,7 @@ var server = require('http').createServer(app);
 
 
 //use the socket controller instead
-let clients = [];
+/*let clients = [];
 const wss = new WebSocket.Server({ server });
 
 wss.on('connection', function connection(ws) {
@@ -71,7 +71,7 @@ wss.on('connection', function connection(ws) {
     //console.log('received: %s', message);
   });
    ws.send('something');
-});
+});*/
 
 
 /*
