@@ -50,7 +50,7 @@ var server = require('http').createServer(app);
 //-----sockets start here
 
 //the socketcontroller.js calls this while socketcontroller.js is called by socketcontroller.html
-let clients = new clients();
+let clients =[];
 
 const wss = new WebSocket.Server({ server });
 wss.on('connection', function connection(ws) {
@@ -58,7 +58,7 @@ wss.on('connection', function connection(ws) {
   // or req.headers.cookie (see http://stackoverflow.com/a/16395220/151312)
   ws.onopen = function() {
     console.log('open');
-    
+    clients.push(ws);
   }
   
   ws.onclose = function() {
@@ -69,7 +69,7 @@ wss.on('connection', function connection(ws) {
   ws.on('message', function incoming(message) {
     //console.log('received: %s', message);
 
-    console.log("clients "+JSON.stringify(wss.clients));
+    console.log("clients "+clients.count());
   });
    ws.send('connected');
 });
