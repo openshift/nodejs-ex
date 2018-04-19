@@ -94,6 +94,7 @@ wss.on('connection', function connection(ws,req) {
       client.send('some data broadcasted because someone connected '+'my UUID '+client.id, function ack(error) {
         // If error is not defined, the send has been completed, otherwise the error
         // object will indicate what failed.
+        console.log(error);
       });
       
       };
@@ -103,6 +104,7 @@ wss.on('connection', function connection(ws,req) {
    ws.send('connected', function ack(error) {//send the message with error check
     // If error is not defined, the send has been completed, otherwise the error
     // object will indicate what failed.
+    console.log(error);
   });
 });
 
