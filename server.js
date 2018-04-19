@@ -53,7 +53,7 @@ var server = require('http').createServer(app);
 
 //the socketcontroller.js calls this while socketcontroller.js is called by socketcontroller.html
 let clients =[];
-
+console.log("uuid test "+  uuid.v4());
 const wss = new WebSocket.Server({ server });
 wss.on('connection', function connection(ws) {
   // You might use location.query.access_token to authenticate or share sessions
