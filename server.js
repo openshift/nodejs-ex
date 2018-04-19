@@ -52,7 +52,7 @@ var server = require('http').createServer(app);
 //use the socket controller instead
 let clients = [];
 const wss = new WebSocket.Server({ server });
-const wss = new WebSocket.Server({ server });
+
 wss.on('connection', function connection(ws) {
   const location = url.parse(req.url, true);
   // You might use location.query.access_token to authenticate or share sessions
