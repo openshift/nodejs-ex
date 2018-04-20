@@ -123,13 +123,13 @@ async.forever(
         console.log('CLOSING  id '+ws.id);
       }
       if (ws.readyState === WebSocket.CLOSED){
-        console.log('closed id '+ws.id);
+        console.log('CLOSED id '+ws.id);
       }
       if (ws.readyState === WebSocket.CONNECTING){
         console.log('CONNECTING  id '+ws.id);
       }
       if (ws.readyState === WebSocket.OPEN){
-        console.log('open  id '+ws.id);
+        console.log('OPEN  id '+ws.id);
       }
      
     
