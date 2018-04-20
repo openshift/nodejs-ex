@@ -13,6 +13,7 @@ router.get('/', function(req, res){
  res.sendFile(url);
 });
 
+
 /*deprected Must be part of the server.js 
 let clients = [];
 var server = require('http').createServer(app);

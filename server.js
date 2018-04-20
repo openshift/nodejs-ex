@@ -92,7 +92,7 @@ wss.on('connection', function connection(ws,req) {
     console.debug('Found error: ' + err);
   });
 
-  ws.on('message', function incoming(message) {
+  ws.on('message2', function incoming(message) {
     //console.log('received: %s', message);
     console.log("clients length "+totalclient);
     
