@@ -119,12 +119,20 @@ wss.on('connection', function connection(ws,req) {
 async.forever(
   function(next) {
     clients.forEach(function each(ws) {
+      if (ws.readyState === WebSocket.CLOSING){
+        console.log('CLOSING  id '+ws.id);
+      }
       if (ws.readyState === WebSocket.CLOSED){
         console.log('closed id '+ws.id);
       }
-      if (ws.readyState === WebSocket.OPEN){
-        console.log('open id '+ws.id);
+      if (ws.readyState === WebSocket.CONNECTING){
+        console.log('CONNECTING  id '+ws.id);
       }
+      if (ws.readyState === WebSocket.OPEN){
+        console.log('open  id '+ws.id);
+      }
+     
+    
     });
       setTimeout(function() {
         next();//self execute again
