@@ -77,9 +77,7 @@ wss.on('connection', function connection(ws,req) {
   ws.ip = ip;
 
   clients.push(ws);
-  
 
-  
   ws.onopen = function() {
     console.log('open');
     totalclient++;
@@ -118,6 +116,16 @@ wss.on('connection', function connection(ws,req) {
     console.log(error);
   });
 
+  var userobject=[];
+  var user ={};
+  user.id="name";
+  user.connectionid="asf";
+  user.otherConnection=[];
+  var otherconn={"id":"","conn":"conn"};
+  user.otherConnection.push(otherconn);
+  user.otherConnection.push(otherconn);
+  userobject.push(user);
+  console.log(JSON.stringify(userobject));
 
   /* ws.send('connected', function ack(error) {//send the message with error check
     // If error is not defined, the send has been completed, otherwise the error
