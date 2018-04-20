@@ -108,17 +108,21 @@ wss.on('connection', function connection(ws,req) {
   });
   
  
-  var userobject=[];// user the information of other connections for connection
+  var root =[]; //root representing an array of json
+  var userobject={};// user the information of other connections for connection
+  userobject.type="ConnectionList";//the identifer type of object
+  userobject.usercontainer=[];
   var user ={};
-  user.id=ws.ip;
-  user.connectionid=ws.id;
+  user.id='test';
+  user.connectionid='uid';
   user.otherConnection=[];//object containing other
-
   var otherconn={"id":"","conn":"conn"};
   user.otherConnection.push(otherconn);
   user.otherConnection.push(otherconn);
-  userobject.push(user);
-//  console.log(JSON.stringify(userobject));
+  userobject.usercontainer.push(user);
+
+  root.push(userobject);
+  console.log(JSON.stringify(root));
 
 
   //send connection information after connecting 
