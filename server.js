@@ -92,7 +92,7 @@ wss.on('connection', function connection(ws,req) {
     console.debug('Found error: ' + err);
   });
 
-  ws.on('message2', function incoming(message) {
+  ws.on('message', function incoming(message) {
     //console.log('received: %s', message);
     console.log("clients length "+totalclient);
     
@@ -112,7 +112,7 @@ wss.on('connection', function connection(ws,req) {
   var user ={};
   user.id=ws.ip;
   user.connectionid=ws.id;
-  user.otherConnection=[];//object containing other connections
+  user.otherConnection=[];//object containing other
 
   var otherconn={"id":"","conn":"conn"};
   user.otherConnection.push(otherconn);
