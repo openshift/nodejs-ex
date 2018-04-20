@@ -71,10 +71,15 @@ wss.on('connection', function connection(ws,req) {
 
   // You might use location.query.access_token to authenticate or share sessions
   // or req.headers.cookie (see http://stackoverflow.com/a/16395220/151312)
+  
+
   ws.id = uuid.v4();//append a property to a client to know the diffrences
   ws.ip = ip;
 
 
+  let latestclient=[];//created on every new connection
+  latestclient.ip = ws.id;
+  latestclient.ip= ws.ip;
   clients.push(ws);
   
 
@@ -110,7 +115,7 @@ wss.on('connection', function connection(ws,req) {
   
   
   //send connection information after connecting 
-  ws.send(JSON.stringify(ws), function ack(error) {//send the message with error check
+  ws.send(JSON.stringify(latestclient), function ack(error) {//send the message with error check
     // If error is not defined, the send has been completed, otherwise the error
     // object will indicate what failed.
     console.log(error);
