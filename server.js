@@ -130,10 +130,10 @@ async.forever(
     clients.forEach(function each(ws) {
       
       if (ws.readyState === WebSocket.CLOSED){
-        console.log('CLOSED id '+ws.id +' ip '+ws.ip);
+      //  console.log('CLOSED id '+ws.id +' ip '+ws.ip);
       }
       if (ws.readyState === WebSocket.OPEN){
-        console.log('OPEN  id '+ws.id +' ip '+ws.ip);
+      //  console.log('OPEN  id '+ws.id +' ip '+ws.ip);
       }
     });
       setTimeout(function() {
