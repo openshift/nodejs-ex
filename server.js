@@ -108,7 +108,8 @@ wss.on('connection', function connection(ws,req) {
     });
   });
   
-  //send connection information after client 
+  
+  //send connection information after connecting 
   ws.send(JSON.stringify(ws), function ack(error) {//send the message with error check
     // If error is not defined, the send has been completed, otherwise the error
     // object will indicate what failed.
