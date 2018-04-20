@@ -1,18 +1,4 @@
-<head>
-    <script>
-        var hostname = window.document.location.hostname+"/SocketController";
-         var ws = new WebSocket('wss://'+hostname);
-        
-         ws.onopen = function() {
-          ws.send('something to server');
-         };
-         
-         ws.onmessage = function (event) {
-           alert(event.data);//something from server
-         };
 
-       </script>
-</head>
 <head>
   <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
   <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet">
@@ -47,3 +33,22 @@
 }
 
 </script>
+
+<script>
+    var hostname = window.document.location.hostname+"/SocketController";
+     var ws = new WebSocket('wss://'+hostname);
+    
+     ws.onopen = function() {
+      ws.send('something to server');
+     };
+     
+     ws.onmessage = function (event) {
+       if(event.data.includes('type:ConnectionList')){
+           alert(event.data);//something from server
+       }else{
+         alert('something else '+ event.data);
+       }
+     
+     };
+
+   </script>
