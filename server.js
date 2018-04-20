@@ -53,7 +53,6 @@ var server = require('http').createServer(app);
 
 //the socketcontroller.js calls this while socketcontroller.js is called by socketcontroller.html
 let clients =[];
-let clientsTrueObject=[];
 
 let totalclient;
 
@@ -77,7 +76,7 @@ wss.on('connection', function connection(ws,req) {
 
 
   clients.push(ws);
-  clientsTrueObject.push(ws);
+  
 
   
   ws.onopen = function() {
@@ -124,7 +123,7 @@ async.forever(
         console.log('closed id '+ws.id);
       }
       if (ws.readyState === WebSocket.OPEN){
-        console.log('closed id '+ws.id);
+        console.log('open id '+ws.id);
       }
     });
       setTimeout(function() {
