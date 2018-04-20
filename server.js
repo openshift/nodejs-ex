@@ -121,7 +121,7 @@ async.forever(
   function(next) {
     clients.forEach(function each(ws) {
       if (ws.readyState === WebSocket.CLOSED){
-        Console.log('closed id '+ws.id);
+        console.log('closed id '+ws.id);
       }
     });
       setTimeout(function() {
