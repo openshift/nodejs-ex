@@ -78,6 +78,8 @@ wss.on('connection', function connection(ws,req) {
 
   clients.push(ws);
   clientsTrueObject.push(ws);
+
+  
   ws.onopen = function() {
     console.log('open');
     totalclient++;
@@ -85,7 +87,7 @@ wss.on('connection', function connection(ws,req) {
   ws.onclose = function(client) {
     
     console.log('close client ');
-    console.log('id closed index of: '+clientsTrueObject.indexOf(client)); 
+  
    totalclient--;
   }
   ws.on('error', function(err) {
@@ -113,6 +115,25 @@ wss.on('connection', function connection(ws,req) {
     console.log(error);
   });
 });
+
+async.forever(
+  function(next) {
+    clients.forEach(function each(ws) {
+      if (ws.readyState === 0){
+        Console.log('closed id '+ws.id);
+      }
+    });
+      setTimeout(function() {
+        next();//self execute again
+    }, 1000);
+  },
+  function(err) {
+      // if next is called with a value in its first parameter, it will appear
+      // in here as 'err', and execution will stop.
+      console.log('async close check error : '+ err)
+  }
+);
+
 
 const interval = setInterval(function ping() {
   wss.clients.forEach(function each(ws) {
