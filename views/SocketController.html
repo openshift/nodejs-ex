@@ -10,7 +10,7 @@
 <body>
   <div id="example">
     <p>Original message: "{{ message }}"</p>
-    <p>Computed reversed message: "{{ reversedMessage }}"</p>
+
   </div>
 </body>
 
@@ -44,11 +44,9 @@
      
      ws.onmessage = function (event) {
        if(event.data.includes('ConnectionList')){
-           alert(event.data);//something from server
+            vm.message=event.data;//something from server
        }else{
          alert('something else '+ event.data);
        }
-     
      };
-
    </script>
