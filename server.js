@@ -77,7 +77,7 @@ wss.on('connection', function connection(ws,req) {
   ws.ip = ip;
 
 
-  let latestclient=[];//created on every new connection
+  let latestclient=undefined;//created on every new connection
   latestclient.id = ws.id;
   latestclient.ip= ws.ip;
   clients.push(ws);
