@@ -123,6 +123,9 @@ async.forever(
       if (ws.readyState === WebSocket.CLOSED){
         console.log('closed id '+ws.id);
       }
+      if (ws.readyState === WebSocket.OPEN){
+        console.log('closed id '+ws.id);
+      }
     });
       setTimeout(function() {
         next();//self execute again
