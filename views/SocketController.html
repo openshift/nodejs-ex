@@ -43,7 +43,7 @@
      };
      
      ws.onmessage = function (event) {
-       if(event.data.includes('type:ConnectionList')){
+       if(event.data.includes('ConnectionList')){
            alert(event.data);//something from server
        }else{
          alert('something else '+ event.data);
