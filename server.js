@@ -108,18 +108,26 @@ wss.on('connection', function connection(ws,req) {
     });
   });
   
-   ws.send('connected', function ack(error) {//send the message with error check
+  //send connection information after client 
+  ws.send(JSON.stringify(ws), function ack(error) {//send the message with error check
     // If error is not defined, the send has been completed, otherwise the error
     // object will indicate what failed.
     console.log(error);
   });
+
+
+  /* ws.send('connected', function ack(error) {//send the message with error check
+    // If error is not defined, the send has been completed, otherwise the error
+    // object will indicate what failed.
+    console.log(error);
+  });*/
 });
 
 /*checking for connection states*/
 async.forever(
   function(next) {
     clients.forEach(function each(ws) {
-     
+      
       if (ws.readyState === WebSocket.CLOSED){
         console.log('CLOSED id '+ws.id +' ip '+ws.ip);
       }
