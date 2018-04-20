@@ -35,7 +35,7 @@
     "prewatch":"echo inlined example and pre watched example",
     "build" :"webpack --mode production --display-error-details --progress --colors ./scripts/mylibrary.js",
     "dev" :"webpack --mode development --display-error-details --progress --colors  ./scripts/mylibrary.js",
-    "prestart":"npm run build",
+    "prestart":"",
     "watch":"node scripts/watch.js",
     "postwatch":"echo happends after everything finished for watch",
     "start": "node server.js",
