@@ -107,25 +107,29 @@ wss.on('connection', function connection(ws,req) {
     });
   });
   
-  let latestconnection ={ip:ws.ip,id:ws.id};
-  
+ 
+  var userobject=[];//send user the information of other connections for connection
+  var user ={};
+  user.id=ws.ip;
+  user.connectionid=ws.id;
+  user.otherConnection=[];
+
+  var otherconn={"id":"","conn":"conn"};
+  user.otherConnection.push(otherconn);
+  user.otherConnection.push(otherconn);
+  userobject.push(user);
+//  console.log(JSON.stringify(userobject));
+
+
   //send connection information after connecting 
-  ws.send(JSON.stringify(latestconnection), function ack(error) {//send the message with error check
+  ws.send(JSON.stringify(userobject), function ack(error) {//send the message with error check
     // If error is not defined, the send has been completed, otherwise the error
     // object will indicate what failed.
     console.log(error);
   });
 
-  var userobject=[];
-  var user ={};
-  user.id="name";
-  user.connectionid="asf";
-  user.otherConnection=[];
-  var otherconn={"id":"","conn":"conn"};
-  user.otherConnection.push(otherconn);
-  user.otherConnection.push(otherconn);
-  userobject.push(user);
-  console.log(JSON.stringify(userobject));
+
+
 
   /* ws.send('connected', function ack(error) {//send the message with error check
     // If error is not defined, the send has been completed, otherwise the error
