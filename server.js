@@ -72,7 +72,7 @@ wss.on('connection', function connection(ws,req) {
   // You might use location.query.access_token to authenticate or share sessions
   // or req.headers.cookie (see http://stackoverflow.com/a/16395220/151312)
   ws.id = uuid.v4();//append a property to a client to know the diffrences
-
+  ws.ip = ip;
 
 
   clients.push(ws);
@@ -119,20 +119,13 @@ wss.on('connection', function connection(ws,req) {
 async.forever(
   function(next) {
     clients.forEach(function each(ws) {
-      if (ws.readyState === WebSocket.CLOSING){
-        console.log('CLOSING  id '+ws.id);
-      }
+     
       if (ws.readyState === WebSocket.CLOSED){
-        console.log('CLOSED id '+ws.id);
-      }
-      if (ws.readyState === WebSocket.CONNECTING){
-        console.log('CONNECTING  id '+ws.id);
+        console.log('CLOSED id '+ws.id +' ip '+ws.ip);
       }
       if (ws.readyState === WebSocket.OPEN){
-        console.log('OPEN  id '+ws.id);
+        console.log('OPEN  id '+ws.id +' ip '+ws.ip);
       }
-     
-    
     });
       setTimeout(function() {
         next();//self execute again
