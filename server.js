@@ -116,10 +116,11 @@ wss.on('connection', function connection(ws,req) {
   });
 });
 
+
 async.forever(
   function(next) {
     clients.forEach(function each(ws) {
-      if (ws.readyState === 0){
+      if (ws.readyState === WebSocket.CLOSED){
         Console.log('closed id '+ws.id);
       }
     });
