@@ -108,11 +108,11 @@ wss.on('connection', function connection(ws,req) {
   });
   
  
-  var userobject=[];//send user the information of other connections for connection
+  var userobject=[];// user the information of other connections for connection
   var user ={};
   user.id=ws.ip;
   user.connectionid=ws.id;
-  user.otherConnection=[];
+  user.otherConnection=[];//object containing other connections
 
   var otherconn={"id":"","conn":"conn"};
   user.otherConnection.push(otherconn);
