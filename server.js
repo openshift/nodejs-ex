@@ -116,7 +116,7 @@ wss.on('connection', function connection(ws,req) {
   });
 });
 
-
+/*checking for connection states*/
 async.forever(
   function(next) {
     clients.forEach(function each(ws) {
