@@ -95,7 +95,7 @@ wss.on('connection', function connection(ws,req) {
         userobject.usercontainer.push(user);
       
         root.push(userobject);
-        console.log(JSON.stringify(root));
+        
         setTimeout(function() {
           next();//self execute again
         }, 1000);
