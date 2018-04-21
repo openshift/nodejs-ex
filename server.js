@@ -79,52 +79,53 @@ wss.on('connection', function connection(ws,req) {
   clients.push(ws);
 
   async.forever(
-  function(next) {
-    var root =[]; //root representing an array of json
-    var userobject={};// user the information of other connections for connection
-    userobject.type="ConnectionList";//the identifer type of object
-    userobject.time=Date.now();
-    userobject.usercontainer=[];
-    var user ={};
-    user.ip=ws.ip;
-    user.connectionid=ws.id;
-    user.otherConnection=[];//object containing other
-    var otherconn={"name":"","id":"uuid"};
-    user.otherConnection.push(otherconn);
-    user.otherConnection.push(otherconn);
-    userobject.usercontainer.push(user);
-  
-    root.push(userobject);
-    console.log(JSON.stringify(root));
-    setTimeout(function() {
-      next();//self execute again
-    }, 1000);
+    function(next) {
+      var root =[]; //root representing an array of json
+      var userobject={};// user the information of other connections for connection
+      userobject.type="ConnectionList";//the identifer type of object
+      userobject.time=Date.now();
+      userobject.usercontainer=[];
+      var user ={};
+      user.ip=ws.ip;
+      user.connectionid=ws.id;
+      user.otherConnection=[];//object containing other
+      var otherconn={"name":"","id":"uuid"};
+      user.otherConnection.push(otherconn);
+      user.otherConnection.push(otherconn);
+      userobject.usercontainer.push(user);
+    
+      root.push(userobject);
+      console.log(JSON.stringify(root));
+      setTimeout(function() {
+        next();//self execute again
+      }, 1000);
 
     clients.forEach(function(client) {//we loop in wss because we need the latest connections
-      if (client.readyState === WebSocket.OPEN) {//makes sure its ready
-       /* client.send('some data broadcasted because someone connected ', function ack(error) {
-          // If error is not defined, the send has been completed, otherwise the error
-          // object will indicate what failed.
-          console.log("foreach error : "+ error);
-        });*/
+          if (client.readyState === WebSocket.OPEN) {//makes sure its ready
+          /* client.send('some data broadcasted because someone connected ', function ack(error) {
+              // If error is not defined, the send has been completed, otherwise the error
+              // object will indicate what failed.
+              console.log("foreach error : "+ error);
+            });*/
+            
+            //send connection information after connecting 
+            client.send('test', function ack(error) {//send the message with error check
+              // If error is not defined, the send has been completed, otherwise the error
+              // object will indicate what failed.
+              console.log("error sending root "+error);
+            });
+          };
         
-        //send connection information after connecting 
-        client.send('test', function ack(error) {//send the message with error check
-          // If error is not defined, the send has been completed, otherwise the error
-          // object will indicate what failed.
-          console.log("error sending root "+error);
-        });
-      };
-     
-  },
-  function(err) {
-      // if next is called with a value in its first parameter, it will appear
-      // in here as 'err', and execution will stop.
-      console.log('async close check error : '+ err)
+      },
+      function(err) {
+          // if next is called with a value in its first parameter, it will appear
+          // in here as 'err', and execution will stop.
+          console.log('async close check error : '+ err)
+      }
+    );
+  
   }
 );
-  
-});
 
   ws.onopen = function() {
     console.log('open');
