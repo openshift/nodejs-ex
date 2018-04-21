@@ -42,7 +42,7 @@ var hostname = window.document.location.hostname+"/SocketController";
 			 if(event.data.includes('ConnectionList')){
 						vm.message=JSON.parse(event.data);//something from server
 			 }else{
-				 //alert('something else '+ event.data);
+				 console.log('something else '+ event.data);
 			 }
 		 };
 }
