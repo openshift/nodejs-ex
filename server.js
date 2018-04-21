@@ -122,7 +122,15 @@ async.forever(
   function(next) {
     
     UpdateClientList();
-
+    clients.forEach(function(client) {//we loop in wss because we need the latest connections
+      if (client.readyState === WebSocket.OPEN) {//makes sure its ready
+      client.send('some data broadcasted because someone connected ', function ack(error) {
+        // If error is not defined, the send has been completed, otherwise the error
+        // object will indicate what failed.
+        console.log("foreach error : "+ error);
+      });
+      };
+    });
 
     /*clients.forEach(function each(ws) {
       
@@ -168,15 +176,7 @@ async.forever(
 
 
 function UpdateClientList(){
-  clients.forEach(function(client) {//we loop in wss because we need the latest connections
-    if (client.readyState === WebSocket.OPEN) {//makes sure its ready
-    client.send('some data broadcasted because someone connected '+"ID "+client.id, function ack(error) {
-      // If error is not defined, the send has been completed, otherwise the error
-      // object will indicate what failed.
-      console.log("foreach error : "+ error);
-    });
-    };
-  });
+ 
 }
 
 
