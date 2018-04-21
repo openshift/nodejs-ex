@@ -96,17 +96,30 @@ wss.on('connection', function connection(ws,req) {
   ws.on('message', function incoming(message) {
     //console.log('received: %s', message);
     console.log("clients length "+totalclient);
-    clients.forEach(function(client) {//we loop in wss because we need the latest connections
-      if (client.readyState === WebSocket.OPEN) {//makes sure its ready
-        var newDate = new Date();
-      client.send('some data broadcasted because someone connected '+newDate.timeNow(), function ack(error) {
-        // If error is not defined, the send has been completed, otherwise the error
-        // object will indicate what failed.
-        console.log("foreach error : "+ error);
-      });
-      };
-    });
+    
+  });
   
+  async.forever(
+    function(next) {
+      
+      clients.forEach(function(client) {//we loop in wss because we need the latest connections
+        if (client.readyState === WebSocket.OPEN) {//makes sure its ready
+        client.send('some data broadcasted because someone connected ', function ack(error) {
+          // If error is not defined, the send has been completed, otherwise the error
+          // object will indicate what failed.
+          console.log("foreach error : "+ error);
+        });
+        };
+        setTimeout(function() {
+          next();//self execute again
+      }, 1000);
+    },
+    function(err) {
+        // if next is called with a value in its first parameter, it will appear
+        // in here as 'err', and execution will stop.
+        console.log('async close check error : '+ err)
+    }
+  );
     
   });
 
