@@ -117,22 +117,27 @@ wss.on('connection', function connection(ws,req) {
   root.push(userobject);
   console.log(JSON.stringify(root));
 
+  clients.forEach(function(client) {//we loop in wss because we need the latest connections
+    if (client.readyState === WebSocket.OPEN) {//makes sure its ready
+    client.send('some data broadcasted because someone connected ', function ack(error) {
+      // If error is not defined, the send has been completed, otherwise the error
+      // object will indicate what failed.
+      console.log("foreach error : "+ error);
+    });
+    };
+  });
+
+
+
 /*checking for connection states*/
+/*
 async.forever(
   function(next) {
     
     UpdateClientList();
-    clients.forEach(function(client) {//we loop in wss because we need the latest connections
-      if (client.readyState === WebSocket.OPEN) {//makes sure its ready
-      client.send('some data broadcasted because someone connected ', function ack(error) {
-        // If error is not defined, the send has been completed, otherwise the error
-        // object will indicate what failed.
-        console.log("foreach error : "+ error);
-      });
-      };
-    });
 
-    /*clients.forEach(function each(ws) {
+
+    clients.forEach(function each(ws) {
       
       if (ws.readyState === WebSocket.CLOSED){
       //  console.log('CLOSED id '+ws.id +' ip '+ws.ip);
@@ -140,7 +145,7 @@ async.forever(
       if (ws.readyState === WebSocket.OPEN){
       //  console.log('OPEN  id '+ws.id +' ip '+ws.ip);
       }
-    });*/
+    });
       setTimeout(function() {
         next();//self execute again
     }, 1000);
@@ -151,7 +156,7 @@ async.forever(
       console.log('async close check error : '+ err)
   }
 );
-
+*/
 
 
 
