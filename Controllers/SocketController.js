@@ -10,6 +10,7 @@ var router = express.Router();
 router.get('/', function(req, res){
   let url = path.join(__dirname+'/../views/SocketController.html');
   //res.send(url);
+  res.setHeader('Content-Type', 'application/json');
  res.sendFile(url);
 });
 
