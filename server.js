@@ -98,17 +98,7 @@ wss.on('connection', function connection(ws,req) {
     
     
   });
-  function UpdateClientList(){
-    clients.forEach(function(client) {//we loop in wss because we need the latest connections
-      if (client.readyState === WebSocket.OPEN) {//makes sure its ready
-      client.send('some data broadcasted because someone connected '+"ID "+client.id, function ack(error) {
-        // If error is not defined, the send has been completed, otherwise the error
-        // object will indicate what failed.
-        console.log("foreach error : "+ error);
-      });
-      };
-    });
-  }
+
 
  
   var root =[]; //root representing an array of json
@@ -171,6 +161,17 @@ async.forever(
       console.log('async close check error : '+ err)
   }
 );
+function UpdateClientList(){
+  clients.forEach(function(client) {//we loop in wss because we need the latest connections
+    if (client.readyState === WebSocket.OPEN) {//makes sure its ready
+    client.send('some data broadcasted because someone connected '+"ID "+client.id, function ack(error) {
+      // If error is not defined, the send has been completed, otherwise the error
+      // object will indicate what failed.
+      console.log("foreach error : "+ error);
+    });
+    };
+  });
+}
 
 
 const interval = setInterval(function ping() {
