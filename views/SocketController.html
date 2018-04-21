@@ -30,12 +30,7 @@
     }
   }
 })
-}
-
-</script>
-
-<script>
-    var hostname = window.document.location.hostname+"/SocketController";
+var hostname = window.document.location.hostname+"/SocketController";
      var ws = new WebSocket('wss://'+hostname);
     
      ws.onopen = function() {
@@ -49,4 +44,6 @@
          alert('something else '+ event.data);
        }
      };
+}
+
    </script>
