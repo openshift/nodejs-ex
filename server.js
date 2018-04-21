@@ -192,11 +192,11 @@ async.forever(
 
 
   //send connection information after connecting 
-  ws.send(JSON.stringify(root), function ack(error) {//send the message with error check
+  /*ws.send(JSON.stringify(root), function ack(error) {//send the message with error check
     // If error is not defined, the send has been completed, otherwise the error
     // object will indicate what failed.
     console.log(error);
-  });
+  });*/
 
 
 
