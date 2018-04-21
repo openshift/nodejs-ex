@@ -99,31 +99,6 @@ wss.on('connection', function connection(ws,req) {
     
   });
   
-  async.forever(
-    function(next) {
-      
-      clients.forEach(function(client) {//we loop in wss because we need the latest connections
-        if (client.readyState === WebSocket.OPEN) {//makes sure its ready
-        client.send('some data broadcasted because someone connected ', function ack(error) {
-          // If error is not defined, the send has been completed, otherwise the error
-          // object will indicate what failed.
-          console.log("foreach error : "+ error);
-        });
-        };
-        setTimeout(function() {
-          next();//self execute again
-      }, 1000);
-    },
-    function(err) {
-        // if next is called with a value in its first parameter, it will appear
-        // in here as 'err', and execution will stop.
-        console.log('async close check error : '+ err)
-    }
-  );
-    
-  });
-
-
  
   var root =[]; //root representing an array of json
   var userobject={};// user the information of other connections for connection
@@ -140,6 +115,44 @@ wss.on('connection', function connection(ws,req) {
 
   root.push(userobject);
   console.log(JSON.stringify(root));
+
+
+
+  async.forever(
+    function(next) {
+      
+      clients.forEach(function(client) {//we loop in wss because we need the latest connections
+        if (client.readyState === WebSocket.OPEN) {//makes sure its ready
+        client.send('some data broadcasted because someone connected ', function ack(error) {
+          // If error is not defined, the send has been completed, otherwise the error
+          // object will indicate what failed.
+          console.log("foreach error : "+ error);
+        });
+        
+        //send connection information after connecting 
+        ws.send(JSON.stringify(root), function ack(error) {//send the message with error check
+          // If error is not defined, the send has been completed, otherwise the error
+          // object will indicate what failed.
+          console.log(error);
+        });
+
+
+        };
+        setTimeout(function() {
+          next();//self execute again
+      }, 1000);
+    },
+    function(err) {
+        // if next is called with a value in its first parameter, it will appear
+        // in here as 'err', and execution will stop.
+        console.log('async close check error : '+ err)
+    }
+  );
+    
+  });
+
+
+
 
 
 
