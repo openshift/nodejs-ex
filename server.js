@@ -124,7 +124,7 @@ async.forever(
     UpdateClientList();
 
 
-    clients.forEach(function each(ws) {
+    /*clients.forEach(function each(ws) {
       
       if (ws.readyState === WebSocket.CLOSED){
       //  console.log('CLOSED id '+ws.id +' ip '+ws.ip);
@@ -132,7 +132,7 @@ async.forever(
       if (ws.readyState === WebSocket.OPEN){
       //  console.log('OPEN  id '+ws.id +' ip '+ws.ip);
       }
-    });
+    });*/
       setTimeout(function() {
         next();//self execute again
     }, 1000);
