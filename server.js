@@ -106,7 +106,7 @@ wss.on('connection', function connection(ws,req) {
       var root =[]; //root representing an array of json
       var userobject={};// user the information of other connections for connection
       userobject.type="ConnectionList";//the identifer type of object
-      userobject.time=new Date().time.now;
+      userobject.time=Date.now();
       userobject.usercontainer=[];
       var user ={};
       user.ip=ws.ip;
