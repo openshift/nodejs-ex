@@ -119,7 +119,9 @@ wss.on('connection', function connection(ws,req) {
     
       root.push(userobject);
       console.log(JSON.stringify(root));
-
+      setTimeout(function() {
+        next();//self execute again
+      }, 1000);
 
       clients.forEach(function(client) {//we loop in wss because we need the latest connections
         if (client.readyState === WebSocket.OPEN) {//makes sure its ready
@@ -136,9 +138,7 @@ wss.on('connection', function connection(ws,req) {
             console.log("error sending root "+error);
           });
         };
-        setTimeout(function() {
-          next();//self execute again
-      }, 1000);
+       
     },
     function(err) {
         // if next is called with a value in its first parameter, it will appear
