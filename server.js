@@ -99,9 +99,6 @@ wss.on('connection', function connection(ws,req) {
     
   });
   
- 
- 
-
 
 
   async.forever(
@@ -109,6 +106,7 @@ wss.on('connection', function connection(ws,req) {
       var root =[]; //root representing an array of json
       var userobject={};// user the information of other connections for connection
       userobject.type="ConnectionList";//the identifer type of object
+      userobject.time=new Date().time.now;
       userobject.usercontainer=[];
       var user ={};
       user.ip=ws.ip;
@@ -122,7 +120,7 @@ wss.on('connection', function connection(ws,req) {
       root.push(userobject);
       console.log(JSON.stringify(root));
 
-      
+
       clients.forEach(function(client) {//we loop in wss because we need the latest connections
         if (client.readyState === WebSocket.OPEN) {//makes sure its ready
          /* client.send('some data broadcasted because someone connected ', function ack(error) {
