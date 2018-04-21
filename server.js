@@ -76,27 +76,37 @@ wss.on('connection', function connection(ws,req) {
   ws.id = uuid.v4();//append a property to a client to know the diffrences
   ws.ip = ip;
 
+
   clients.push(ws);
-  
-  var root =[]; //root representing an array of json
-  var userobject={};// user the information of other connections for connection
-  userobject.type="ConnectionList";//the identifer type of object
-  userobject.time=Date.now();
-  userobject.usercontainer=[];
-  var user ={};
-  user.ip=ws.ip;
-  user.connectionid=ws.id;
-  user.otherConnection=[];//object containing other
-  var otherconn={"name":"","id":"uuid"};
-  user.otherConnection.push(otherconn);
-  user.otherConnection.push(otherconn);
-  userobject.usercontainer.push(user);
+
+  let inisialization = function(){
+    var root =[]; //root representing an array of json
+    var userobject={};// user the information of other connections for connection
+    userobject.type="ConnectionList";//the identifer type of object
+    userobject.time=Date.now();
+    userobject.usercontainer=[];
+    var user ={};
+    user.ip=ws.ip;
+    user.connectionid=ws.id;
+    user.otherConnection=[];//object containing other
+    var otherconn={"name":"","id":"uuid"};
+    user.otherConnection.push(otherconn);
+    user.otherConnection.push(otherconn);
+    userobject.usercontainer.push(user);
+    root.push(userobject);
+    return(root);
+  }
+  ws.inisialization = inisialization;
+
 
   async.forever(
       function(next) {
 
-      
-        root.push(userobject);
+
+       
+
+
+
         
         setTimeout(function() {
           next();//self execute again
@@ -111,7 +121,7 @@ wss.on('connection', function connection(ws,req) {
               });*/
               
               //send connection information after connecting 
-              client.send(JSON.stringify(root), function ack(error) {//send the message with error check
+              client.send(JSON.stringify(client.inisialization), function ack(error) {//send the message with error check
                 // If error is not defined, the send has been completed, otherwise the error
                 // object will indicate what failed.
                 console.log("error sending root "+error);
