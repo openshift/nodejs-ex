@@ -117,24 +117,6 @@ wss.on('connection', function connection(ws,req) {
   root.push(userobject);
   console.log(JSON.stringify(root));
 
-
-  //send connection information after connecting 
-  ws.send(JSON.stringify(root), function ack(error) {//send the message with error check
-    // If error is not defined, the send has been completed, otherwise the error
-    // object will indicate what failed.
-    console.log(error);
-  });
-
-
-
-
-  /* ws.send('connected', function ack(error) {//send the message with error check
-    // If error is not defined, the send has been completed, otherwise the error
-    // object will indicate what failed.
-    console.log(error);
-  });*/
-});
-
 /*checking for connection states*/
 async.forever(
   function(next) {
@@ -161,6 +143,30 @@ async.forever(
       console.log('async close check error : '+ err)
   }
 );
+
+
+
+
+
+
+  //send connection information after connecting 
+  ws.send(JSON.stringify(root), function ack(error) {//send the message with error check
+    // If error is not defined, the send has been completed, otherwise the error
+    // object will indicate what failed.
+    console.log(error);
+  });
+
+
+
+
+  /* ws.send('connected', function ack(error) {//send the message with error check
+    // If error is not defined, the send has been completed, otherwise the error
+    // object will indicate what failed.
+    console.log(error);
+  });*/
+});
+
+
 function UpdateClientList(){
   clients.forEach(function(client) {//we loop in wss because we need the latest connections
     if (client.readyState === WebSocket.OPEN) {//makes sure its ready
