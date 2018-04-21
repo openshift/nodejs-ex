@@ -96,6 +96,9 @@ wss.on('connection', function connection(ws,req) {
     //console.log('received: %s', message);
     console.log("clients length "+totalclient);
     
+    
+  });
+  function UpdateClientList(){
     clients.forEach(function(client) {//we loop in wss because we need the latest connections
       if (client.readyState === WebSocket.OPEN) {//makes sure its ready
       client.send('some data broadcasted because someone connected '+"ID "+client.id, function ack(error) {
@@ -105,8 +108,8 @@ wss.on('connection', function connection(ws,req) {
       });
       };
     });
-  });
-  
+  }
+
  
   var root =[]; //root representing an array of json
   var userobject={};// user the information of other connections for connection
@@ -145,6 +148,10 @@ wss.on('connection', function connection(ws,req) {
 /*checking for connection states*/
 async.forever(
   function(next) {
+    
+    UpdateClientList();
+
+
     clients.forEach(function each(ws) {
       
       if (ws.readyState === WebSocket.CLOSED){
