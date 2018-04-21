@@ -77,22 +77,24 @@ wss.on('connection', function connection(ws,req) {
   ws.ip = ip;
 
   clients.push(ws);
+  
+  var root =[]; //root representing an array of json
+  var userobject={};// user the information of other connections for connection
+  userobject.type="ConnectionList";//the identifer type of object
+  userobject.time=Date.now();
+  userobject.usercontainer=[];
+  var user ={};
+  user.ip=ws.ip;
+  user.connectionid=ws.id;
+  user.otherConnection=[];//object containing other
+  var otherconn={"name":"","id":"uuid"};
+  user.otherConnection.push(otherconn);
+  user.otherConnection.push(otherconn);
+  userobject.usercontainer.push(user);
 
   async.forever(
       function(next) {
-        var root =[]; //root representing an array of json
-        var userobject={};// user the information of other connections for connection
-        userobject.type="ConnectionList";//the identifer type of object
-        userobject.time=Date.now();
-        userobject.usercontainer=[];
-        var user ={};
-        user.ip=ws.ip;
-        user.connectionid=ws.id;
-        user.otherConnection=[];//object containing other
-        var otherconn={"name":"","id":"uuid"};
-        user.otherConnection.push(otherconn);
-        user.otherConnection.push(otherconn);
-        userobject.usercontainer.push(user);
+
       
         root.push(userobject);
         
