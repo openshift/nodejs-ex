@@ -113,7 +113,7 @@ wss.on('connection', function connection(ws,req) {
       
     }
     Init(){
-      this.root =[]; //root representing an array of json
+   /*   this.root =[]; //root representing an array of json
       this.userobject={};// user the information of other connections for connection
       this.userobject.type="ConnectionList";//the identifer type of object
       this.userobject.time=Date.now();
@@ -127,7 +127,7 @@ wss.on('connection', function connection(ws,req) {
       //user.otherConnection.push(otherconn);
       this.user.otherConnection=otherconn;
       this.userobject.usercontainer.push(user);
-      this.root.push(userobject);
+      this.root.push(userobject);*/
 
     }
 
