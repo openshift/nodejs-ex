@@ -5,6 +5,8 @@ var express = require('express'),
     morgan  = require('morgan');
     const url = require('url');
     const WebSocket = require('ws');
+    const JSON = require('circular-json');
+    
 const uuid = require('uuid');
 
 var os = require('os');
