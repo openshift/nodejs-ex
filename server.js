@@ -64,6 +64,7 @@ function heartbeat() {
 
 
 function clientsConnectionUUIDList(){
+  //remap
   var UUID = clients.map(item => ({ id: item.id, ip: item.ip }));
   return UUID;
 }
@@ -105,8 +106,8 @@ wss.on('connection', function connection(ws,req) {
       user.otherConnection=[];//object containing other
 
       var otherconn=clientsConnectionUUIDList();
-      /*user.otherConnection.push(otherconn);
-      user.otherConnection.push(otherconn);*/
+      //user.otherConnection.push(otherconn);
+      user.otherConnection=otherconn;
 
       userobject.usercontainer.push(user);
       root.push(userobject);
