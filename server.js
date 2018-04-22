@@ -94,7 +94,7 @@ wss.on('connection', function connection(ws,req) {
     constructor(ip,id) {
       this.ip = ip;
       this.id = id;
-      Init();
+      this.Init();
       
       
     }
