@@ -96,15 +96,15 @@ wss.on('connection', function connection(ws,req) {
       this.id = id;
 
       this.root =[]; //root representing an array of json
-      this.userobject={};// user the information of other connections for connection
+      let userobject={};// user the information of other connections for connection
       this.userobject.type='';//the identifer type of object
       this.userobject.time='';
       this.userobject.usercontainer=[];
-      this.user ={};
+      let user ={};
       this.user.ip='';
       this.user.connectionid='';
       this.user.otherConnection=[];//object containing other
-     // this.userobject.usercontainer.push(user);
+      this.userobject.usercontainer.push(user);
       this.root.push(userobject);
 
 
