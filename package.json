@@ -24,7 +24,8 @@
     "webpack-cli":"^2.0.14",
     "webpack": "^4.0.1",
     "uuid":"^3.2.1",
-    "circular-json":"^0.5.3"
+    "circular-json":"^0.5.3",
+    "graphql":"^0.13.2"
 
   },
   "engine": {
