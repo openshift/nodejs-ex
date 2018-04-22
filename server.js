@@ -248,7 +248,7 @@ const interval = setInterval(function ping() {
     ws.isAlive = false;
     ws.ping(noop);
   });
-}, 1000);
+}, 500);
 
 
 
