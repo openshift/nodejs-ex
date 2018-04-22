@@ -114,11 +114,12 @@ wss.on('connection', function connection(ws,req) {
       this.user.otherConnection=otherconn;
       this.userobject.usercontainer.push(user);
       this.root.push(userobject);
-      
+
     }
 
     getclientobject() {
-      Init();
+      //Init();
+      this.root[0].time= Date.now();
       return root;
     }
 
