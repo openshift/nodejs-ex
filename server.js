@@ -94,26 +94,35 @@ wss.on('connection', function connection(ws,req) {
     constructor(ip,id) {
       this.ip = ip;
       this.id = id;
+      Init();
+      
+      
     }
-    getclientobject() {
-      var root =[]; //root representing an array of json
-      var userobject={};// user the information of other connections for connection
-      userobject.type="ConnectionList";//the identifer type of object
-      userobject.time=Date.now();
-      userobject.usercontainer=[];
-      var user ={};
-      user.ip=this.ip;
-      user.connectionid=this.id;
-      user.otherConnection=[];//object containing other
+    Init(){
+      this.root =[]; //root representing an array of json
+      this.userobject={};// user the information of other connections for connection
+      this.userobject.type="ConnectionList";//the identifer type of object
+      this.userobject.time=Date.now();
+      this.userobject.usercontainer=[];
+      this.user ={};
+      this.user.ip=this.ip;
+      this.user.connectionid=this.id;
+      this.user.otherConnection=[];//object containing other
 
-      var otherconn=clientsConnectionUUIDList();
+      this.otherconn=clientsConnectionUUIDList();
       //user.otherConnection.push(otherconn);
-      user.otherConnection=otherconn;
-      userobject.usercontainer.push(user);
-      root.push(userobject);
+      this.user.otherConnection=otherconn;
+      this.userobject.usercontainer.push(user);
+      this.root.push(userobject);
+      
+    }
+
+    getclientobject() {
+      Init();
       return root;
     }
 
+ 
   }
   
   ws.socketClient = new socketClient(ws.ip,ws.id);
