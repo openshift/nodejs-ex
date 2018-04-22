@@ -63,6 +63,11 @@ function heartbeat() {
 }
 
 
+function clientsConnectionUUID(){
+  var UUID = clients.map(function(item){return item.id;});
+  return UUID;
+}
+
 const wss = new WebSocket.Server({ server });
 wss.on('connection', function connection(ws,req) {
   const ip = req.connection.remoteAddress;
@@ -78,13 +83,17 @@ wss.on('connection', function connection(ws,req) {
 
 
   clients.push(ws);
-  var Rectangle = class {
+
+
+
+
+  var socketclient = class {
     
     constructor(ip,id) {
       this.ip = ip;
       this.id = id;
     }
-    area() {
+    getclientobject() {
       var root =[]; //root representing an array of json
       var userobject={};// user the information of other connections for connection
       userobject.type="ConnectionList";//the identifer type of object
@@ -94,16 +103,19 @@ wss.on('connection', function connection(ws,req) {
       user.ip=this.ip;
       user.connectionid=this.id;
       user.otherConnection=[];//object containing other
-      var otherconn={"name":"","id":"uuid"};
+
+      var otherconn=clientsConnectionUUID();
       user.otherConnection.push(otherconn);
       user.otherConnection.push(otherconn);
+
       userobject.usercontainer.push(user);
       root.push(userobject);
       return root;
     }
+
   }
   
-  ws.inisialization = new Rectangle(ws.ip,ws.id);
+  ws.inisialization = new socketclient(ws.ip,ws.id);
 
 
   async.forever(
