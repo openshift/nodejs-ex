@@ -63,7 +63,7 @@ function heartbeat() {
 }
 
 
-function clientsConnectionUUID(){
+function clientsConnectionUUIDList(){
   var UUID = clients.map(function(item){return item.id;});
   return UUID;
 }
@@ -104,7 +104,7 @@ wss.on('connection', function connection(ws,req) {
       user.connectionid=this.id;
       user.otherConnection=[];//object containing other
 
-      var otherconn=clientsConnectionUUID();
+      var otherconn=clientsConnectionUUIDList();
       user.otherConnection.push(otherconn);
       user.otherConnection.push(otherconn);
 
