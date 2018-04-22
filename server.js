@@ -78,34 +78,36 @@ wss.on('connection', function connection(ws,req) {
 
 
   clients.push(ws);
-
-  let inisialization = function(){
-    var root =[]; //root representing an array of json
-    var userobject={};// user the information of other connections for connection
-    userobject.type="ConnectionList";//the identifer type of object
-    userobject.time=Date.now();
-    userobject.usercontainer=[];
-    var user ={};
-    user.ip=ws.ip;
-    user.connectionid=ws.id;
-    user.otherConnection=[];//object containing other
-    var otherconn={"name":"","id":"uuid"};
-    user.otherConnection.push(otherconn);
-    user.otherConnection.push(otherconn);
-    userobject.usercontainer.push(user);
-    root.push(userobject);
-    return(root);
+  var Rectangle = class {
+    
+    constructor(ip,id) {
+      this.ip = ip;
+      this.id = id;
+    }
+    area() {
+      var root =[]; //root representing an array of json
+      var userobject={};// user the information of other connections for connection
+      userobject.type="ConnectionList";//the identifer type of object
+      userobject.time=Date.now();
+      userobject.usercontainer=[];
+      var user ={};
+      user.ip=this.ip;
+      user.connectionid=this.id;
+      user.otherConnection=[];//object containing other
+      var otherconn={"name":"","id":"uuid"};
+      user.otherConnection.push(otherconn);
+      user.otherConnection.push(otherconn);
+      userobject.usercontainer.push(user);
+      root.push(userobject);
+      return root;
+    }
   }
-  ws.inisialization = inisialization;
+  
+  ws.inisialization = new Rectangle(ws.ip,ws.id);
 
 
   async.forever(
       function(next) {
-
-
-       
-
-
 
         
         setTimeout(function() {
@@ -121,7 +123,7 @@ wss.on('connection', function connection(ws,req) {
               });*/
               
               //send connection information after connecting 
-              client.send(JSON.stringify(client.inisialization), function ack(error) {//send the message with error check
+              client.send(JSON.stringify(client.inisialization.area()), function ack(error) {//send the message with error check
                 // If error is not defined, the send has been completed, otherwise the error
                 // object will indicate what failed.
                 console.log("error sending root "+error);
