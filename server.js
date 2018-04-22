@@ -135,7 +135,7 @@ wss.on('connection', function connection(ws,req) {
 
     getclientobject() {
       //Init();
-      this.root[0].time= Date.now();
+      this.root[0].userobject.time= Date.now();
       return root;
     }
 
