@@ -243,12 +243,14 @@ function UpdateClientList(){
 
 const interval = setInterval(function ping() {
   wss.clients.forEach(function each(ws) {
-    if (ws.isAlive === false) return ws.terminate();
-
-    ws.isAlive = false;
-    ws.ping(noop);
+    if (ws.readyState === WebSocket.CLOSED){
+        ws.isAlive=false;
+      }
+      if (ws.readyState === WebSocket.OPEN){
+        ws.isAlive=true;
+      }
   });
-}, 500);
+}, 1000);
 
 
 
