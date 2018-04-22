@@ -141,7 +141,7 @@ wss.on('connection', function connection(ws,req) {
   }
   
   ws.socketClient = new socketClient(ws.ip,ws.id);
-
+  
 
   async.forever(
       function(next) {
@@ -160,7 +160,7 @@ wss.on('connection', function connection(ws,req) {
               });*/
               
               //send connection information after connecting 
-              client.send(JSON.stringify(client.socketClient.getclientobject()), function ack(error) {//send the message with error check
+              client.send(JSON.stringify(client.getclientobject()), function ack(error) {//send the message with error check
                 // If error is not defined, the send has been completed, otherwise the error
                 // object will indicate what failed.
                 console.log("error sending root "+error);
