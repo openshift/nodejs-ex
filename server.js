@@ -123,7 +123,7 @@ wss.on('connection', function connection(ws,req) {
       this.user ={};
       this.user.ip=this.ip;
       this.user.connectionid=this.id;
-      user.otherConnection=[];//object containing other
+      this.user.otherConnection=[];//object containing other
 
       this.otherconn=clientsConnectionUUIDList();
       //user.otherConnection.push(otherconn);
