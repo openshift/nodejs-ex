@@ -105,8 +105,8 @@ wss.on('connection', function connection(ws,req) {
       user.otherConnection=[];//object containing other
 
       var otherconn=clientsConnectionUUIDList();
-      user.otherConnection.push(otherconn);
-      user.otherConnection.push(otherconn);
+      /*user.otherConnection.push(otherconn);
+      user.otherConnection.push(otherconn);*/
 
       userobject.usercontainer.push(user);
       root.push(userobject);
