@@ -63,7 +63,7 @@ function heartbeat() {
 }
 
 
-function clientsConnectionUUIDList(){
+function clientsConnectionUUIDList(){//returns a class object
   //remap
   var UUID = clients.map(item => ({ id: item.id, ip: item.ip,isAlive:item.isAlive }));
   return UUID;
@@ -108,7 +108,7 @@ wss.on('connection', function connection(ws,req) {
       this.root.push(userobject);
 
 
-      this.Init();
+  //    this.Init();
       
       
     }
