@@ -64,7 +64,7 @@ function heartbeat() {
 
 
 function clientsConnectionUUIDList(){
-  var UUID = clients.map(function(item){return item.id;});
+  var UUID = clients.map(function(item){return [item.id];});
   return UUID;
 }
 
@@ -135,7 +135,7 @@ wss.on('connection', function connection(ws,req) {
               });*/
               
               //send connection information after connecting 
-              client.send(JSON.stringify(client.inisialization.area()), function ack(error) {//send the message with error check
+              client.send(JSON.stringify(client.inisialization.getclientobject()), function ack(error) {//send the message with error check
                 // If error is not defined, the send has been completed, otherwise the error
                 // object will indicate what failed.
                 console.log("error sending root "+error);
