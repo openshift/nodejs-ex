@@ -40,8 +40,8 @@ var hostname = window.document.location.hostname+"/SocketController";
 		 
 		 ws.onmessage = function (event) {
 			 if(event.data.includes('ConnectionList')){
-						vm.message=JSON.parse(event.data);//something from server
-						console.log(event.data);
+					vm.message=JSON.parse(event.data);//something from server
+						//console.log(event.data);
 			 }else{
 				 console.log('something else '+ event.data);
 			 }

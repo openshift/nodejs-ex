@@ -65,9 +65,10 @@ function heartbeat() {
 
 function clientsConnectionUUIDList(){
   //remap
-  var UUID = clients.map(item => ({ id: item.id, ip: item.ip }));
+  var UUID = clients.map(item => ({ id: item.id, ip: item.ip,isAlive:item.isAlive }));
   return UUID;
 }
+
 
 const wss = new WebSocket.Server({ server });
 wss.on('connection', function connection(ws,req) {
@@ -108,7 +109,6 @@ wss.on('connection', function connection(ws,req) {
       var otherconn=clientsConnectionUUIDList();
       //user.otherConnection.push(otherconn);
       user.otherConnection=otherconn;
-
       userobject.usercontainer.push(user);
       root.push(userobject);
       return root;
@@ -248,7 +248,7 @@ const interval = setInterval(function ping() {
     ws.isAlive = false;
     ws.ping(noop);
   });
-}, 30000);
+}, 1000);
 
 
 
