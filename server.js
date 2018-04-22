@@ -104,8 +104,6 @@ wss.on('connection', function connection(ws,req) {
       this.user.ip='';
       this.user.connectionid='';
       this.user.otherConnection=[];//object containing other
-      this.otherconn=[];
-      this.user.otherConnection=otherconn;
       this.userobject.usercontainer.push(user);
       this.root.push(userobject);
 
