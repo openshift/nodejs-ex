@@ -88,7 +88,7 @@ wss.on('connection', function connection(ws,req) {
 
 
 
-  var socketclient = class {
+  var socketClient = class {
     
     constructor(ip,id) {
       this.ip = ip;
@@ -116,7 +116,7 @@ wss.on('connection', function connection(ws,req) {
 
   }
   
-  ws.inisialization = new socketclient(ws.ip,ws.id);
+  ws.socketClient = new socketClient(ws.ip,ws.id);
 
 
   async.forever(
@@ -136,7 +136,7 @@ wss.on('connection', function connection(ws,req) {
               });*/
               
               //send connection information after connecting 
-              client.send(JSON.stringify(client.inisialization.getclientobject()), function ack(error) {//send the message with error check
+              client.send(JSON.stringify(client.socketClient.getclientobject()), function ack(error) {//send the message with error check
                 // If error is not defined, the send has been completed, otherwise the error
                 // object will indicate what failed.
                 console.log("error sending root "+error);
