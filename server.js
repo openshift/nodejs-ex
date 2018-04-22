@@ -64,7 +64,7 @@ function heartbeat() {
 
 
 function clientsConnectionUUIDList(){
-  var UUID = clients.map(function(item){return item.ip,item.id;});
+  var UUID = clients.map(item => ({ id: item.id, ip: item.ip }));
   return UUID;
 }
 
