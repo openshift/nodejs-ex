@@ -10,7 +10,6 @@
     "ejs": "^2.4.1",
     "express": "^4.13.4",
     "fakerator": "^0.3.0",
-    "graphql": "^0.13.2",
     "mocha": "^2.4.5",
     "mongodb": "^2.1.16",
     "mongoose": "^5.0.11",
@@ -24,7 +23,8 @@
     "ws": "^5.1.0",
     "webpack-cli":"^2.0.14",
     "webpack": "^4.0.1",
-    "uuid":"^3.2.1"
+    "uuid":"^3.2.1",
+    "circular-json":"^0.5.3"
 
   },
   "engine": {
