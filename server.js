@@ -6,7 +6,7 @@ var express = require('express'),
     const url = require('url');
     const WebSocket = require('ws');
     const JSON = require('circular-json');
-    
+
 const uuid = require('uuid');
 
 var os = require('os');
@@ -135,7 +135,7 @@ wss.on('connection', function connection(ws,req) {
 
     getclientobject() {
       //Init();
-      this.root[0].userobject.time= 'somthing';
+     // this.root[0].userobject.time= 'somthing';
       return root;
     }
 
