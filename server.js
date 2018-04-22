@@ -104,10 +104,10 @@ wss.on('connection', function connection(ws,req) {
       this.userobject.type="ConnectionList";//the identifer type of object
       this.userobject.time=Date.now();
       this.userobject.usercontainer=[];
-      this.user ={};
+      var user ={};
       this.user.ip=this.ip;
       this.user.connectionid=this.id;
-      this.user.otherConnection=[];//object containing other
+      user.otherConnection=[];//object containing other
 
       this.otherconn=clientsConnectionUUIDList();
       //user.otherConnection.push(otherconn);
