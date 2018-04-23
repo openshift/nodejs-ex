@@ -158,7 +158,8 @@ wss.on('connection', function connection(ws,req) {
 
       for(var i=0;i<clients.length;i++){
         if (clients[i].readyState === WebSocket.OPEN) {//makes sure its ready
-            client[i].send(new Date(), function ack(error) {//send the message with error check
+            var tosend =CircularJSON.stringify(clients[i].socketClient.getclientobject());
+            clients[i].send(new Date(), function ack(error) {//send the message with error check
               // If error is not defined, the send has been completed, otherwise the error
               // object will indicate what failed.
               console.log("error sending root "+error);
