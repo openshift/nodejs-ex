@@ -134,6 +134,7 @@ wss.on('connection', function connection(ws,req) {
     }
 
     getclientobject() {
+      this.userobject.type="ConnectionList";
       this.root[0].time=new Date();
       return this.root;
     }
