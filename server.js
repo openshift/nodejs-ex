@@ -158,7 +158,7 @@ wss.on('connection', function connection(ws,req) {
       
 
       
-      for(var i=0;i<clients.length;i++){
+     /* for(var i=0;i<clients.length;i++){
         if (clients[i].readyState === WebSocket.OPEN) {//makes sure its 
             try{
            // var tosend =CircularJSON.stringify(clients[i].socketClient.getclientobject());
@@ -173,11 +173,11 @@ wss.on('connection', function connection(ws,req) {
           }
 
         }
-      }
+      }*/
     
 
 
-   /*   clients.forEach(function(client) {//we loop in wss because we need the latest connections
+      clients.forEach(function(client) {//we loop in wss because we need the latest connections
             if (client.readyState === WebSocket.OPEN) {//makes sure its ready
             /* client.send('some data broadcasted because someone connected ', function ack(error) {
                 // If error is not defined, the send has been completed, otherwise the error
@@ -186,24 +186,24 @@ wss.on('connection', function connection(ws,req) {
               });*/
               
    
- /*             var tosend =CircularJSON.stringify(client.socketClient.getclientobject());
-              console.log("sent : "+ tosend);
+             // var tosend =CircularJSON.stringify(client.socketClient.getclientobject());
+             // console.log("sent : "+ tosend);
               //send connection information after connecting 
-              client.send(new Date(), function ack(error) {//send the message with error check
+              client.send('test', function ack(error) {//send the message with error check
                 // If error is not defined, the send has been completed, otherwise the error
                 // object will indicate what failed.
                 console.log("error sending root "+error);
               });
             };
           
-      }*/
-     /* ,
+      }
+      ,
         function(err) {
             // if next is called with a value in its first parameter, it will appear
             // in here as 'err', and execution will stop.
             console.log('async close check error : '+ err)
         }
-      );*/
+      );
     
     }
   );
