@@ -160,13 +160,14 @@ wss.on('connection', function connection(ws,req) {
                 console.log("foreach error : "+ error);
               });*/
               
-              console.log(CircularJSON.stringify(client.socketClient.getclientobject()));
+   
+              var tosend =CircularJSON.stringify(client.socketClient.getclientobject());
               //send connection information after connecting 
-             /* client.send(CircularJSON.stringify(client.socketClient.getclientobject()), function ack(error) {//send the message with error check
+              client.send(tosend, function ack(error) {//send the message with error check
                 // If error is not defined, the send has been completed, otherwise the error
                 // object will indicate what failed.
                 console.log("error sending root "+error);
-              });*/
+              });
             };
           
         },
