@@ -134,8 +134,11 @@ wss.on('connection', function connection(ws,req) {
     }
 
     getclientobject() {
+      //you can only access it by a index first before getting any prams due to root being an array
+      //no need to access the class name e.g this.root[0]userobject.type you INSTEAD use  this.root[0].type
       this.root[0].type="ConnectionList";
       this.root[0].time=new Date();
+      this.root[0].usercontainer.otherConnection=clientsConnectionUUIDList();
       return this.root;
     }
 
