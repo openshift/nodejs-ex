@@ -152,11 +152,6 @@ wss.on('connection', function connection(ws,req) {
           next();//self execute again
         }, 1000);
 
-
-
-
-      
-
       
      /* for(var i=0;i<clients.length;i++){
         if (clients[i].readyState === WebSocket.OPEN) {//makes sure its 
@@ -174,9 +169,7 @@ wss.on('connection', function connection(ws,req) {
 
         }
       }*/
-    
-
-
+  
       clients.forEach(function(client) {//we loop in wss because we need the latest connections
             if (client.readyState === WebSocket.OPEN) {//makes sure its ready
             /* client.send('some data broadcasted because someone connected ', function ack(error) {
