@@ -289,7 +289,7 @@ function UpdateClientList(){
 
 
 const interval = setInterval(function ping() {
-  wss.clients.forEach(function each(ws) {
+  clients.forEach(function each(ws) {
     if (ws.readyState === WebSocket.CLOSED){
         ws.isAlive=false;
       }
