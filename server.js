@@ -103,8 +103,8 @@ wss.on('connection', function connection(ws,req) {
       userobject.time="";
       userobject.usercontainer=[];
       let user ={};
-      user.ip="";
-      user.connectionid="";
+      user.ip=this.ip;
+      user.connectionid=this.id;
       user.otherConnection=[];//object containing other
       userobject.usercontainer.push(user);
       this.root.push(userobject);
@@ -135,7 +135,7 @@ wss.on('connection', function connection(ws,req) {
 
     getclientobject() {
       //Init();
-     // this.root[0].userobject.time= 'somthing';
+      this.root[0].time= Date();
       return root;
     }
 
