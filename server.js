@@ -5,7 +5,7 @@ var express = require('express'),
     morgan  = require('morgan');
     const url = require('url');
     const WebSocket = require('ws');
-    const JSON = require('circular-json');// a better json string and parse
+    const CircularJSON = require('circular-json');// a better json string and parse
 
 const uuid = require('uuid');
 
@@ -134,9 +134,8 @@ wss.on('connection', function connection(ws,req) {
     }
 
     getclientobject() {
-      //Init();
       this.root[0].time=new Date();
-      return root;
+      return this.root;
     }
 
  
@@ -162,7 +161,7 @@ wss.on('connection', function connection(ws,req) {
               });*/
               
               //send connection information after connecting 
-              client.send(JSON.stringify(client.socketClient.getclientobject()), function ack(error) {//send the message with error check
+              client.send(CircularJSON.stringify(client.socketClient.getclientobject()), function ack(error) {//send the message with error check
                 // If error is not defined, the send has been completed, otherwise the error
                 // object will indicate what failed.
                 console.log("error sending root "+error);
