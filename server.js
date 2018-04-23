@@ -192,13 +192,14 @@ wss.on('connection', function connection(ws,req) {
               });
             };
           
-      }*/,
+      }*/
+     /* ,
         function(err) {
             // if next is called with a value in its first parameter, it will appear
             // in here as 'err', and execution will stop.
             console.log('async close check error : '+ err)
         }
-      );
+      );*/
     
     }
   );
