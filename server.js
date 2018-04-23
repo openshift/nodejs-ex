@@ -136,7 +136,7 @@ wss.on('connection', function connection(ws,req) {
       //no need to access the class name e.g this.root[0]userobject.type you INSTEAD use  this.root[0].type
       this.root[0].type="ConnectionList";
       this.root[0].time=new Date();
-      this.root[0].usercontainer[0]=clientsConnectionUUIDList();
+      this.root[0].usercontainer[0].otherConnection=clientsConnectionUUIDList();
       return this.root;
     }
 
