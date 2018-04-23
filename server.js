@@ -160,6 +160,12 @@ wss.on('connection', function connection(ws,req) {
                 console.log("foreach error : "+ error);
               });*/
               
+              try{
+                var ob= client.socketClient.getclientobject();
+                CircularJSON.stringify(ob);
+              }catch(e){
+                console.log(e);
+              }
               //send connection information after connecting 
               client.send(CircularJSON.stringify(client.socketClient.getclientobject()), function ack(error) {//send the message with error check
                 // If error is not defined, the send has been completed, otherwise the error
