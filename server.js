@@ -152,7 +152,27 @@ wss.on('connection', function connection(ws,req) {
           next();//self execute again
         }, 1000);
 
-      clients.forEach(function(client) {//we loop in wss because we need the latest connections
+
+
+
+
+      for(var i=0;i<clients.length;i++){
+        if (clients[i].readyState === WebSocket.OPEN) {//makes sure its ready
+            client[i].send(new Date(), function ack(error) {//send the message with error check
+              // If error is not defined, the send has been completed, otherwise the error
+              // object will indicate what failed.
+              console.log("error sending root "+error);
+            });
+        }
+      }
+
+
+
+
+
+
+
+   /*   clients.forEach(function(client) {//we loop in wss because we need the latest connections
             if (client.readyState === WebSocket.OPEN) {//makes sure its ready
             /* client.send('some data broadcasted because someone connected ', function ack(error) {
                 // If error is not defined, the send has been completed, otherwise the error
@@ -161,7 +181,7 @@ wss.on('connection', function connection(ws,req) {
               });*/
               
    
-              var tosend =CircularJSON.stringify(client.socketClient.getclientobject());
+ /*             var tosend =CircularJSON.stringify(client.socketClient.getclientobject());
               console.log("sent : "+ tosend);
               //send connection information after connecting 
               client.send(new Date(), function ack(error) {//send the message with error check
@@ -171,7 +191,7 @@ wss.on('connection', function connection(ws,req) {
               });
             };
           
-        },
+      }*/,
         function(err) {
             // if next is called with a value in its first parameter, it will appear
             // in here as 'err', and execution will stop.
