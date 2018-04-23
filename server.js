@@ -155,7 +155,9 @@ wss.on('connection', function connection(ws,req) {
 
 
 
+      try{
 
+      
       for(var i=0;i<clients.length;i++){
         if (clients[i].readyState === WebSocket.OPEN) {//makes sure its ready
             var tosend =CircularJSON.stringify(clients[i].socketClient.getclientobject());
@@ -166,11 +168,9 @@ wss.on('connection', function connection(ws,req) {
             });
         }
       }
-
-
-
-
-
+    }catch(e){
+      console.log("catched "+e);
+    }
 
 
    /*   clients.forEach(function(client) {//we loop in wss because we need the latest connections
