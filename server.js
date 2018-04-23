@@ -164,7 +164,7 @@ wss.on('connection', function connection(ws,req) {
               var tosend =CircularJSON.stringify(client.socketClient.getclientobject());
               console.log("sent : "+ tosend);
               //send connection information after connecting 
-              client.send(tosend.length, function ack(error) {//send the message with error check
+              client.send(new Date(), function ack(error) {//send the message with error check
                 // If error is not defined, the send has been completed, otherwise the error
                 // object will indicate what failed.
                 console.log("error sending root "+error);
