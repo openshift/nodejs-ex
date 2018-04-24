@@ -96,7 +96,7 @@ wss.on('connection', function connection(ws,req) {
     constructor(ip,id) {
       this.ip = ip;
       this.id = id;
-
+      
       this.root =[]; //root representing an array of json
       let userobject={};// user the information of other connections for connection
       userobject.type="";//the identifer type of object
@@ -109,27 +109,9 @@ wss.on('connection', function connection(ws,req) {
       userobject.usercontainer.push(user);
       this.root.push(userobject);
 
-
-  //    this.Init();
-      
-      
+    
     }
-    Init(){
-   /*   this.root =[]; //root representing an array of json
-      this.userobject={};// user the information of other connections for connection
-      this.userobject.type="ConnectionList";//the identifer type of object
-      this.userobject.time=Date.now();
-      this.userobject.usercontainer=[];
-      this.user ={};
-      this.user.ip=this.ip;
-      this.user.connectionid=this.id;
-      this.user.otherConnection=[];//object containing other
-      //user.otherConnection.push(otherconn);
-      this.user.otherConnection=clientsConnectionUUIDList();
-      this.userobject.usercontainer.push(user);
-      this.root.push(userobject);*/
 
-    }
 
     getclientobject() {
       //you can only access it by a index first before getting any prams due to root being an array

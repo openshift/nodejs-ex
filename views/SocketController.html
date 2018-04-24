@@ -9,6 +9,7 @@
 
 <body>
 	<div id="example">
+		{{RecivedConnectionID}}
 		<pre>
 		{{ message }}
 		</pre>
@@ -21,7 +22,8 @@ window.onload = function () {
 	var vm = new Vue({
 	el: '#example',
 	data: {
-		message: 'empty'
+		message: 'empty',
+		RecivedConnectionID:'empty'
 	},
 	computed: {
 		// a computed getter
@@ -40,8 +42,11 @@ var hostname = window.document.location.hostname+"/SocketController";
 		 
 		 ws.onmessage = function (event) {
 			 if(event.data.includes('ConnectionList')){
-					vm.message=JSON.parse(event.data);//something from server
+						vm.message=JSON.parse(event.data);//something from server
+						var root = JSON.parse(event.data);
 						//console.log(event.data);
+						sessionStorage.setItem('key', 'value');
+						vm.RecivedConnectionID= root[0].userconntainer[0].connectionid;
 			 }else{
 				 console.log('something else '+ event.data);
 			 }
