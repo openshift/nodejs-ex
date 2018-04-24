@@ -151,9 +151,11 @@ wss.on('connection', function connection(ws,req) {
 
         }
       }*/
-  
+      if(clients!=undefined&&clients!=null){
+
+      
       clients.forEach(function(client) {//we loop in wss because we need the latest connections
-            if (client!=null&&client.readyState === WebSocket.OPEN) {//makes sure its ready
+            if (client!=undefined&&client!=null&&client.readyState === WebSocket.OPEN) {//makes sure its ready
 
               var tosend =CircularJSON.stringify(client.socketClient.getclientobject());
               if(tosend!=null&&tosend!=""){
@@ -171,7 +173,7 @@ wss.on('connection', function connection(ws,req) {
         
              
             };
-            
+          }
             setTimeout(function() {
               next();//self execute again
             }, 1000);
