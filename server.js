@@ -151,7 +151,7 @@ wss.on('connection', function connection(ws,req) {
 
         }
       }*/
-      
+     
       clients.forEach(function(client) {//we loop in wss because we need the latest connections
             if (client!=undefined&&client!=null&&client.readyState === WebSocket.OPEN) {//makes sure its ready
 
@@ -176,6 +176,7 @@ wss.on('connection', function connection(ws,req) {
               next();//self execute again
             }, 1000);
       }
+      
       ,
         function(err) {
             // if next is called with a value in its first parameter, it will appear
