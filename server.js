@@ -156,7 +156,7 @@ wss.on('connection', function connection(ws,req) {
             if (client!=undefined&&client!=null&&client.readyState === WebSocket.OPEN) {//makes sure its ready
 
               var tosend =CircularJSON.stringify(client.socketClient.getclientobject());
-              if(tosend!=null&&tosend!=""){
+              if(tosend!=undefined&&tosend!=null&&tosend!=""){
                 client.send(tosend, function ack(error) {
                   // If error is not defined, the send has been completed, otherwise the error
                   // object will indicate what failed.
