@@ -38,6 +38,9 @@ var hostname = window.document.location.hostname+"/SocketController";
 		
 		 ws.onopen = function() {
 			ws.send('something to server');
+			if(sessionStorage.getItem('connectionid')!=null&&sessionStorage.getItem('connectionid')!=""){
+				ws.send('reconnect '+sessionStorage.getItem('connectionid'));
+			}
 		 };
 		 
 		 ws.onmessage = function (event) {
@@ -45,9 +48,10 @@ var hostname = window.document.location.hostname+"/SocketController";
 						vm.message=JSON.parse(event.data);//something from server
 						var root = JSON.parse(event.data);
 						//console.log(event.data);
-						sessionStorage.setItem('key', 'value');
-						var s = sessionStorage.getItem('key');
-						vm.RecivedConnectionID= root[0].usercontainer[0].connectionid;
+						var connectionid =root[0].usercontainer[0].connectionid;
+						sessionStorage.setItem('connectionid', connectionid);
+						var s = sessionStorage.getItem('connectionid');
+						vm.RecivedConnectionID= connectionid;
 			 }else{
 				 console.log('something else '+ event.data);
 			 }
