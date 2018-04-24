@@ -47,7 +47,7 @@ var hostname = window.document.location.hostname+"/SocketController";
 						//console.log(event.data);
 						sessionStorage.setItem('key', 'value');
 						var s = sessionStorage.getItem('key');
-						vm.RecivedConnectionID= root[0].connectionid;
+						vm.RecivedConnectionID= root[0].usercontainer[0].connectionid;
 			 }else{
 				 console.log('something else '+ event.data);
 			 }
