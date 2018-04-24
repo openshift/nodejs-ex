@@ -132,9 +132,7 @@ wss.on('connection', function connection(ws,req) {
       function(next) {
 
         
-        setTimeout(function() {
-          next();//self execute again
-        }, 1000);
+       
 
       
      /* for(var i=0;i<clients.length;i++){
@@ -158,11 +156,14 @@ wss.on('connection', function connection(ws,req) {
             if (client!=null&&client.readyState === WebSocket.OPEN) {//makes sure its ready
 
               var tosend =CircularJSON.stringify(client.socketClient.getclientobject());
-             client.send(tosend, function ack(error) {
-                // If error is not defined, the send has been completed, otherwise the error
-                // object will indicate what failed.
-                console.log("foreach error : "+ error);
-              });
+              if(tosend!=null&&tosend!=""){
+                client.send(tosend, function ack(error) {
+                  // If error is not defined, the send has been completed, otherwise the error
+                  // object will indicate what failed.
+                  console.log("foreach error : "+ error);
+                });
+              }
+            
               
    
              // var tosend =CircularJSON.stringify(client.socketClient.getclientobject());
@@ -170,7 +171,10 @@ wss.on('connection', function connection(ws,req) {
         
              
             };
-          
+            
+            setTimeout(function() {
+              next();//self execute again
+            }, 1000);
       }
       ,
         function(err) {
@@ -200,7 +204,7 @@ wss.on('connection', function connection(ws,req) {
 
   ws.on('message', function incoming(message) {
     //console.log('received: %s', message);
-    console.log("clients length "+totalclient);
+  //  console.log("clients length "+totalclient);
     
   });
   
