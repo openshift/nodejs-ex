@@ -25,7 +25,7 @@
     "webpack": "^4.0.1",
     "uuid":"^3.2.1",
     "circular-json":"~0.5.3",
-    "graphql":"^0.13.2",
+    "graphql":"^0.13.2"
 
 
   },
