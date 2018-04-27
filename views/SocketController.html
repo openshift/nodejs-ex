@@ -18,6 +18,7 @@
 		name="input-1"
 		label="Label Text"
 		id="testing"
+		v-model="ReciverUUID"
 	  ></v-text-field>
 	  
 	</div>
@@ -41,7 +42,8 @@ window.onload = function () {
 	},
 	methods: {
 		clicked: function (event) {
-			//alert("clicked");    
+			alert(vm.ReciverUUID);
+			    
   	}
 }
 })
