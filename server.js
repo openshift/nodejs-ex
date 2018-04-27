@@ -80,10 +80,10 @@ wss.on('connection', function connection(ws,req) {
 
   // You might use location.query.access_token to authenticate or share sessions
   // or req.headers.cookie (see http://stackoverflow.com/a/16395220/151312)
-  
+/*
   var found = array1.find(function(element) {
     return element > 10;
-  });
+  });*/
   
   ws.id = uuid.v4();//append a property to a client to know the diffrences
   ws.ip = ip;
