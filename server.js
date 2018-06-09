@@ -51,6 +51,54 @@ var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
 var server = require('http').createServer(app);
 
 
+//------poker evaluator
+console.log("Poker");
+  const PokerHand = require('poker-hand-evaluator');
+ 
+  const myPokerHand = new PokerHand('KS KH QC AH AD');
+  const hisPokerHand = new PokerHand('KD KC AS AH TD')
+   
+  console.log(myPokerHand.describe());
+  // { hand: [ 'KS', 'KH', 'QC', 'AH', 'AD' ],
+  //   score: 2468,
+  //   rank: 'TWO_PAIRS' }
+   
+  console.log(hisPokerHand.describe());
+  // { hand: [ 'KD', 'KC', 'AS', 'AH', 'TD' ],
+  //   score: 2470,
+  //   rank: 'TWO_PAIRS' }
+   
+  console.log(myPokerHand.getRank());
+  // TWO_PAIRS
+  console.log(hisPokerHand.getRank());
+  // TWO_PAIRS
+   
+  console.log(myPokerHand.getScore());
+  // 2468
+  console.log(hisPokerHand.getScore());
+  // 2470
+   
+  console.log(myPokerHand.toString());
+  // KS KH QC AH AD
+  console.log(hisPokerHand.toString());
+  // KD KC AS AH TD
+   
+   
+  /**
+   * return 1 if it's a Win
+   * return 2 if it's a Loss
+   * return 3 if it's a Tie
+   */
+  console.log(myPokerHand.compareWith(hisPokerHand));
+console.log("Poker end");
+//------poker evaluator
+
+
+
+
+
+
+
 //-----sockets start here
 
 //the socketcontroller.js calls this while socketcontroller.js is called by socketcontroller.html
@@ -204,50 +252,6 @@ wss.on('connection', function connection(ws,req) {
     
   });
   
-
-//------poker evaluator
-console.log("Poker");
-  const PokerHand = require('poker-hand-evaluator');
- 
-  const myPokerHand = new PokerHand('KS KH QC AH AD');
-  const hisPokerHand = new PokerHand('KD KC AS AH TD')
-   
-  console.log(myPokerHand.describe());
-  // { hand: [ 'KS', 'KH', 'QC', 'AH', 'AD' ],
-  //   score: 2468,
-  //   rank: 'TWO_PAIRS' }
-   
-  console.log(hisPokerHand.describe());
-  // { hand: [ 'KD', 'KC', 'AS', 'AH', 'TD' ],
-  //   score: 2470,
-  //   rank: 'TWO_PAIRS' }
-   
-  console.log(myPokerHand.getRank());
-  // TWO_PAIRS
-  console.log(hisPokerHand.getRank());
-  // TWO_PAIRS
-   
-  console.log(myPokerHand.getScore());
-  // 2468
-  console.log(hisPokerHand.getScore());
-  // 2470
-   
-  console.log(myPokerHand.toString());
-  // KS KH QC AH AD
-  console.log(hisPokerHand.toString());
-  // KD KC AS AH TD
-   
-   
-  /**
-   * return 1 if it's a Win
-   * return 2 if it's a Loss
-   * return 3 if it's a Tie
-   */
-  console.log(myPokerHand.compareWith(hisPokerHand));
-console.log("Poker end");
-//------poker evaluator
-
-
 
 
 
