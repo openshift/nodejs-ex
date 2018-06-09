@@ -206,6 +206,7 @@ wss.on('connection', function connection(ws,req) {
   
 
 //------poker evaluator
+console.log("Poker");
   const PokerHand = require('poker-hand-evaluator');
  
   const myPokerHand = new PokerHand('KS KH QC AH AD');
@@ -243,7 +244,7 @@ wss.on('connection', function connection(ws,req) {
    * return 3 if it's a Tie
    */
   console.log(myPokerHand.compareWith(hisPokerHand));
-
+console.log("Poker end");
 //------poker evaluator
 
 
