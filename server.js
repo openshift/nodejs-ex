@@ -547,7 +547,7 @@ app.use("/dist", express.static(__dirname + "/dist"));
 app.use("/public", express.static(__dirname + "/public"));//so we can include external client side js or css files without routing it manually w
 app.use("/Dashboard", express.static(__dirname + "/Dashboard"));//so we can include external client side js or css files without routing it manually w
 
-
+app.use("/Poker", express.static(__dirname + "/Poker"));
 
 app.get('/', function (req, res) {
   // try to initialize the db on every request if it's not already
