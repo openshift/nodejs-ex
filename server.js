@@ -633,10 +633,12 @@ cmb = Combinatorics.combination(['a','b','c','d'], 2)
 
 app.get('/hello2',(req, res) =>
 {
+  var fruits = [];
   while(a = cmb.next())
   { 
-    res.send(a)
+    fruits.push(a);
   }
+  res.send(fruits);
 });
 
  
