@@ -627,8 +627,20 @@ console.log("-------inlined get example----------");
 app.get('/hello', function (req, res) {
   res.send('hello');
 });
+var cmb, a;
+cmb = Combinatorics.combination(['a','b','c','d'], 2)
+
+
 app.get('/hello2',(req, res) =>
-  res.send('hello2'));
+{
+  while(a = cmb.next())
+  { 
+    res.send(a)
+  }
+});
+
+ 
+  
 console.log("-------inlined get example------------");
 
 
