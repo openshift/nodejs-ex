@@ -26,7 +26,8 @@
     "uuid":"^3.2.1",
     "circular-json":"~0.5.3",
     "graphql":"^0.13.2",
-    "poker-hand-evaluator":"^1.0.1"
+    "poker-hand-evaluator":"^1.0.1",
+    "js-combinatorics":"^0.5.3"
 
 
   },

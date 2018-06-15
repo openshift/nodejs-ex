@@ -14,6 +14,9 @@ var os = require('os');
 var mongoose   = require('mongoose');
 var async = require("async");
 var graphql = require('graphql');
+var Combinatorics = require('js-combinatorics');
+
+
 var AccountsController = require('./Controllers/AccountsController.js');
 var SocketController = require('./Controllers/SocketController.js');
 
@@ -49,6 +52,13 @@ var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     mongoURLLabel = "";
     
 var server = require('http').createServer(app);
+
+console.log("-------Poker----------");
+var cmb, a;
+cmb = Combinatorics.power(['a','b','c']);
+cmb.forEach(function(a){ console.log(a) });
+console.log("-------Poker----------");
+
 
 
 //------poker evaluator
