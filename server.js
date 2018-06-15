@@ -53,12 +53,15 @@ var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     
 var server = require('http').createServer(app);
 
+
+
+
+
 console.log("-------Combinator----------");
 var cmb, a;
 cmb = Combinatorics.power(['a','b','c']);
 cmb.forEach(function(a){ console.log(a) });
 console.log("-------Combinator----------");
-
 
 
 //------poker evaluator
@@ -235,7 +238,7 @@ wss.on('connection', function connection(ws,req) {
         function(err) {
             // if next is called with a value in its first parameter, it will appear
             // in here as 'err', and execution will stop.
-            console.log('async close check error : '+ err)
+          //  console.log('async close check error : '+ err)
         }
       );
     
@@ -412,7 +415,7 @@ async.forever(
       }, 5000);
       // tell async that that particular element of the iterator is done
       }, function(err) {
-      console.log('iterate done----------------');
+   //   console.log('iterate done----------------');
       next();
       });  
   },
@@ -559,6 +562,9 @@ app.use("/Dashboard", express.static(__dirname + "/Dashboard"));//so we can incl
 
 app.use("/Poker", express.static(__dirname + "/Poker"));
 
+
+
+
 app.get('/', function (req, res) {
   // try to initialize the db on every request if it's not already
   // initialized.
@@ -617,6 +623,16 @@ app.get('/jsontest', function (req, res) {
 });
 
 
+console.log("-------inlined get example----------");
+app.get('/hello', function (req, res) {
+  res.send('hello');
+});
+app.get('/hello2',(req, res) =>
+  res.send('hello2'));
+console.log("-------inlined get example------------");
+
+
+
 app.use('/routetest', routertest);
 app.use('/AccountsController', AccountsController);
 app.use('/SocketController', SocketController);
@@ -636,6 +652,10 @@ app.get('/pagecount', function (req, res) {
     res.send('{ pageCount: -1 }');
   }
 });
+
+
+
+
 
 // error handling
 app.use(function(err, req, res, next){
