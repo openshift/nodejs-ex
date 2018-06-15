@@ -53,11 +53,11 @@ var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     
 var server = require('http').createServer(app);
 
-console.log("-------Poker----------");
+console.log("-------Combinator----------");
 var cmb, a;
 cmb = Combinatorics.power(['a','b','c']);
 cmb.forEach(function(a){ console.log(a) });
-console.log("-------Poker----------");
+console.log("-------Combinator----------");
 
 
 
