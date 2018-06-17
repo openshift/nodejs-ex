@@ -32,7 +32,7 @@
     "poker-hand-evaluator":"^1.0.1",
     "js-combinatorics":"^0.5.3",
     "connect-history-api-fallback":"1.5.0",
-     "serve-static":"1.13.2"
+    "serve-static":"1.13.2"
 
 
   },
@@ -92,12 +92,13 @@
     "npm": "*"
   },
   "scripts": {
-    "postinstall": "npm install express && npm run build",
+    
     "prewatch":"echo inlined example and pre watched example",
     "zbuild" :"webpack --mode production --display-error-details --progress --colors ./scripts/mylibrary.js",
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "zdev" :"webpack --mode development --display-error-details --progress --colors  ./scripts/mylibrary.js",
     "prestart":"",
+    "postinstall": "npm run build",
     "watch":"node scripts/watch.js",
     "postwatch":"echo happends after everything finished for watch",
     "start": "npm run dev && node server.js",
