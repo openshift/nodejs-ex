@@ -26,23 +26,83 @@
     "uuid":"^3.2.1",
     "circular-json":"~0.5.3",
     "graphql":"^0.13.2",
+    "vue": "^2.5.2",
+    "vue-router": "^3.0.1",
+    "vuetify": "^1.0.0",
     "poker-hand-evaluator":"^1.0.1",
-    "js-combinatorics":"^0.5.3"
+    "js-combinatorics":"^0.5.3",
+    "connect-history-api-fallback":"1.5.0",
+     "serve-static":"1.13.2"
 
 
+  },
+  ,
+  "devDependencies": {
+    "request": "^2.81.0",
+    "tape": "^4.7.0",
+    "autoprefixer": "^7.1.2",
+    "babel-core": "^6.22.1",
+    "babel-eslint": "^7.1.1",
+    "babel-helper-vue-jsx-merge-props": "^2.0.3",
+    "babel-loader": "^7.1.1",
+    "babel-plugin-syntax-jsx": "^6.18.0",
+    "babel-plugin-transform-runtime": "^6.22.0",
+    "babel-plugin-transform-vue-jsx": "^3.5.0",
+    "babel-preset-env": "^1.3.2",
+    "babel-preset-stage-2": "^6.22.0",
+    "chalk": "^2.0.1",
+    "copy-webpack-plugin": "^4.0.1",
+    "css-loader": "^0.28.0",
+    "eslint": "^3.19.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-friendly-formatter": "^3.0.0",
+    "eslint-loader": "^1.7.1",
+    "eslint-plugin-html": "^3.0.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.2.0",
+    "eslint-plugin-promise": "^3.4.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "file-loader": "^1.1.4",
+    "friendly-errors-webpack-plugin": "^1.6.1",
+    "html-webpack-plugin": "^2.30.1",
+    "node-notifier": "^5.1.2",
+    "optimize-css-assets-webpack-plugin": "^3.2.0",
+    "ora": "^1.2.0",
+    "portfinder": "^1.0.13",
+    "postcss-import": "^11.0.0",
+    "postcss-loader": "^2.0.8",
+    "postcss-url": "^7.2.1",
+    "rimraf": "^2.6.0",
+    "semver": "^5.3.0",
+    "shelljs": "^0.7.6",
+    "uglifyjs-webpack-plugin": "^1.1.1",
+    "url-loader": "^0.5.8",
+    "vue-loader": "^13.3.0",
+    "vue-style-loader": "^3.0.1",
+    "vue-template-compiler": "^2.5.2",
+    "webpack": "^3.6.0",
+    "webpack-bundle-analyzer": "^2.9.0",
+    "webpack-dev-server": "^2.9.1",
+    "webpack-merge": "^4.1.0",
+    "connect-history-api-fallback":"^1.5.0"
   },
   "engine": {
     "node": "*",
     "npm": "*"
   },
   "scripts": {
+    "postinstall": "npm install express && npm run build",
     "prewatch":"echo inlined example and pre watched example",
     "zbuild" :"webpack --mode production --display-error-details --progress --colors ./scripts/mylibrary.js",
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "zdev" :"webpack --mode development --display-error-details --progress --colors  ./scripts/mylibrary.js",
     "prestart":"",
     "watch":"node scripts/watch.js",
     "postwatch":"echo happends after everything finished for watch",
-    "start": "node server.js",
+    "start": "npm run dev && node server.js",
+     "lint": "eslint --ext .js,.vue src",
+    "build": "node build/build.js",
     "test": "IP=0.0.0.0 PORT=3030 mocha --timeout 5000 tests/*_test.js",
     "pretest": "echo 'about to run the test...'",
     "posttest": "echo 'the test has been run!'",
@@ -51,6 +111,11 @@
     "buildBothSameTime":"npm run somthing1 &&npm run somthing2 && echo stacking up scripts example"
 
   },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/openshift/nodejs-ex.git"
@@ -68,5 +133,6 @@
 
   "directories": {
     "test": "tests"
-  }
+  },
+  "license": "MIT"
 }
