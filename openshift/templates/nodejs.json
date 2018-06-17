@@ -37,6 +37,7 @@
             "port": 8080,
             "targetPort": 8080
           }
+          
         ],
         "selector": {
           "name": "${NAME}"
@@ -201,6 +202,7 @@
                         "path": "/",
                         "port": 8080
                     }
+                }
                 },
                 "resources": {
                     "limits": {

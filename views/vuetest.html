@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
+  <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+<body>
+<body>
+
+  <div id="app">
+    <v-app>
+      <v-content>
+        <v-container>Hello world</v-container>
+      </v-content>
+
+      <div>
+        <v-alert type="success" :value="true">
+          This is a success alert.
+        </v-alert>
+    
+        <v-alert type="info" :value="true">
+          This is a info alert.
+        </v-alert>
+    
+        <v-alert type="warning" :value="true">
+          This is a warning alert.
+        </v-alert>
+    
+        <v-alert type="error" :value="true">
+          This is a error alert.
+        </v-alert>
+      </div>
+      <div>
+        <v-btn color="success">Success</v-btn>
+        <v-btn color="error">Error</v-btn>
+        <v-btn color="warning">Warning</v-btn>
+        <v-btn color="info">Info</v-btn>
+      </div>
+
+      <v-card>
+        <v-card-text>
+          <v-slider v-model="value1" step="0"></v-slider>
+          <v-slider v-model="value2" step="0" disabled></v-slider>
+        </v-card-text>
+      </v-card>
+
+      <v-container fluid>
+        <v-layout justify-space-around class="mb-2">
+          <span class="group pa-2">
+            <v-icon>home</v-icon>
+            <v-icon>event</v-icon>
+            <v-icon>info</v-icon>
+          </span>
+    
+          <span class="group pa-2 teal">
+            <v-icon dark>folder_open</v-icon>
+            <v-icon dark>widgets</v-icon>
+            <v-icon dark>gavel</v-icon>
+          </span>
+        </v-layout>
+    
+        <v-layout justify-space-around class="mb-2">
+          <span class="group pa-2">
+            <v-icon medium>home</v-icon>
+            <v-icon medium>event</v-icon>
+            <v-icon medium>info</v-icon>
+          </span>
+    
+          <span class="group pa-2 teal">
+            <v-icon medium dark>folder_open</v-icon>
+            <v-icon medium dark>widgets</v-icon>
+            <v-icon medium dark>gavel</v-icon>
+          </span>
+        </v-layout>
+    
+        <v-layout justify-space-around class="mb-2">
+          <span class="group pa-2">
+            <v-icon large>home</v-icon>
+            <v-icon large>event</v-icon>
+            <v-icon large>info</v-icon>
+          </span>
+    
+          <span class="group pa-2 teal">
+            <v-icon large dark>folder_open</v-icon>
+            <v-icon large dark>widgets</v-icon>
+            <v-icon large dark>gavel</v-icon>
+          </span>
+        </v-layout>
+    
+        <v-layout justify-space-around>
+          <span class="group pa-2">
+            <v-icon x-large>home</v-icon>
+            <v-icon x-large>event</v-icon>
+            <v-icon x-large>info</v-icon>
+          </span>
+    
+          <span class="group pa-2 teal">
+            <v-icon x-large dark>folder_open</v-icon>
+            <v-icon x-large dark>widgets</v-icon>
+            <v-icon x-large dark>gavel</v-icon>
+          </span>
+        </v-layout>
+      </v-container>
+
+      <div class="text-xs-center d-flex align-center">
+        <v-tooltip bottom>
+          <v-btn dark color="primary" slot="activator">Button</v-btn>
+          <span>Tooltip</span>
+        </v-tooltip>
+        <v-tooltip bottom>
+          <v-icon dark color="primary" slot="activator">home</v-icon>
+          <span>Tooltip</span>
+        </v-tooltip>
+        <v-tooltip bottom>
+          <span slot="activator">This text has a tooltip</span>
+          <span>Tooltip</span>
+        </v-tooltip>
+      </div>
+
+      <v-form v-model="valid">
+        <v-text-field
+          label="Name"
+          v-model="name"
+          :rules="nameRules"
+          :counter="10"
+          required
+        ></v-text-field>
+        <v-text-field
+          label="E-mail"
+          v-model="email"
+          :rules="emailRules"
+          required
+        ></v-text-field>
+      </v-form>
+
+
+      <v-container fluid>
+        <v-layout row wrap>
+          <v-flex xs6>
+            <v-subheader>Standard</v-subheader>
+          </v-flex>
+          <v-flex xs6>
+            <v-select
+              :items="items"
+              v-model="e1"
+              label="Select"
+              single-line
+            ></v-select>
+          </v-flex>
+          <v-flex xs6>
+            <v-subheader>Standard with focus</v-subheader>
+          </v-flex>
+          <v-flex xs6>
+            <v-select
+              :items="items"
+              v-model="e2"
+              label="Select"
+              class="input-group--focused"
+              item-value="text"
+            ></v-select>
+          </v-flex>
+          <v-flex xs6>
+            <v-subheader>Error</v-subheader>
+          </v-flex>
+          <v-flex xs6>
+            <v-select
+              label="Select"
+              :items="items"
+              v-model="e3"
+              :error-messages="['Please select an option']"
+              item-value="text"
+            ></v-select>
+          </v-flex>
+          <v-flex xs6>
+            <v-subheader>Disabled</v-subheader>
+          </v-flex>
+          <v-flex xs6>
+            <v-select
+              label="Select"
+              :items="items"
+              v-model="e4"
+              disabled
+            ></v-select>
+          </v-flex>
+        </v-layout>
+      </v-container>
+
+
+      <v-container fluid px-0>
+        <v-checkbox
+          :label="`Checkbox 1: ${checkbox.toString()}`"
+          v-model="checkbox"
+        ></v-checkbox>
+        <v-radio-group v-model="radioGroup">
+          <v-radio
+            v-for="n in 3"
+            :key="n"
+            :label="`Radio ${n}`"
+            :value="n"
+          ></v-radio>
+        </v-radio-group>
+        <v-switch
+          :label="`Switch 1: ${switch1.toString()}`"
+          v-model="switch1"
+        ></v-switch>
+      </v-container>
+
+
+        <div>
+          <v-layout row wrap>
+            <v-flex xs12 sm3>
+              <v-checkbox hide-details label="Landscape" v-model="landscape"></v-checkbox>
+            </v-flex>
+            <v-flex xs12 sm3>
+              <v-checkbox hide-details label="Reactive" v-model="reactive"></v-checkbox>
+            </v-flex>
+          </v-layout>
+      
+          <v-date-picker v-model="picker" :landscape="landscape" :reactive="reactive"></v-date-picker>
+        </div>
+
+        <div>
+            <v-checkbox label="Landscape" v-model="landscape"></v-checkbox>
+            <v-time-picker v-model="picker" :landscape="landscape"></v-time-picker>
+        </div>
+
+
+        <div>
+            <v-tabs
+              v-model="active"
+              color="cyan"
+              dark
+              slider-color="yellow"
+            >
+              <v-tab
+                v-for="n in 3"
+                :key="n"
+                ripple
+              >
+                Item {{ n }}
+              </v-tab>
+              <v-tab-item
+                v-for="n in 3"
+                :key="n"
+              >
+                <v-card flat>
+                  <v-card-text>{{ text }}</v-card-text>
+                </v-card>
+              </v-tab-item>
+            </v-tabs>
+        
+            <div class="text-xs-center mt-3">
+              <v-btn @click.native="next">next tab</v-btn>
+            </div>
+          </div>
+          <div class="text-xs-center">
+            <v-pagination :length="6" v-model="page"></v-pagination>
+          </div>
+
+          <v-container fluid class="pa-0">
+            <v-layout row wrap>
+              <v-flex md6 sm12>
+                <div class="text-xs-center">
+                  <v-chip close>Example Chip</v-chip>
+                </div>
+                <div class="text-xs-center">
+                  <v-chip>Example Chip</v-chip>
+                </div>
+              </v-flex>
+              <v-flex md6 sm12 xs12>
+                <div class="text-xs-center">
+                  <v-chip close>
+                    <v-avatar>
+                      <img src="https://randomuser.me/api/portraits/men/35.jpg" alt="trevor">
+                    </v-avatar>
+                    Trevor Hansen
+                  </v-chip>
+                </div>
+                <div class="text-xs-center">
+                  <v-chip>
+                    <v-avatar class="teal">A</v-avatar>
+                    ANZ Bank
+                  </v-chip>
+                </div>
+              </v-flex>
+            </v-layout>
+          </v-container>
+
+          <v-data-table
+          :headers="headers"
+          :items="items2"
+          hide-actions
+          class="elevation-1"
+        >
+          <template slot="items" slot-scope="props">
+            <td>{{ props.item.name }}</td>
+            <td class="text-xs-right">{{ props.item.calories }}</td>
+            <td class="text-xs-right">{{ props.item.fat }}</td>
+            <td class="text-xs-right">{{ props.item.carbs }}</td>
+            <td class="text-xs-right">{{ props.item.protein }}</td>
+            <td class="text-xs-right">{{ props.item.iron }}</td>
+          </template>
+        </v-data-table>
+
+
+    <v-parallax src="https://vuetifyjs.com/static/doc-images/parallax/material.jpg"></v-parallax>
+    <div>
+        <v-progress-circular :value="20"></v-progress-circular>
+    </div>
+
+    <div>
+        <v-carousel>
+            <v-carousel-item v-for="(item,i) in items3" :src="item.src" :key="i"></v-carousel-item>
+          </v-carousel>
+    </div>
+
+    <v-layout>
+        <v-flex xs12 sm6 offset-sm3>
+          <v-card>
+            <v-card-media src="https://picsum.photos/200/300/?random" height="200px">
+            </v-card-media>
+            <v-card-title primary-title>
+              <div>
+                <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
+                <div>Located two hours south of Sydney in the <br>Southern Highlands of New South Wales, ...</div>
+              </div>
+            </v-card-title>
+            <v-card-actions>
+              <v-btn flat color="orange">Share</v-btn>
+              <v-btn flat color="orange">Explore</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-flex>
+      </v-layout>
+
+
+      <v-card>
+        <v-card-text>
+          <p class="text-lg-right">Right align on large viewport sizes</p>
+          <p class="text-md-center">Center align on medium viewport sizes</p>
+          <p class="text-sm-left">Left align on small viewport sizes</p>
+          <p class="text-xs-center">Center align on all viewport sizes</p>
+          <p class="text-xs-right">Right align on all viewport sizes</p>
+        </v-card-text>
+      </v-card>
+
+      <v-footer class="pa-3">
+        <v-spacer></v-spacer>
+        <div>&copy; {{ new Date().getFullYear() }}</div>
+      </v-footer>
+      <div>
+          <button-counter></button-counter>
+          <button-counter></button-counter>
+          <button-counter></button-counter>
+      </div>
+      
+      <div>
+            {{ message }}
+            <line-chart></line-chart>
+            <bar-chart></bar-chart>
+            <doughnut-chart></doughnut-chart>
+            <pie-chart></pie-chart>
+            <radar-chart></radar-chart>
+            <polar-chart></polar-chart>
+            <bubble-chart></bubble-chart>
+            <scatter-chart></scatter-chart>
+            
+      </div>
+     <div>
+        <button-counter></button-counter>
+        <button-counter></button-counter>
+        <button-counter></button-counter>
+     </div>
+     <div v-if="Math.random() > 0.5">
+        Now you see me
+      </div>
+      <div v-else>
+        Now you don't
+      </div>
+      <div>
+          <li v-for="item in items3">
+              {{ item.message }}
+            </li>
+          
+      </div>
+      <div>
+          <span v-for="n in 10">{{ n }} </span>
+      </div>
+      <div>
+          <button v-on:click="counter += 1">Add 1</button>
+          <p>The button above has been clicked {{ counter }} times.</p>
+      </div>
+      <div>
+          <button v-on:click="greet">Greet</button>
+      </div>
+    </v-app>
+ 
+  </div>
+
+</body>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+  <script src="https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"></script>
+
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
+
+  <script src="../public/js/clientapp.js"></script>
+
+
+  <script  type="text/javascript">
+    window.onload = function () {
+Vue.component('line-chart', {
+  extends: VueChartJs.Line,
+  mounted () {
+    this.renderChart({
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      datasets: [
+        {
+          label: 'Data One',
+          backgroundColor: '#f87979',
+          data: [40, 39, 10, 40, 39, 80, 40]
+        }
+      ]
+    }, {responsive: true, maintainAspectRatio: false})
+  }
+});
+Vue.component('bar-chart', {
+  extends: VueChartJs.Bar,
+  mounted () {
+    this.renderChart({
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      datasets: [
+        {
+          label: 'Data One',
+          backgroundColor: '#f87979',
+          data: [40, 39, 10, 40, 39, 80, 40]
+        }
+      ]
+    }, {responsive: true, maintainAspectRatio: false})
+  }
+});
+
+Vue.component('doughnut-chart', {
+  extends: VueChartJs.Doughnut,
+  mounted () {
+    this.renderChart({
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      datasets: [
+        {
+          label: 'Data One',
+          backgroundColor: '#f87979',
+          data: [40, 39, 10, 40, 39, 80, 40]
+        }
+      ]
+    }, {responsive: true, maintainAspectRatio: false})
+  }
+});
+Vue.component('pie-chart', {
+  extends: VueChartJs.Pie,
+  mounted () {
+    this.renderChart({
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      datasets: [
+        {
+          label: 'Data One',
+          backgroundColor: '#f87979',
+          data: [40, 39, 10, 40, 39, 80, 40]
+        }
+      ]
+    }, {responsive: true, maintainAspectRatio: false})
+  }
+});
+Vue.component('radar-chart', {
+  extends: VueChartJs.Radar,
+  mounted () {
+    this.renderChart({
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      datasets: [
+        {
+          label: 'Data One',
+          backgroundColor: '#f87979',
+          data: [40, 39, 10, 40, 39, 80, 40]
+        }
+      ]
+    }, {responsive: true, maintainAspectRatio: false})
+  }
+});
+
+Vue.component('polar-chart', {
+  extends: VueChartJs.PolarArea,
+  mounted () {
+    this.renderChart({
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      datasets: [
+        {
+          label: 'Data One',
+          backgroundColor: '#f87979',
+          data: [40, 39, 10, 40, 39, 80, 40]
+        }
+      ]
+    }, {responsive: true, maintainAspectRatio: false})
+  }
+});
+
+Vue.component('bubble-chart', {
+  extends: VueChartJs.Bubble,
+  mounted () {
+    this.renderChart({
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      datasets: [
+        {
+          label: 'Data One',
+          backgroundColor: '#f87979',
+          data: [40, 39, 10, 40, 39, 80, 40]
+        }
+      ]
+    }, {responsive: true, maintainAspectRatio: false})
+  }
+});
+Vue.component('scatter-chart', {
+  extends: VueChartJs.Scatter,
+  mounted () {
+    this.renderChart({
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      datasets: [
+        {
+          label: 'Data One',
+          backgroundColor: '#f87979',
+          data: [40, 39, 10, 40, 39, 80, 40]
+        }
+      ]
+    }, {responsive: true, maintainAspectRatio: false})
+  }
+});
+//custom component using inlined template similar to the vue chartjs but the template is abstracted in chartjs
+Vue.component('button-counter', {
+  data: function () {
+    return {
+      count: 0
+    }
+  },
+  template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+});
+
+    new Vue({
+      el: '#app',
+      data () {
+        return {
+          count: 0,
+          counter: 0,
+          valid: false,
+      name: '',
+      nameRules: [
+        v => !!v || 'Name is required',
+        v => v.length <= 10 || 'Name must be less than 10 characters'
+      ],
+      email: '',
+      emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+      ],
+
+        value1: 0,
+        value2: 0,
+        items: [
+        { text: 'State 1' },
+        { text: 'State 2' },
+        { text: 'State 3' },
+        { text: 'State 4' },
+        { text: 'State 5' },
+        { text: 'State 6' },
+        { text: 'State 7' }
+      ],
+      states: [
+        'Alabama', 'Alaska', 'American Samoa', 'Arizona',
+        'Arkansas', 'California', 'Colorado', 'Connecticut',
+        'Delaware', 'District of Columbia', 'Federated States of Micronesia',
+        'Florida', 'Georgia', 'Guam', 'Hawaii', 'Idaho',
+        'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky',
+        'Louisiana', 'Maine', 'Marshall Islands', 'Maryland',
+        'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi',
+        'Missouri', 'Montana', 'Nebraska', 'Nevada',
+        'New Hampshire', 'New Jersey', 'New Mexico', 'New York',
+        'North Carolina', 'North Dakota', 'Northern Mariana Islands', 'Ohio',
+        'Oklahoma', 'Oregon', 'Palau', 'Pennsylvania', 'Puerto Rico',
+        'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee',
+        'Texas', 'Utah', 'Vermont', 'Virgin Island', 'Virginia',
+        'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+      ],
+        checkbox: true,
+        radioGroup: 1,
+        switch1: true,
+        picker: null,
+        landscape: false,
+        reactive: false,
+        active: null,
+        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+        page: 1,
+        headers: [
+          {
+            text: 'Dessert (100g serving)',
+            align: 'left',
+            sortable: false,
+            value: 'name'
+          },
+          { text: 'Calories', value: 'calories' },
+          { text: 'Fat (g)', value: 'fat' },
+          { text: 'Carbs (g)', value: 'carbs' },
+          { text: 'Protein (g)', value: 'protein' },
+          { text: 'Iron (%)', value: 'iron' }
+        ],
+        items2: [
+          {
+            value: false,
+            name: 'Frozen Yogurt',
+            calories: 159,
+            fat: 6.0,
+            carbs: 24,
+            protein: 4.0,
+            iron: '1%'
+          },
+          {
+            value: false,
+            name: 'Ice cream sandwich',
+            calories: 237,
+            fat: 9.0,
+            carbs: 37,
+            protein: 4.3,
+            iron: '1%'
+          },
+          {
+            value: false,
+            name: 'Eclair',
+            calories: 262,
+            fat: 16.0,
+            carbs: 23,
+            protein: 6.0,
+            iron: '7%'
+          },
+          {
+            value: false,
+            name: 'Cupcake',
+            calories: 305,
+            fat: 3.7,
+            carbs: 67,
+            protein: 4.3,
+            iron: '8%'
+          },
+          {
+            value: false,
+            name: 'Gingerbread',
+            calories: 356,
+            fat: 16.0,
+            carbs: 49,
+            protein: 3.9,
+            iron: '16%'
+          },
+          {
+            value: false,
+            name: 'Jelly bean',
+            calories: 375,
+            fat: 0.0,
+            carbs: 94,
+            protein: 0.0,
+            iron: '0%'
+          },
+          {
+            value: false,
+            name: 'Lollipop',
+            calories: 392,
+            fat: 0.2,
+            carbs: 98,
+            protein: 0,
+            iron: '2%'
+          },
+          {
+            value: false,
+            name: 'Honeycomb',
+            calories: 408,
+            fat: 3.2,
+            carbs: 87,
+            protein: 6.5,
+            iron: '45%'
+          },
+          {
+            value: false,
+            name: 'Donut',
+            calories: 452,
+            fat: 25.0,
+            carbs: 51,
+            protein: 4.9,
+            iron: '22%'
+          },
+          {
+            value: false,
+            name: 'KitKat',
+            calories: 518,
+            fat: 26.0,
+            carbs: 65,
+            protein: 7,
+            iron: '6%'
+          }
+        ],
+        items3: [
+          {
+            src: 'https://picsum.photos/200/300/?random'
+          },
+          {
+            src: 'https://picsum.photos/200/300/?random'
+          },
+          {
+            src: 'https://picsum.photos/200/300/?random'
+          },
+          {
+            src: 'https://picsum.photos/200/300/?random'
+          }
+        ],
+        card_text: 'Lorem ipsum dolor sit amet, brute iriure accusata ne mea. Eos suavitate referrentur ad, te duo agam libris qualisque, utroque quaestio accommodare no qui. Et percipit laboramus usu, no invidunt verterem nominati mel. Dolorem ancillae an mei, ut putant invenire splendide mel, ea nec propriae adipisci. Ignota salutandi accusamus in sed, et per malis fuisset, qui id ludus appareat.',
+        items3: [
+      { message: 'Foo' },
+      { message: 'Bar' }
+    ]
+        }
+
+    },
+
+    methods: {
+      next () {
+        const active = parseInt(this.active)
+        this.active = (active < 2 ? active + 1 : 0).toString()
+      },
+      greet(event) {
+      // `this` inside methods points to the Vue instance
+      alert('Hello ' + this.name + '!');
+      }
+    }
+  })
+}
+
+
+
+
+  </script>
+
+</body>
+</html>

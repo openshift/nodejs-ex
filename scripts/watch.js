@@ -1,0 +1,1 @@
+console.log('external example for npm script package.json build tools');

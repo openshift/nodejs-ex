@@ -1,0 +1,74 @@
+
+<head>
+	<link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
+	<link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
+
+<body>
+	<div id="example">
+		{{RecivedConnectionID}}
+		<pre>
+		{{ message }}
+		</pre>
+		<v-btn color="success" v-on:click="clicked">Send</v-btn>
+		<v-text-field
+		name="input-1"
+		label="Label Text"
+		id="testing"
+		v-model="ReciverUUID"
+	  ></v-text-field>
+	  
+	</div>
+</body>
+
+
+<script>
+window.onload = function () {
+	var vm = new Vue({
+	el: '#example',
+	data: {
+		message: 'empty',
+		RecivedConnectionID:'empty'
+	},
+	computed: {
+		// a computed getter
+		reversedMessage: function () {
+			// `this` points to the vm instance
+			return this.message.split('').reverse().join('')
+		}
+	},
+	methods: {
+		clicked: function (event) {
+			alert(vm.ReciverUUID);
+			    
+  	}
+}
+})
+var hostname = window.document.location.hostname+"/SocketController";
+		 var ws = new WebSocket('wss://'+hostname);
+		
+		 ws.onopen = function() {
+			ws.send('something to server');
+			if(sessionStorage.getItem('connectionid')!=null&&sessionStorage.getItem('connectionid')!=""){
+				ws.send('reconnect '+sessionStorage.getItem('connectionid'));
+			}
+		 };
+		 
+		 ws.onmessage = function (event) {
+			 if(event.data.includes('ConnectionList')){
+						vm.message=JSON.parse(event.data);//something from server
+						var root = JSON.parse(event.data);
+						//console.log(event.data);
+						var connectionid =root[0].usercontainer[0].connectionid;
+						sessionStorage.setItem('connectionid', connectionid);
+						var s = sessionStorage.getItem('connectionid');
+						vm.RecivedConnectionID= connectionid;
+			 }else{
+				 console.log('something else '+ event.data);
+			 }
+		 };
+}
+	 </script>

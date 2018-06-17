@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -210,9 +211,56 @@ pre {
 }
 
 </style>
-
+  <!--
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>       
+  -->
 </head>
 <body>
+
+ 
+
+  <!--unused not needed
+  <script>  
+    var socket = io.connect('ws://www.nodejs-mongo-persistent-prod.193b.starter-ca-central-1.openshiftapps.com:8000',{'forceNew':true });
+    socket.emit('join', 'room1');//emit from client every one recives this notice 
+
+    socket.on('roomcount', function(message) {
+      alert("message from server its the room count " +message);
+    });
+    var room = "abc123";
+
+    socket.on('connect', function() {
+   // Connected, let's sign-up for to receive messages for this room
+   socket.emit('join', room);
+   });
+   socket.on('message', function(data) {
+   alert('Incoming message from someone who has the same room name:', data);
+  });
+
+</script>
+-->
+<head>
+  <script src="https://simplewebrtc.com/latest-v2.js"></script> 
+  <script>
+    var webrtc = new SimpleWebRTC({
+  // the id/element dom element that will hold "our" video
+  localVideoEl: 'localVideo',
+  // the id/element dom element that will hold remote videos
+  remoteVideosEl: 'remotesVideos',
+  // immediately ask for camera access
+  autoRequestMedia: true
+});
+webrtc.on('readyToCall', function () {
+  // you can name it anything
+  webrtc.joinRoom('wtf');
+});
+
+  </script>
+</head>
+<body>
+  <video height="300" id="localVideo"></video>
+  <div id="remotesVideos"></div>
+</body>
 
 <section class='container'>
           <hgroup>
@@ -307,3 +355,4 @@ $ git push</pre>
 </section>
 </body>
 </html>
+

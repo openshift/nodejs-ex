@@ -1,0 +1,235 @@
+<script>
+    var array1 = ['a', 'b', 'c'];
+
+array1.forEach(function(element) {
+  console.log(element);
+});
+
+</script>
+
+<script>
+var array2 = [1, 4, 9, 16];
+
+// pass a function to map
+const map1 = array2.map(x => x * 2);
+
+console.log(map1);
+// expected output: Array [2, 8, 18, 32]
+
+
+</script>
+
+<script>
+  /*every is similar to trueforall*/
+    function isBelowThreshold(currentValue) {
+  return currentValue < 40;
+}
+
+var array1 = [1, 30, 39, 29, 10, 13];
+
+console.log(array1.every(isBelowThreshold));
+// expected output: true
+
+</script>
+
+<script>
+    var words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
+
+const result = words.filter(word => word.length > 6);
+
+console.log(result);
+// expected output: Array ["exuberant", "destruction", "present"]
+
+</script>
+
+<script>
+    var array3 = ['a', 'b', 'c'];
+array3.forEach(function(element) {
+  console.log(element);
+});
+    </script>
+
+<script>
+    var elements = ['Fire', 'Wind', 'Rain'];
+
+console.log(elements.join());
+// expected output: Fire,Wind,Rain
+
+console.log(elements.join(''));
+// expected output: FireWindRain
+
+console.log(elements.join('-'));
+// expected output: Fire-Wind-Rain
+</script>
+
+<script>
+    var months = ['March', 'Jan', 'Feb', 'Dec'];
+months.sort();
+console.log(months);
+// expected output: Array ["Dec", "Feb", "Jan", "March"]
+
+var array4 = [1, 30, 4, 21];
+array4.sort();
+console.log(array4);
+// expected output: Array [1, 21, 30, 4]
+</script>
+
+<script>
+    var array5 = [5, 12, 8, 130, 44];
+
+function findFirstLargeNumber(element) {
+  return element > 13;
+}
+
+console.log(array5.findIndex(findFirstLargeNumber));
+// expected output: 3
+
+</script>
+<script>
+    var array6 = ['one', 'two', 'three'];
+var reversed = array6.reverse(); 
+
+console.log(array6);
+// expected output: Array ['three', 'two', 'one']
+
+console.log(reversed);
+// expected output: Array ['three', 'two', 'one']
+</script>
+
+<script>
+    const array7 = [1, 2, 3, 4];
+const reducer = (accumulator, currentValue) => accumulator + currentValue;
+
+// 1 + 2 + 3 + 4
+console.log(array7.reduce(reducer));
+// expected output: 10
+</script>
+
+<script>
+    var array8 = [5, 12, 8, 130, 44];
+
+var found = array8.find(function(element) {
+  return element > 10;
+});
+
+console.log(found);
+// expected output: 12
+</script>
+
+<script>
+    //es6 defining
+    var a = 1
+var b = 2
+var c = 3
+var d = 4
+var obj1 = { a, b, c, d }
+</script>
+<script>
+    //var myModule = require('./public/watch.js');//es5
+  //  import myModule2 from './public/watch.js';//es6 dosn't work yet
+
+</script>
+<script>
+    Date.now();
+    Date.parse('2013-08-05');
+</script>
+
+
+<script>
+    //similar to c# string interpolation
+    function hello(firstName, lastName) {
+  return `Good morning ${firstName} ${lastName}! 
+How are you?`
+}
+console.log(hello('Jan', 'Kowalski'))
+</script>
+
+<script>
+    //default params
+    function sort(arr = [], direction = 'ascending') {
+  console.log('I\'m going to sort the array', arr, direction)
+}
+
+sort([1, 2, 3])
+sort([1, 2, 3], 'descending')
+</script>
+
+<script>
+    //labada expression
+    var array = [1, 2, 3, 4]
+const sum = (acc, value) => acc + value
+const product = (acc, value) => acc * value
+
+var sumOfArrayElements = array.reduce(sum, 0)
+var productOfArrayElements = array.reduce(product, 1)
+</script>
+
+<script>
+    //classes but 
+    class Point {
+    constructor(x, y) {
+        this.x = x
+        this.y = y
+    }
+
+    toString() {
+        return '[X=' + this.x + ', Y=' + this.y + ']'
+    }
+}
+
+class ColorPoint extends Point {
+    static default() {
+        return new ColorPoint(0, 0, 'black')
+    }
+
+    constructor(x, y, color) {
+        super(x, y)
+        this.color = color
+    }
+
+    toString() {
+        return '[X=' + this.x + ', Y=' + this.y + ', color=' + this.color + ']'
+    }
+}
+
+console.log('The first point is ' + new Point(2, 10))
+console.log('The second point is ' + new ColorPoint(2, 10, 'green'))
+console.log('The default color point is ' + ColorPoint.default())
+</script>
+
+<script>
+        console.log("--generator example--");
+    //generators are enumerables
+    function *myGenerator() {
+  console.log(1);
+  let a = yield 'first yield';
+  console.log(a);
+  let b = yield 'second yield';
+  console.log(b);
+  return 'hi';
+}
+let iterator = myGenerator();
+let firstYield = iterator.next(1); // { value: 'first yield', done: false }
+let secondYield = iterator.next(2);
+let thirdYield = iterator.next(3);
+let forthYield = iterator.next(4);//if no result its will not return anything
+</script>
+<script>
+    console.log("--another generator example--");
+    //another generator example
+    function * generateEvens(start) {
+    if (start % 2 !== 0) start++;
+    while (true) {
+        yield start;
+        start += 2;
+    }
+}
+
+var evens = generateEvens(5);//imagine 5 as the inisial start   
+console.log(evens.next().value);
+console.log(evens.next().value);
+console.log(evens.next().value);
+console.log(evens.next().value);
+console.log(evens.next().value);
+console.log(evens.next().value);
+</script>
