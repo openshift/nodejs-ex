@@ -1,0 +1,62 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "User": {
+    "dataSource": "solo-db"
+  },
+  "AccessToken": {
+    "dataSource": "db",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "db",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "db",
+    "public": false,
+    "options": {
+      "strictObjectIDCoercion": true
+    }
+  },
+  "Role": {
+    "dataSource": "db",
+    "public": false
+  },
+  "Card": {
+    "dataSource": "solo-db",
+    "public": true
+  },
+  "Game": {
+    "dataSource": "solo-db",
+    "public": true
+  },
+  "Device": {
+    "dataSource": "solo-db",
+    "public": true
+  },
+  "CardUsed": {
+    "dataSource": "solo-db",
+    "public": true
+  },
+  "country": {
+    "dataSource": "solo-db",
+    "public": true
+  },
+  "match": {
+    "dataSource": "solo-db",
+    "public": true
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "name": "Card",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "strictObjectIDCoercion": true,
+  "properties": {
+    "cardNumber": {
+      "type": "string",
+      "required": true
+    },
+    "serialNumber": {
+      "type": "string",
+      "required": false
+    },
+    "network": {
+      "type": "string",
+      "required": true
+    },
+    "amount": {
+      "type": "string",
+      "required": true,
+      "default": "20000"
+    },
+    "isUsed": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "createdOn": {
+      "type": "date",
+      "required": true,
+      "defaultFn": "now"
+    },
+    "updatedOn": {
+      "type": "date",
+      "required": true,
+      "defaultFn": "now"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$unauthenticated",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "getOneCard"
+    }
+  ],
+  "methods": {}
+}

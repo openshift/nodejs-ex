@@ -1,0 +1,50 @@
+{
+  "name": "Device",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "deviceCode": {
+      "type": "string",
+      "required": true
+    },
+    "inviteCode": {
+      "type": "string",
+      "required": true
+    },
+    "invitedUsers": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    },
+    "referenceCode": {
+      "type": "string"
+    },
+    "createdOn": {
+      "type": "date",
+      "required": true,
+      "defaultFn": "now"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$unauthenticated",
+      "permission": "DENY",
+      "property": "find"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "find"
+    }
+  ],
+  "methods": {}
+}

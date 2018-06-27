@@ -1,0 +1,60 @@
+{
+  "name": "match",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "group": {
+      "type": "string",
+      "required": true
+    },
+    "countryA": {
+      "type": "string",
+      "required": true
+    },
+    "countryB": {
+      "type": "string",
+      "required": true
+    },
+    "time": {
+      "type": "date",
+      "required": true,
+      "defaultFn": "now"
+    },
+    "scoreA": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    },
+    "scoreB": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    },
+    "percentA": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    },
+    "percentB": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    },
+    "percentDraw": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    },
+    "linkMatch": {
+      "type": "string",
+      "required": false
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

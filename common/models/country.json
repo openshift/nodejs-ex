@@ -1,0 +1,62 @@
+{
+  "name": "country",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "countryName": {
+      "type": "string",
+      "required": true
+    },
+    "group": {
+      "type": "string",
+      "required": true
+    },
+    "MP": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    },
+    "W": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    },
+    "D": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    },
+    "L": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    },
+    "GF": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    },
+    "GA": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    },
+    "GD": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    },
+    "Pts": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
