@@ -3,8 +3,7 @@
 <!-- toc -->
 
 - [Node.js sample app on OpenShift!](#nodejs-sample-app-on-openshift)
-  * [OpenShift Origin v3 setup](#openshift-origin-v3-setup)
-    + [Running a virtual machine with Vagrant](#running-a-virtual-machine-with-vagrant)
+  * [OpenShift v3 setup](#openshift-v3-setup)
     + [Running a virtual machine managed by minishift](#running-a-virtual-machine-managed-by-minishift)
     + [Starting a Docker container](#starting-a-docker-container)
     + [Downloading the Binary](#downloading-the-binary)
@@ -33,35 +32,30 @@
 
 This example will serve a welcome page and the current hit count as stored in a database.
 
-### OpenShift Origin v3 setup
+### OpenShift v3 setup
 
 There are four methods to get started with OpenShift v3:
 
-  - Running a virtual machine with Vagrant
   - Running a virtual machine managed by minishift
   - Starting a Docker container
   - Downloading the binary
   - Running an Ansible playbook
 
-#### Running a virtual machine with Vagrant
-
-One option is to use the Vagrant all-in-one launch as described in the [OpenShift Origin All-In-One Virtual Machine](https://www.openshift.org/vm/). This option works on Mac, Windows and Linux, but requires that you install [Vagrant](https://www.vagrantup.com/downloads.html) running [VirtualBox](https://www.virtualbox.org/wiki/Downloads).
-
 #### Running a virtual machine managed by minishift
 
-Another option to run virtual machine but not having to using Vagrant is to download and use the `minishift` binary as described in its [getting started](https://github.com/minishift/minishift/#getting-started) section. `minishift` can be used to spin up a VM on any of Windows, Linux or Mac with the help of supported underlying virtualization technologies like KVM, xhyve, Hyper-V, VirtualBox.
+One option is to download and use the `minishift` binary as described in its [getting started](https://github.com/minishift/minishift/#getting-started) section. `minishift` can be used to spin up a VM on any of Windows, Linux or Mac with the help of supported underlying virtualization technologies like KVM, xhyve, Hyper-V, VirtualBox.
 
 #### Starting a Docker container
 
-Another option is running the OpenShift Origin Docker container image from [Docker Hub](https://hub.docker.com/r/openshift/origin/) launch as described in the [Getting Started for Administrators](https://docs.openshift.org/latest/getting_started/administrators.html#running-in-a-docker-container). This method is supported on Fedora, CentOS, and Red Hat Enterprise Linux (RHEL) hosts only.
+Another option is running the OKD Docker container image from [Docker Hub](https://hub.docker.com/r/openshift/origin/) as described in [Method 1: Running in a Container](https://docs.okd.io/latest/getting_started/administrators.html#running-in-a-docker-container). This method is supported on Fedora, CentOS, and Red Hat Enterprise Linux (RHEL) hosts only.
 
 #### Downloading the Binary
 
-Red Hat periodically publishes OpenShift Origin Server binaries for Linux, which you can download on the OpenShift Origin GitHub [Release](https://github.com/openshift/origin/releases) page. Instructions on how to install and launch the Openshift Origin Server from binary are described in [Getting Started for Administrators](https://docs.openshift.org/latest/getting_started/administrators.html#downloading-the-binary).
+Red Hat periodically publishes OKD server binaries for Linux, which you can download on the OKD GitHub [Release](https://github.com/openshift/origin/releases) page. Instructions on how to install and launch the OKD server from binary are described in [Method 2: Downloading the Binary](https://docs.okd.io/latest/getting_started/administrators.html#downloading-the-binary).
 
 #### Running an Ansible playbook
 
-Outlined as the [Advanced Installation](https://docs.openshift.org/latest/install_config/install/advanced_install.html) method for poduction environments, OpenShift Origin is also installable via Ansible playbook made avaialble on the GitHub [openshift-ansible](https://github.com/openshift/openshift-ansible) repo.
+Outlined in the [Planning Your Installation](https://docs.okd.io/latest/install/index.html#install-planning) guide for production environments, OKD is also installable via Ansible playbook made avaialble on the GitHub [openshift-ansible](https://github.com/openshift/openshift-ansible) repo.
 
 
 ### Creating a project
@@ -71,17 +65,17 @@ After logging in with `oc login` (default username/password: openshift), if you 
         $ oc new-project nodejs-echo \
         --display-name="nodejs" --description="Sample Node.js app"
 
-That's it, project has been created.  Though it would probably be good to set your current project to this (thought new-project does it automatically as well), such as:
+That's it, a project has been created.  Though it would probably be good to set your current project to this (though new-project does it automatically as well), such as:
 
         $ oc project nodejs-echo
 
 ### Creating new apps
 
-You can create a new OpenShift application using the web console or by running the `oc new-app` command from the CLI. With the  OpenShift CLI there are three ways to create a new application, by specifying either:
+You can create a new OpenShift application using the web console or by running the `oc new-app` command from the CLI. With the OpenShift CLI there are three ways to create a new application, by specifying either:
 
-- [source code](https://docs.openshift.com/enterprise/3.0/dev_guide/new_app.html#specifying-source-code)
-- [OpenShift templates](https://docs.openshift.com/enterprise/3.0/dev_guide/new_app.html#specifying-a-template)
-- [DockerHub images](https://docs.openshift.com/enterprise/3.0/dev_guide/new_app.html#specifying-an-image)
+- [source code](https://docs.okd.io/latest/dev_guide/application_lifecycle/new_app.html#specifying-source-code)
+- [OpenShift templates](https://docs.okd.io/latest/dev_guide/application_lifecycle/new_app.html#specifying-a-template)
+- [DockerHub images](https://docs.okd.io/latest/dev_guide/application_lifecycle/new_app.html#specifying-an-image)
 
 #### Create a new app from source code (method 1)
 
@@ -95,7 +89,7 @@ The tool will inspect the source code, locate an appropriate image on DockerHub,
 
 #### Create a new app from a template (method 2)
 
-We can also [create new apps using OpenShift template files](https://docs.openshift.com/enterprise/3.0/dev_guide/new_app.html#specifying-a-template). Clone the demo app source code from [GitHub repo](https://github.com/sclorg/nodejs-ex) (fork if you like).
+We can also [create new apps using OpenShift template files](https://docs.okd.io/latest/dev_guide/application_lifecycle/new_app.html#specifying-a-template). Clone the demo app source code from [GitHub repo](https://github.com/sclorg/nodejs-ex) (fork if you like).
 
         $ git clone https://github.com/sclorg/nodejs-ex
 
@@ -133,11 +127,11 @@ Which should return something like:
 
         svc/nodejs-ex - 172.30.108.183:8080
           dc/nodejs-ex deploys istag/nodejs-ex:latest <-
-            bc/nodejs-ex builds https://github.com/sclorg/nodejs-ex with openshift/nodejs:0.10
+            bc/nodejs-ex builds https://github.com/sclorg/nodejs-ex with openshift/nodejs:8
               build #1 running for 7 seconds
             deployment #1 waiting on image or update
 
-Note the server address for the web console, as yours will likely differ if you're not using the Vagrant set-up. You can follow along with the web console to see what new resources have been created and watch the progress of builds and deployments.
+Note the server address for the web console, as yours may differ, depending on your setup. You can follow along with the web console to see what new resources have been created and watch the progress of builds and deployments.
 
 If the build is not yet started (you can check by running `oc get builds`), start one and stream the logs with:
 
@@ -242,7 +236,7 @@ alt="OpenShift 3: Node.js Sample" width="240" height="180" border="10" /></a>
 
 ### Looking for help
 
-If you get stuck at some point, or think that this document needs further details or clarification, you can give feedback and look for help using the channels mentioned in [the OpenShift Origin repo](https://github.com/openshift/origin), or by filing an issue.
+If you get stuck at some point, or think that this document needs further details or clarification, you can give feedback and look for help using the channels mentioned in [the OKD repo](https://github.com/openshift/origin), or by filing an issue.
 
 ### Compatibility
 
