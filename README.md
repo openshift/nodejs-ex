@@ -3,11 +3,6 @@
 <!-- toc -->
 
 - [Node.js sample app on OpenShift!](#nodejs-sample-app-on-openshift)
-  * [OpenShift v3 setup](#openshift-v3-setup)
-    + [Running a virtual machine managed by minishift](#running-a-virtual-machine-managed-by-minishift)
-    + [Starting a Docker container](#starting-a-docker-container)
-    + [Downloading the Binary](#downloading-the-binary)
-    + [Running an Ansible playbook](#running-an-ansible-playbook)
   * [Creating a project](#creating-a-project)
   * [Creating new apps](#creating-new-apps)
     + [Create a new app from source code (method 1)](#create-a-new-app-from-source-code-method-1)
@@ -30,33 +25,9 @@
 ## Node.js sample app on OpenShift!
 -----------------
 
-This example will serve a welcome page and the current hit count as stored in a database.
+This is a quickstart Node.js application for OpenShift v3 that you can use as a starting point to develop your own application and deploy it on an [OpenShift cluster](https://github.com/openshift/origin). The example application will serve a welcome page and the current hit count as stored in a database.
 
-### OpenShift v3 setup
-
-There are four methods to get started with OpenShift v3:
-
-  - Running a virtual machine managed by minishift
-  - Starting a Docker container
-  - Downloading the binary
-  - Running an Ansible playbook
-
-#### Running a virtual machine managed by minishift
-
-One option is to download and use the `minishift` binary as described in its [getting started](https://github.com/minishift/minishift/#getting-started) section. `minishift` can be used to spin up a VM on any of Windows, Linux or Mac with the help of supported underlying virtualization technologies like KVM, xhyve, Hyper-V, VirtualBox.
-
-#### Starting a Docker container
-
-Another option is running the OKD Docker container image from [Docker Hub](https://hub.docker.com/r/openshift/origin/) as described in [Method 1: Running in a Container](https://docs.okd.io/latest/getting_started/administrators.html#running-in-a-docker-container). This method is supported on Fedora, CentOS, and Red Hat Enterprise Linux (RHEL) hosts only.
-
-#### Downloading the Binary
-
-Red Hat periodically publishes OKD server binaries for Linux, which you can download on the OKD GitHub [Release](https://github.com/openshift/origin/releases) page. Instructions on how to install and launch the OKD server from binary are described in [Method 2: Downloading the Binary](https://docs.okd.io/latest/getting_started/administrators.html#downloading-the-binary).
-
-#### Running an Ansible playbook
-
-Outlined in the [Planning Your Installation](https://docs.okd.io/latest/install/index.html#install-planning) guide for production environments, OKD is also installable via Ansible playbook made avaialble on the GitHub [openshift-ansible](https://github.com/openshift/openshift-ansible) repo.
-
+The steps in this document assume that you have access to an OpenShift deployment that you can deploy applications on.
 
 ### Creating a project
 
