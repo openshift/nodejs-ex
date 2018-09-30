@@ -1,4 +1,4 @@
-
+﻿
 
 <!-- toc -->
 
@@ -245,7 +245,7 @@ alt="OpenShift 3: Node.js Sample" width="240" height="180" border="10" /></a>
 If you get stuck at some point, or think that this document needs further details or clarification, you can give feedback and look for help using the channels mentioned in [the OpenShift Origin repo](https://github.com/openshift/origin), or by filing an issue.
 
 ### Compatibility
-
+gggg
 This repository is compatible with Node.js 4 and higher, excluding any alpha or beta versions.
 
 ### License
