@@ -74,10 +74,9 @@ var initDb = function(callback) {
 };
 
 app.get('/', function (req, res) {
-
-    res.render('index.html');
-  
+  res.sendFile(__dirname+ '/views/index.html');
 });
+
 
 
 // error handling
