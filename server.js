@@ -74,10 +74,10 @@ var initDb = function(callback) {
 };
 
 app.get('/', function (req, res) {
-    res.render('index.html');
-  }
-});
 
+    res.render('index.html');
+  
+});
 
 
 // error handling
