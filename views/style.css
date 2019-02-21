@@ -1,0 +1,134 @@
+#body{
+	margin:0;
+	background:#221947;
+}
+
+#header {
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:8em;
+	background:#050425;
+	background: -webkit-linear-gradient(#050425, #444169); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#050425, #444169); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#050425, #444169); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#050425, #444169); /* Standard syntax */
+	border-radius:1em;
+}
+
+#welcomeDiv {
+	position:absolute;
+	top:0;
+	left:0;
+	padding:0.75em;
+}
+
+#loginDiv{
+	position:absolute;
+	right:1em;
+	top:1em;
+	color:#aaaaaa;
+	font-weight:bold;
+} 
+
+.table {
+    display:table;
+}
+.tr{
+    display:table-row;
+	padding:1px;
+}
+
+.td{
+    display:table-cell;
+	padding:1px;
+}
+
+#loginButton{
+	border-color:lightblue;
+	height:2em;
+	border-radius: 10px;
+	background-color:#318ae8;
+	font-weight:bold;
+	font-size:1em;
+	color: #221947;
+}
+
+#signupButton{
+	border-color:lightblue;
+	height:2em;
+	border-radius: 10px;
+	background-color:#318ae8;
+	font-weight:bold;
+	font-size:1em;
+	color: #221947;
+}
+
+.title{
+	color:#aaaaaa;
+	font-size:2em;
+	margin:0;
+}
+
+#chatDiv{
+	position:absolute;
+	left:0;
+	bottom:0;
+	width:100%;
+}
+
+#chatHeader{
+	border-radius:1em;
+	background:#050425;
+	background: -webkit-linear-gradient(#050425, #444169); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#050425, #444169); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#050425, #444169); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#050425, #444169); /* Standard syntax */
+	color:#aaaaaa;
+	font-weight:bold;
+	padding:1em;
+}
+
+#chatText{
+	width:auto;
+	height:150px;
+	overflow-y:auto;
+	background: white;
+    background: -webkit-linear-gradient(lightblue, #ffffff); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(lightblue, #ffffff); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(lightblue, #ffffff); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(lightblue, #ffffff); /* Standard syntax */
+	color:#555555;
+	border:1px solid #bbbbbb;
+	border-radius:1em;
+	padding:1em;
+}
+
+#chatInput{
+	width:98%;
+	padding:0.5em;
+}
+
+
+.name{
+	font-weight:bold;
+	color:#000000;
+}
+
+.chatmsg{
+	padding-left:3em;
+}
+
+.inputbox{
+	border:1px solid #999999;
+	border-radius:0.5em;
+	padding:0.5em;
+	background: white;
+    background: -webkit-linear-gradient(#dddddd, #ffffff); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#dddddd, #ffffff); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#dddddd, #ffffff); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#dddddd, #ffffff); /* Standard syntax */
+}
+
+.inputbox:focus {outline:0;}
