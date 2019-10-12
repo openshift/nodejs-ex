@@ -1,17 +1,21 @@
 {
-  "name": "nodejs-ex",
+  "name": "article-analyzer",
   "version": "0.0.1",
-  "description": "Node.js sample app for OpenShift 3",
+  "description": "A webapp for annotating webpages",
   "main": "server.js",
   "dependencies": {
+    "bootstrap": "^4.3.1",
     "chai": "^3.5.0",
     "chai-http": "^2.0.1",
     "ejs": "^2.4.1",
     "express": "^4.13.4",
+    "jquery": "^3.4.1",
     "mocha": "^2.4.5",
     "mongodb": "^2.1.16",
     "morgan": "^1.7.0",
-    "object-assign":"4.1.0"
+    "object-assign": "4.1.0",
+    "popper.js": "^1.14.7",
+    "react": "^16.10.2"
   },
   "engine": {
     "node": "*",
