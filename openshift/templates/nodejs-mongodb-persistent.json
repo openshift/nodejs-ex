@@ -452,7 +452,7 @@
       "name": "NODEJS_VERSION",
       "displayName": "Version of NodeJS Image",
       "description": "Version of NodeJS image to be used (10, 12, or latest).",
-      "value": "12",
+      "value": "10",
       "required": true
     },
     {
