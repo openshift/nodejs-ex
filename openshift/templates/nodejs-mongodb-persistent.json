@@ -6,7 +6,7 @@
     "annotations": {
       "openshift.io/display-name": "Node.js + MongoDB",
       "description": "An example Node.js application with a MongoDB database. For more information about using this template, including OpenShift considerations, see https://github.com/sclorg/nodejs-ex/blob/master/README.md.",
-      "tags": "quickstart,nodejs",
+      "tags": "quickstart,nodejs,hidden",
       "iconClass": "icon-nodejs",
       "openshift.io/long-description": "This template defines resources needed to develop a NodeJS application, including a build configuration, application deployment configuration, and database deployment configuration.",
       "openshift.io/provider-display-name": "Red Hat, Inc.",
