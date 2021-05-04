@@ -2,172 +2,172 @@
 <html lang="en">
     <head>
         <title>Simple Sudoku</title>
-        <link rel="stylesheet" href="">
-        <script src="generate_sudoku.js"></script>
+        <style>
+          /* ---------- Global Element Styles ---------- */
+          @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap');
+    
+          :root {
+              --border-color: slategray;
+              --inner-border-color: lightgray;
+              --text-color:  slategray;
+              --button-text-color: whitesmoke;
+              --font-family : 'Nunito Sans', sans-serif;
+          }
+    
+          * {
+              font-family: var(--font-family);
+          }
+    
+          html {
+              width: 100%;
+              margin: 0;
+              padding: 0;
+          }
+    
+          body {
+              width: 100%;
+              padding-top: 2em;
+              margin: 0%;
+          }
+    
+          button:hover {
+              background-color: var(--inner-border-color);
+          }
+    
+          /* ---------- Header and Child Elements Styles ---------- */
+          header {
+              width: 100%;
+              float: left;
+              color: var(--text-color);
+              text-align: center;
+              text-transform: uppercase;
+              margin-bottom: 1em;
+          }
+    
+          header h1 {
+              font-weight: bolder;
+              letter-spacing: 1em;
+          }
+    
+          /* ---------- div:content Styles ---------- */
+          #content {
+              width: 100%;
+              float: left;
+          }
+    
+          /* ---------- div:Message and Child Elements Styles ---------- */
+          #message-container {
+              width: 100%;
+              float: left;
+              padding: 1em 0;
+              text-align: center;
+              visibility: hidden;
+          }
+    
+          #message {
+              text-transform: uppercase;
+          }
+    
+          /* ---------- div:level-selection Styles ----------*/
+          #level-selection {
+              width: 25%;
+              float: left;
+              text-align: center;
+              padding: 2em 0;
+          }
+    
+          #Easy, #Medium, #Hard {
+              display: block;
+              width: 50%;
+              padding: .5em 0;
+              margin: 0 auto;
+              margin-bottom: 1em;
+              border: none;
+              border-radius: 0%;
+              background-color: var(--border-color);
+              color: var(--button-text-color);
+          }
+    
+          #Easy:hover, #Medium:hover, #Hard:hover {
+              color: black;
+              background-color: var(--inner-border-color);
+          }
+    
+          /* ---------- div:puzzle-container and Child Elements Styles ---------- */
+          #puzzle-container {
+              width: 50%;
+              float: left;
+              text-align: center;
+              padding: 2em 0;
+          }
+    
+          #puzzle, .row, .square {
+              border-collapse: collapse;
+          }
+    
+          #puzzle {
+              border: 3px solid var(--border-color);
+              margin: 0 auto;
+          }
+    
+          .square {
+              width: 3em;
+              height: 3em;
+              text-align: center;
+              border: 1px solid var(--inner-border-color);
+          }
+    
+          #row-3, #row-6 {
+              border-bottom: 3px solid var(--border-color);
+          }
+    
+          #sq-3, #sq-6, #sq-12, #sq-15, #sq-21, #sq-24, #sq-30, #sq-33,
+          #sq-39, #sq-42, #sq-48, #sq-51, #sq-57, #sq-60, #sq-66, #sq-69,
+          #sq-75, #sq-78 {
+              border-right: 3px solid var(--border-color);
+          }
+    
+          /* ---------- dive:stats Styles ----------*/
+          #stats {
+              width: 25%;
+              float: left;
+              text-align: center;
+              padding: 2em 0;
+          }
+    
+          /* ---------- div:menu and Child Elements Styles ---------- */
+          #menu {
+              width: 100%;
+              float: left;
+              padding: 1.5em 0;
+              text-align: center;
+          }
+    
+          #menu button {
+              border: none;
+              padding: .5em 2em;
+              color: var(--button-text-color);
+              background-color: var(--border-color);
+              text-transform: uppercase;
+          }
+    
+          #menu button:hover {
+              color: black;
+              background-color: var(--inner-border-color);
+          }
+    
+          /* ---------- div:numPad and Child Elements Styles ---------- */
+          #numPad {
+              width: 100%;
+              float: left;
+              text-align: center;
+          }
+        </style>
     </head>
-    <style>
-      /* ---------- Global Element Styles ---------- */
-      @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap');
-
-      :root {
-          --border-color: slategray;
-          --inner-border-color: lightgray;
-          --text-color:  slategray;
-          --button-text-color: whitesmoke;
-          --font-family : 'Nunito Sans', sans-serif;
-      }
-
-      * {
-          font-family: var(--font-family);
-      }
-
-      html {
-          width: 100%;
-          margin: 0;
-          padding: 0;
-      }
-
-      body {
-          width: 100%;
-          padding-top: 2em;
-          margin: 0%;
-      }
-
-      button:hover {
-          background-color: var(--inner-border-color);
-      }
-
-      /* ---------- Header and Child Elements Styles ---------- */
-      header {
-          width: 100%;
-          float: left;
-          color: var(--text-color);
-          text-align: center;
-          text-transform: uppercase;
-          margin-bottom: 1em;
-      }
-
-      header h1 {
-          font-weight: bolder;
-          letter-spacing: 1em;
-      }
-
-      /* ---------- div:content Styles ---------- */
-      #content {
-          width: 100%;
-          float: left;
-      }
-
-      /* ---------- div:Message and Child Elements Styles ---------- */
-      #message-container {
-          width: 100%;
-          float: left;
-          padding: 1em 0;
-          text-align: center;
-          visibility: hidden;
-      }
-
-      #message {
-          text-transform: uppercase;
-      }
-
-      /* ---------- div:level-selection Styles ----------*/
-      #level-selection {
-          width: 25%;
-          float: left;
-          text-align: center;
-          padding: 2em 0;
-      }
-
-      #Easy, #Medium, #Hard {
-          display: block;
-          width: 50%;
-          padding: .5em 0;
-          margin: 0 auto;
-          margin-bottom: 1em;
-          border: none;
-          border-radius: 0%;
-          background-color: var(--border-color);
-          color: var(--button-text-color);
-      }
-
-      #Easy:hover, #Medium:hover, #Hard:hover {
-          color: black;
-          background-color: var(--inner-border-color);
-      }
-
-      /* ---------- div:puzzle-container and Child Elements Styles ---------- */
-      #puzzle-container {
-          width: 50%;
-          float: left;
-          text-align: center;
-          padding: 2em 0;
-      }
-
-      #puzzle, .row, .square {
-          border-collapse: collapse;
-      }
-
-      #puzzle {
-          border: 3px solid var(--border-color);
-          margin: 0 auto;
-      }
-
-      .square {
-          width: 3em;
-          height: 3em;
-          text-align: center;
-          border: 1px solid var(--inner-border-color);
-      }
-
-      #row-3, #row-6 {
-          border-bottom: 3px solid var(--border-color);
-      }
-
-      #sq-3, #sq-6, #sq-12, #sq-15, #sq-21, #sq-24, #sq-30, #sq-33,
-      #sq-39, #sq-42, #sq-48, #sq-51, #sq-57, #sq-60, #sq-66, #sq-69,
-      #sq-75, #sq-78 {
-          border-right: 3px solid var(--border-color);
-      }
-
-      /* ---------- dive:stats Styles ----------*/
-      #stats {
-          width: 25%;
-          float: left;
-          text-align: center;
-          padding: 2em 0;
-      }
-
-      /* ---------- div:menu and Child Elements Styles ---------- */
-      #menu {
-          width: 100%;
-          float: left;
-          padding: 1.5em 0;
-          text-align: center;
-      }
-
-      #menu button {
-          border: none;
-          padding: .5em 2em;
-          color: var(--button-text-color);
-          background-color: var(--border-color);
-          text-transform: uppercase;
-      }
-
-      #menu button:hover {
-          color: black;
-          background-color: var(--inner-border-color);
-      }
-
-      /* ---------- div:numPad and Child Elements Styles ---------- */
-      #numPad {
-          width: 100%;
-          float: left;
-          text-align: center;
-      }
-    </style>
     <body>
-        <header><h1>Simple Sudoku</h1></header>
+        <header>
+          <h1>Simple Sudoku</h1>
+        </header>
         <div id="content">
             <div id="message-container">
                 <div id="message">Message to user appears here</div>
@@ -289,8 +289,8 @@
 
             <div id="menu">
                 <button onclick="checkSolution()">SUBMIT</button>
-                <button id="hint" onclick="getHint()">HINT</button>
-                <button onclick="clearBoard()">CLEAR</button>
+                <button id="hint" onclick="hint()">HINT</button>
+                <button onclick="reset()">RESET</button>
             </div>
 
             <div id="numPad">
@@ -535,7 +535,26 @@
           }
 
           // Check user's solution against validSolution and return message based on check
+          function checkSolution() {
 
+          }
+
+          // Get the user a hint upon request
+          function hint() {
+
+          }
+
+          // Reset the board to it's starting board
+          function reset() {
+
+            // Reset the board using the array, puzzle
+            puzzle.forEach(element => {
+                  var square = "sq-" + (element+1);
+                  document.getElementById(square).innerText = solution[element];
+                  document.getElementById(square).style.fontWeight = "Bold";
+              });
+              
+          }
         </script>
     </body>
 </html>
