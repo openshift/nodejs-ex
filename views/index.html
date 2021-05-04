@@ -542,6 +542,22 @@
           // Get the user a hint upon request
           function hint() {
 
+            // Get a random index based on the length of an array
+            function randomIndex(lengthOfArray) {
+                return Math.floor(Math.random()*lengthOfArray);
+            }
+
+            // Retrieve a square that hasn't been given from solution
+            var hint = randomIndex(solution);
+            while(puzzle.includes(hint)) {
+                hint = randomIndex(solution);
+            }
+
+            // Display hint for user
+            var square = "sq-" + hint;
+            document.getElementById(square).innerText = solution[hint];
+            document.getAnimations(square).style.color = "slategray";
+
           }
 
           // Reset the board to it's starting board
@@ -553,7 +569,7 @@
                   document.getElementById(square).innerText = solution[element];
                   document.getElementById(square).style.fontWeight = "Bold";
               });
-              
+
           }
         </script>
     </body>
