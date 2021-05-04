@@ -522,6 +522,14 @@
                   document.getElementById(square).style.fontWeight = "Bold";
               });
 
+              // Activate a random empty square
+              var startSq = randomIndex(solution.length);
+              while (startBoard.includes(startSq)) {
+                startSq = randomIndex(solution.length);
+              }
+              var square = "sq-" + (startSq + 1);
+              var activate = document.getElementById(square);
+              activate.classList.add(" active");
 
           }
 
