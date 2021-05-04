@@ -306,8 +306,7 @@
           var hints = [];
 
           // Highlight square user has clicked
-          var puzzleContainer = document.getElementById("puzzle");
-          var squares = puzzleContainer.getElementsByClassName("square");
+          var squares = document.getElementsByClassName("square");
           for (var i = 0; i < squares.length; i++) {
               squares[i].addEventListener("click", function() {
                 var current = document.getElementsByClassName("active");
