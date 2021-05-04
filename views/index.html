@@ -553,8 +553,6 @@
                 hint = randomIndex(validSolution.length);
             }
 
-            document.getElementById("numPad").innerText = hint;
-
             // Display hint for user
             var square = "sq-" + (hint + 1);
             document.getElementById(square).innerText = validSolution[hint];
@@ -564,7 +562,13 @@
           // Reset the board to it's starting board
           function reset() {
 
-            // Reset the board using the array, puzzle
+            // Clear the board
+            for (let index = 1; index < 81; index++) {
+                var square = "sq-" + index;
+                document.getElementById(square).innerText = "";
+            }
+
+            // Fill in the board using the array, puzzle
             puzzle.forEach(element => {
                   var square = "sq-" + (element+1);
                   document.getElementById(square).innerText = validSolution[element];
