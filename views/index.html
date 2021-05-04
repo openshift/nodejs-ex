@@ -558,7 +558,7 @@
             // Display hint for user
             var square = "sq-" + (hint+1);
             document.getElementById(square).innerText = validSolution[hint];
-            document.getAnimations(square).style.color = slategray;
+            document.getAnimations(square).style.color = "slategray";
 
           }
 
@@ -568,7 +568,7 @@
             // Reset the board using the array, puzzle
             puzzle.forEach(element => {
                   var square = "sq-" + (element+1);
-                  document.getElementById(square).innerText = solution[element];
+                  document.getElementById(square).innerText = validSolution[element];
                   document.getElementById(square).style.fontWeight = "Bold";
               });
 
