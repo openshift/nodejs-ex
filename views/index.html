@@ -547,15 +547,15 @@
                 return Math.floor(Math.random()*lengthOfArray);
             }
 
-            // Retrieve a square that hasn't been given from solution
-            var hint = randomIndex(solution);
+            // Retrieve a square that hasn't been given from validSolution
+            var hint = randomIndex(validSolution);
             while(puzzle.includes(hint)) {
-                hint = randomIndex(solution);
+                hint = randomIndex(validSolution);
             }
 
             // Display hint for user
             var square = "sq-" + hint;
-            document.getElementById(square).innerText = solution[hint];
+            document.getElementById(square).innerText = validSolution[hint];
             document.getAnimations(square).style.color = slategray;
 
           }
