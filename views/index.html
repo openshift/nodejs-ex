@@ -548,9 +548,9 @@
             }
 
             // Retrieve a square that hasn't been given from validSolution
-            var hint = randomIndex(validSolution);
+            var hint = randomIndex(validSolution.length);
             while(puzzle.includes(hint)) {
-                hint = randomIndex(validSolution);
+                hint = randomIndex(validSolution.length);
             }
 
             document.getElementById("numPad").innerText = hint;
