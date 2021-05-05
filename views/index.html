@@ -589,9 +589,9 @@
               });
 
               // Add class "empty" to all non-given squares
-              for (var i = 0; i < 81; i++) {
-                  if (!startBoard.includes(i+1)) {
-                      var square = "sq-" + (i+1);
+              for (var i = 1; i < 82; i++) {
+                  var square = "sq-" + i;
+                  if (document.getElementById(square).innerText == "") {
                       document.getElementById(square).classList.add("empty");
                   }
               }
