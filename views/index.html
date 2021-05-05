@@ -382,7 +382,7 @@
             activate[0].style.fontWeight = "Bold";
           }
 
-          // Allow user to input a value via button press
+          // Allow user to input a value via keyboard (press)
           //var squares = document.getElementsByClassName("square");
 
           // Generate a solution for a 9x9 Sudoku board
@@ -625,6 +625,15 @@
           // Check user's solution against validSolution and return message based on check
           function checkSolution() {
 
+            // Retrieve user's solution from board
+            var userSolution = [];
+            for (var i = 1; i < 82; i++) {
+                var square = "sq-" + i;
+                var squareValue = parseInt(document.getElementById(square).innerText);
+                userSolution.push(squareValue);
+            }
+
+            document.getElementById("text").innerText = userSolution;
           }
 
           // Get the user a hint upon request
