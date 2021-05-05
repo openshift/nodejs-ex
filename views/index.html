@@ -635,8 +635,11 @@
 
             var message = document.getElementById("message");
             if (userSolution.includes("")) {
-                message.innerText = "There are still empty squares to fill."
-                message.style.visibility = "visible";
+                setTimeout(function() {
+                    message.innerText = "There are still empty squares to fill."
+                    message.style.visibility = "visible";
+                }, 6000);
+
             }
           }
 
