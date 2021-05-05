@@ -349,7 +349,7 @@
 
           // Allow user to input a value in an empty square using an on-screen number pad
           function inputNumber(number) {
-            document.getElementsByClassName("active").innerHTML = number;
+            document.getElementsByClassName("active").innerText = number;
           }
 
           // Generate a solution for a 9x9 Sudoku board
@@ -559,13 +559,13 @@
               });
 
               // Insert input elements into empty squares
-              for (let index = 0; index < 81; index++) {
+              /*for (let index = 0; index < 81; index++) {
                   if (!startBoard.includes(index)) {
                       var square = "sq-" + (index + 1);
                       document.getElementById(square).innerHTML = "<input type='text' id='input-" 
                       + square + "' class='input'>";
                   }
-              }
+              }*/
 
           }
 
