@@ -318,7 +318,15 @@
             </div> <!--End of puzzle-container-->
 
             <div id="numPad">
-                Number pad goes here
+                <button type="button" onclick="inputNumber(1)">1</button>
+                <button type="button" onclick="inputNumber(2)">2</button>
+                <button type="button" onclick="inputNumber(3)">3</button>
+                <button type="button" onclick="inputNumber(4)">4</button>
+                <button type="button" onclick="inputNumber(5)">5</button>
+                <button type="button" onclick="inputNumber(6)">6</button>
+                <button type="button" onclick="inputNumber(7)">7</button>
+                <button type="button" onclick="inputNumber(8)">8</button>
+                <button type="button" onclick="inputNumber(9)">9</button>
             </div> <!--End of numPad-->
 
         </div>
@@ -340,7 +348,10 @@
           }
 
           // Allow user to input a value in an empty square using an on-screen number pad
-          
+          function inputNumber(number) {
+              var activeSquare = document.getElementsByClassName("active");
+              activeSquare.getElementsByClassName("input").innerText = number;
+          }
 
           // Generate a solution for a 9x9 Sudoku board
           function generateSudoku(){
@@ -508,6 +519,9 @@
           // Generate and display a startBoard based on selected level and generated solution
           function startBoard(level, solution) {
 
+              // Reset hints
+              hints = [];
+
               // A empty array that represents the starting board
               var startBoard = [];
 
@@ -550,7 +564,7 @@
                   if (!startBoard.includes(index)) {
                       var square = "sq-" + (index + 1);
                       document.getElementById(square).innerHTML = "<input type='text' id='input-" 
-                      + square + "'>";
+                      + square + "' class='input'>";
                   }
               }
 
