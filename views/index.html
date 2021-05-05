@@ -629,8 +629,8 @@
             var userSolution = [];
             for (var i = 1; i < 82; i++) {
                 var square = "sq-" + i;
-                var squareValue = parseInt(document.getElementById(square).innerText);
-                userSolution.push(squareValue);
+                var squareValue = document.getElementById(square).innerText;
+                userSolution.push(ParseInt(squareValue));
             }
 
             document.getElementById("text").innerText = userSolution;
