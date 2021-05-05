@@ -252,7 +252,7 @@
                     </tr>
                     <tr id="row-3" class="row">
                         <td id="sq-19" class="square"></td>
-                        <td id="sq-20" class="square"></td>
+                        <td id="sq-20" class="square active"></td>
                         <td id="sq-21" class="square"></td>
                         <td id="sq-22" class="square"></td>
                         <td id="sq-23" class="square"></td>
@@ -357,7 +357,7 @@
           var hints = [];
 
           // Highlight square user has clicked
-          var squares = document.getElementsByClassName("square");
+          var squares = document.getElementsByClassName("empty");
           for (var i = 0; i < squares.length; i++) {
               squares[i].addEventListener("click", function() {
                 var current = document.getElementsByClassName("active");
@@ -597,12 +597,12 @@
               }
 
               // Place the active class in a random empty square
-              var activate = randomIndex(solution.length);
+              /*var activate = randomIndex(solution.length);
               while (startBoard.includes(activate)) {
                 activate = randomIndex(solution.length);
               }
               var square = "sq-" + (activate+1);
-              document.getElementById(square).classList.add("active");
+              document.getElementById(square).classList.add("active");*/
           }
 
           // Generate a puzzle based on the level passed from button clicked
