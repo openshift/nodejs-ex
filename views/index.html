@@ -233,7 +233,7 @@
                         <td id="sq-37" class="square"></td>
                         <td id="sq-38" class="square"></td>
                         <td id="sq-39" class="square"></td>
-                        <td id="sq-40" class="square"></td>
+                        <td id="sq-40" class="square active"></td>
                         <td id="sq-41" class="square"></td>
                         <td id="sq-42" class="square"></td>
                         <td id="sq-43" class="square"></td>
@@ -527,15 +527,6 @@
 
               // Insert input elements into empty squares
 
-
-              // Activate a random empty square
-              var startSq = randomIndex(solution.length);
-              while (startBoard.includes(startSq)) {
-                startSq = randomIndex(solution.length);
-              }
-              var square = "sq-" + (startSq + 1);
-              var activate = document.getElementById(square);
-              activate.classList.add("active");
           }
 
           // Generate a puzzle based on the level passed from button clicked
