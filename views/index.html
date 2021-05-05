@@ -348,6 +348,8 @@
                 </div>
             </div> <!--End of div:numPad-->
 
+            <div id="test"></div>
+
         </div>
         <script>
           // Global variables
@@ -369,10 +371,11 @@
           // Allow user to input a value in an empty square using an on-screen number pad
           function inputNumber(number) {
             var activate = document.getElementsByClassName("active");
-              if (activate.innerText < 0) {
+            document.getElementById("test").innerText = activate[0].innerHTML;
+            if (activate.innerText < 0) {
                 activate[0].innerText = number;
                 activate[0].style.color = "lightgray";
-              }
+            }
           }
 
           // Allow user to input a value via button press
