@@ -277,7 +277,7 @@
                         <td id="sq-38" class="square"></td>
                         <td id="sq-39" class="square"></td>
                         <td id="sq-40" class="square"></td>
-                        <td id="sq-41" class="square active"></td>
+                        <td id="sq-41" class="square"></td>
                         <td id="sq-42" class="square"></td>
                         <td id="sq-43" class="square"></td>
                         <td id="sq-44" class="square"></td>
@@ -595,6 +595,14 @@
                       document.getElementById(square).classList.add("empty");
                   }
               }
+
+              // Place the active class in a random empty square
+              var activate = randomIndex(solution.length);
+              while (startBoard.includes(activate)) {
+                activate = randomIndex(solution.length);
+              }
+              var square = "sq-" + (activate+1);
+              document.getElementById(square).classList.add("active");
           }
 
           // Generate a puzzle based on the level passed from button clicked
