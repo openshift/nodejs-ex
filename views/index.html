@@ -633,7 +633,11 @@
                 userSolution.push(squareValue);
             }
 
-            document.getElementById("test").innerText = userSolution;
+            var message = document.getElementById("message");
+            if (userSolution.includes("")) {
+                message.innerText = "There are still empty squares to fill."
+                message.style.visibility = "visible";
+            }
           }
 
           // Get the user a hint upon request
