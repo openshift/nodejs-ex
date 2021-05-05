@@ -37,6 +37,12 @@
           .active {
               background-color: lavender;
           }
+
+          input {
+              color: var(--button-text-color);
+              width: 50%;
+              border: none;
+          }
     
           /* ---------- Header and Child Elements Styles ---------- */
           header {
@@ -233,8 +239,8 @@
                         <td id="sq-37" class="square"></td>
                         <td id="sq-38" class="square"></td>
                         <td id="sq-39" class="square"></td>
-                        <td id="sq-40" class="square active"></td>
-                        <td id="sq-41" class="square"></td>
+                        <td id="sq-40" class="square"></td>
+                        <td id="sq-41" class="square active"></td>
                         <td id="sq-42" class="square"></td>
                         <td id="sq-43" class="square"></td>
                         <td id="sq-44" class="square"></td>
@@ -526,6 +532,13 @@
               });
 
               // Insert input elements into empty squares
+              for (let index = 0; index < 81; index++) {
+                  if (!startBoard.includes(index)) {
+                      var square = "sq-" + (index + 1);
+                      document.getElementById(square).innerHTML = "<input type='text' id='input-" 
+                      + square + "'>";
+                  }
+              }
 
           }
 
@@ -579,6 +592,7 @@
             var square = "sq-" + (hint + 1);
             document.getElementById(square).innerText = validSolution[hint];
             document.getElementById(square).style.color = "slategray";
+            document.getElementById(square).style.fontWeight = "Bold";
 
           }
 
