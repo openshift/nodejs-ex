@@ -542,10 +542,10 @@
               hints = [];
 
               // Reset coloring of all squares
-              var squares = document.getElementsByClassName("square");
-              squares.forEach(element => {
-                 element.style.color = "black";
-              });
+              for (var i = 1; i < 82; i++) {
+                  var square = "sq-" + i;
+                  document.getElementById(square).style.color = "black";
+              }
 
               // A empty array that represents the starting board
               var startBoard = [];
@@ -647,10 +647,10 @@
             hints = [];
 
             // Reset coloring of all squares
-            var squares = document.getElementsByClassName("square");
-            squares.forEach(element => {
-                element.style.color = "black";
-            });
+            for (var i = 1; i < 82; i++) {
+                  var square = "sq-" + i;
+                  document.getElementById(square).style.color = "black";
+            }
 
             // Clear the board
             for (let index = 1; index < 81; index++) {
