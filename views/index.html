@@ -196,7 +196,7 @@
               width: 33%;
               float: left;
               padding: 1em;
-              margin-bottom: .5em;
+              margin-bottom: 1em;
           }
 
         </style>
@@ -541,6 +541,12 @@
               // Reset hints
               hints = [];
 
+              // Reset coloring of all squares
+              var squares = document.getElementsByClassName("square");
+              squares.forEach(element => {
+                 element.style.color = "black";
+              });
+
               // A empty array that represents the starting board
               var startBoard = [];
 
@@ -636,8 +642,15 @@
 
           // Reset the board to it's starting board
           function reset() {
+
             // Set hints to empty
             hints = [];
+
+            // Reset coloring of all squares
+            var squares = document.getElementsByClassName("square");
+            squares.forEach(element => {
+                element.style.color = "black";
+            });
 
             // Clear the board
             for (let index = 1; index < 81; index++) {
