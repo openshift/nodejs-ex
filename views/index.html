@@ -559,15 +559,6 @@
                   document.getElementById(square).style.fontWeight = "Bold";
               });
 
-              // Insert input elements into empty squares
-              /*for (let index = 0; index < 81; index++) {
-                  if (!startBoard.includes(index)) {
-                      var square = "sq-" + (index + 1);
-                      document.getElementById(square).innerHTML = "<input type='text' id='input-" 
-                      + square + "' class='input'>";
-                  }
-              }*/
-
           }
 
           // Generate a puzzle based on the level passed from button clicked
@@ -641,15 +632,6 @@
                   document.getElementById(square).innerText = validSolution[element];
                   document.getElementById(square).style.fontWeight = "Bold";
             });
-
-            // Insert input elements into empty squares
-            for (let index = 0; index < 81; index++) {
-                  if (!puzzle.includes(index)) {
-                      var square = "sq-" + (index + 1);
-                      document.getElementById(square).innerHTML = "<input type='text' id='input-" 
-                      + square + "'>";
-                  }
-            }
 
           }
         </script>
