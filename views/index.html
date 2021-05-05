@@ -369,7 +369,7 @@
           // Allow user to input a value in an empty square using an on-screen number pad
           function inputNumber(number) {
             var activate = document.getElementsByClassName("active");
-              if (activate.innerText == "") {
+              if (activate.innerText < 0) {
                 activate[0].innerText = number;
                 activate[0].style.color = "lightgray";
               }
