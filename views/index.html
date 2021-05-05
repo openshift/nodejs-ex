@@ -199,6 +199,12 @@
               margin-bottom: 1em;
           }
 
+          /* --------- Delete after development ---------- */
+          #test {
+              width: 100%;
+              float: left;
+          }
+
         </style>
     </head>
     <body>
@@ -371,7 +377,6 @@
           // Allow user to input a value in an empty square using an on-screen number pad
           function inputNumber(number) {
             var activate = document.getElementsByClassName("active");
-            document.getElementById("test").innerText = activate[0].innerText;
             activate[0].innerText = number;
             activate[0].style.color = "lightgray";
           }
