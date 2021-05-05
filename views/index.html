@@ -316,11 +316,10 @@
                 var current = document.getElementsByClassName("active");
                 current[0].className = current[0].className.replace(" active", "");
                 this.className += " active";
-                this.innerHTML = "<input type='text' id='input'" + ">";
               });
           }
 
-          // Allow user to input a value in an empty square
+          // Allow user to input a value in an empty square using an on-screen number pad
           
 
           // Generate a solution for a 9x9 Sudoku board
@@ -526,6 +525,9 @@
                   document.getElementById(square).style.fontWeight = "Bold";
               });
 
+              // Insert input elements into empty squares
+
+
               // Activate a random empty square
               var startSq = randomIndex(solution.length);
               while (startBoard.includes(startSq)) {
@@ -585,6 +587,7 @@
             // Display hint for user
             var square = "sq-" + (hint + 1);
             document.getElementById(square).innerText = validSolution[hint];
+            document.getElementById(square).style.color = "slategray";
 
           }
 
