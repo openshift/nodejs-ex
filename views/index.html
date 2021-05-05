@@ -12,6 +12,7 @@
               --text-color:  slategray;
               --button-text-color: whitesmoke;
               --font-family : 'Nunito Sans', sans-serif;
+              --activate-color: lavender;
           }
     
           * {
@@ -35,20 +36,21 @@
           }
 
           .active {
-              background-color: lavender;
+              background-color: var(--activate-color);
           }
 
           input {
               color: var(--border-color);
               width: 50%;
               border: none;
+              outline: none;
               text-align: center;
               font-weight: bold;
               font-size: medium;
           }
 
-          input:active {
-              border: none;
+          input:focus {
+              background-color: var(--activate-color);
           }
     
           /* ---------- Header and Child Elements Styles ---------- */
