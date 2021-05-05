@@ -195,7 +195,7 @@
         <div id="content">
             <div id="message-container">
                 <div id="message">Message to user appears here</div>
-            </div> <!--End of message-container-->
+            </div> <!--End of div:message-container-->
 
             <div id="buttons">
                 
@@ -315,7 +315,7 @@
                         <td id="sq-81" class="square"></td>
                     </tr>
                 </table> <!--End of puzzle-->
-            </div> <!--End of puzzle-container-->
+            </div> <!--End of div:puzzle-container-->
 
             <div id="numPad">
                 <button type="button" onclick="inputNumber(1)">1</button>
@@ -327,7 +327,7 @@
                 <button type="button" onclick="inputNumber(7)">7</button>
                 <button type="button" onclick="inputNumber(8)">8</button>
                 <button type="button" onclick="inputNumber(9)">9</button>
-            </div> <!--End of numPad-->
+            </div> <!--End of div:numPad-->
 
         </div>
         <script>
@@ -349,8 +349,9 @@
 
           // Allow user to input a value in an empty square using an on-screen number pad
           function inputNumber(number) {
-              var activeSquare = document.getElementsByClassName("active");
-              activeSquare.getElementsByClassName("input").innerText = number;
+            var activateSquare = document.getElementsByClassName("active");
+            var activateInput = activateSquare.getElementsByClassName("input");
+            activateInput.innerText = number;
           }
 
           // Generate a solution for a 9x9 Sudoku board
