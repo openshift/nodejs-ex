@@ -370,7 +370,11 @@
           function inputNumber(number) {
             var activate = document.getElementsByClassName("active");
             activate[0].innerText = number;
+            activate[0].style.color = "lightgray";
           }
+
+          // Allow user to input a value via button press
+          var squares = document.getElementsByClassName("square");
 
           // Generate a solution for a 9x9 Sudoku board
           function generateSudoku(){
@@ -584,6 +588,13 @@
                   document.getElementById(square).style.fontWeight = "Bold";
               });
 
+              // Add class "empty" to all non-given squares
+              for (var i = 0; i < 81; i++) {
+                  if (!startBoard.includes(i+1)) {
+                      var square = "sq-" + (i+1);
+                      document.getElementById(square).classList.add("empty");
+                  }
+              }
           }
 
           // Generate a puzzle based on the level passed from button clicked
