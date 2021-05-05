@@ -87,13 +87,20 @@
           #message {
               text-transform: uppercase;
           }
+
+          /* ---------- div:buttons Styles ---------- */
+          #buttons {
+              width: 100%;
+              float: left;
+              padding: 2em 0;
+              text-align: center;
+          }
     
-          /* ---------- div:level-selection Styles ----------*/
+          /* ---------- div:level-selection Styles ---------- */
           #level-selection {
-              width: 25%;
+              width: 100%;
               float: left;
               text-align: center;
-              padding: 2em 0;
           }
     
           #Easy, #Medium, #Hard {
@@ -109,6 +116,31 @@
           }
     
           #Easy:hover, #Medium:hover, #Hard:hover {
+              color: black;
+              background-color: var(--inner-border-color);
+          }
+
+          /* ---------- div:menu and Child Elements Styles ---------- */
+          #menu {
+              width: 100%;
+              float: left;
+              padding: 2em 0;
+              text-align: center;
+          }
+    
+          #menu button {
+              width: 50%;
+              border: none;
+              margin: 0 auto;
+              margin-bottom: 1em;
+              display: block;
+              padding: .5em 0;
+              color: var(--button-text-color);
+              background-color: var(--border-color);
+              text-transform: uppercase;
+          }
+    
+          #menu button:hover {
               color: black;
               background-color: var(--inner-border-color);
           }
@@ -147,31 +179,6 @@
               border-right: 3px solid var(--border-color);
           }
     
-          /* ---------- div:menu and Child Elements Styles ---------- */
-          #menu {
-              width: 25%;
-              float: left;
-              padding: 2em 0;
-              text-align: center;
-          }
-    
-          #menu button {
-              width: 50%;
-              border: none;
-              margin: 0 auto;
-              margin-bottom: 1em;
-              display: block;
-              padding: .5em 0;
-              color: var(--button-text-color);
-              background-color: var(--border-color);
-              text-transform: uppercase;
-          }
-    
-          #menu button:hover {
-              color: black;
-              background-color: var(--inner-border-color);
-          }
-    
           /* ---------- div:numPad and Child Elements Styles ---------- */
           #numPad {
               width: 100%;
@@ -189,11 +196,21 @@
                 <div id="message">Message to user appears here</div>
             </div> <!--End of message-container-->
 
-            <div id="level-selection">
-                <button type="button" id="Easy" onclick="getPuzzle(this)">Easy</button>
-                <button type="button" id="Medium" onclick="getPuzzle(this)">Medium</button>
-                <button type="button" id="Hard" onclick="getPuzzle(this)">Hard</button>
-            </div> <!--End of level-selection-->
+            <div id="buttons">
+                
+                <div id="level-selection">
+                    <button type="button" id="Easy" onclick="getPuzzle(this)">Easy</button>
+                    <button type="button" id="Medium" onclick="getPuzzle(this)">Medium</button>
+                    <button type="button" id="Hard" onclick="getPuzzle(this)">Hard</button>
+                </div> <!--End of level-selection-->
+
+                <div id="menu">
+                    <button onclick="checkSolution()">SUBMIT</button>
+                    <button id="hint" onclick="hint()">HINT</button>
+                    <button onclick="reset()">RESET</button>
+                </div> <!--End of stats-->
+
+            </div>
 
             <div id="puzzle-container">
                 <table id="puzzle">
@@ -298,12 +315,6 @@
                     </tr>
                 </table> <!--End of puzzle-->
             </div> <!--End of puzzle-container-->
-
-            <div id="menu">
-                <button onclick="checkSolution()">SUBMIT</button>
-                <button id="hint" onclick="hint()">HINT</button>
-                <button onclick="reset()">RESET</button>
-            </div> <!--End of stats-->
 
             <div id="numPad">
                 Number pad goes here
