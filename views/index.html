@@ -187,12 +187,19 @@
               text-align: center;
           }
 
+          .button-container {
+              width: 100%;
+              float: left;
+              margin-bottom: .5em;
+              text-align: center;
+          }
+
           #numPad button {
               width: 25%;
               float: left;
               padding: 1em;
-              margin-right: .5em;
           }
+
         </style>
     </head>
     <body>
@@ -325,15 +332,21 @@
             </div> <!--End of div:puzzle-container-->
 
             <div id="numPad">
-                <button type="button" onclick="inputNumber(1)">1</button>
-                <button type="button" onclick="inputNumber(2)">2</button>
-                <button type="button" onclick="inputNumber(3)">3</button>
-                <button type="button" onclick="inputNumber(4)">4</button>
-                <button type="button" onclick="inputNumber(5)">5</button>
-                <button type="button" onclick="inputNumber(6)">6</button>
-                <button type="button" onclick="inputNumber(7)">7</button>
-                <button type="button" onclick="inputNumber(8)">8</button>
-                <button type="button" onclick="inputNumber(9)">9</button>
+                <div class="button-container">
+                    <button type="button" onclick="inputNumber(1)">1</button>
+                    <button type="button" onclick="inputNumber(2)">2</button>
+                    <button type="button" onclick="inputNumber(3)">3</button>
+                </div>
+                <div class="button-container">
+                    <button type="button" onclick="inputNumber(4)">4</button>
+                    <button type="button" onclick="inputNumber(5)">5</button>
+                    <button type="button" onclick="inputNumber(6)">6</button>
+                </div>
+                <div class="button-container">
+                    <button type="button" onclick="inputNumber(7)">7</button>
+                    <button type="button" onclick="inputNumber(8)">8</button>
+                    <button type="button" onclick="inputNumber(9)">9</button>
+                </div>
             </div> <!--End of div:numPad-->
 
         </div>
