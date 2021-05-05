@@ -371,8 +371,7 @@
           // Allow user to input a value in an empty square using an on-screen number pad
           function inputNumber(number) {
             var activate = document.getElementsByClassName("active");
-            document.getElementById("test").innerText = activate[0].innerHTML;
-            if (activate.innerText < 0) {
+            if (activate.innerText ) {
                 activate[0].innerText = number;
                 activate[0].style.color = "lightgray";
             }
@@ -589,7 +588,7 @@
               // Display starting board based on the elements in startBoard
               startBoard.forEach(element => {
                   var square = "sq-" + (element+1);
-                  document.getElementById(square).innerText = solution[element];
+                  document.getElementById(square).value = solution[element];
                   document.getElementById(square).style.fontWeight = "Bold";
               });
 
