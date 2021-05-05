@@ -47,6 +47,7 @@
               text-align: center;
               font-weight: bold;
               font-size: medium;
+              background-color: inherit;
           }
 
           input:focus {
@@ -146,17 +147,9 @@
               border-right: 3px solid var(--border-color);
           }
     
-          /* ---------- dive:stats Styles ----------*/
-          #stats {
-              width: 25%;
-              float: left;
-              text-align: center;
-              padding: 2em 0;
-          }
-    
           /* ---------- div:menu and Child Elements Styles ---------- */
           #menu {
-              width: 100%;
+              width: 25%;
               float: left;
               padding: 1.5em 0;
               text-align: center;
@@ -302,15 +295,11 @@
                 </table> <!--End of puzzle-->
             </div> <!--End of puzzle-container-->
 
-            <div id="stats">
-                <p>Display Timer, stats by level</p>
-            </div> <!--End of stats-->
-
             <div id="menu">
                 <button onclick="checkSolution()">SUBMIT</button>
                 <button id="hint" onclick="hint()">HINT</button>
                 <button onclick="reset()">RESET</button>
-            </div>
+            </div> <!--End of stats-->
 
             <div id="numPad">
                 Number pad goes here
