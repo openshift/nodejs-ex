@@ -588,7 +588,7 @@
               // Display starting board based on the elements in startBoard
               startBoard.forEach(element => {
                   var square = "sq-" + (element+1);
-                  document.getElementById(square).value = solution[element];
+                  document.getElementById(square).innerText = solution[element];
                   document.getElementById(square).style.fontWeight = "Bold";
               });
 
