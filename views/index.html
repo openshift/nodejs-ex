@@ -621,7 +621,7 @@
 
             // Insert input elements into empty squares
             for (let index = 0; index < 81; index++) {
-                  if (!startBoard.includes(index)) {
+                  if (!puzzle.includes(index)) {
                       var square = "sq-" + (index + 1);
                       document.getElementById(square).innerHTML = "<input type='text' id='input-" 
                       + square + "'>";
