@@ -365,9 +365,6 @@
                     <button type="button" class="number" onclick="inputNumber(8)">8</button>
                     <button type="button" class="number" onclick="inputNumber(9)">9</button>
                 </div>
-                <div class="button-container">
-                    <button type="button" id="clear" onclick="clear()">CLEAR</button>
-                </div>
             </div> <!--End of div:numPad-->
 
         </div>
@@ -395,12 +392,6 @@
             activate[0].innerText = number;
             activate[0].style.color = "DarkSlateGray";
             activate[0].style.fontWeight = "Bold";
-          }
-
-          // Clear a square on request
-          function clear() {
-            var activate = document.getElementsByClassName("active");
-            activate[0].innerText = "";
           }
 
           // Allow user to input a value via keyboard (press)
