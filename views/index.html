@@ -633,13 +633,75 @@
                 userSolution.push(squareValue);
             }
 
+            // Run solved function on call
+            function solved() {
+                
+                // Check if userSolution and validSolution are equal
+                var incorrect = 0;
+                for (var i = 0; i < userSolution.length; i++) {
+                    if (userSolution[i] != validSolution[i]) {
+                        incorrect++;
+                    }
+                }
+
+                // Return true if both isValid and incorrect are true and 0 respectively, else return false
+                if (incorrect == 0) {
+                    return true;
+                } else if (incorrect != 0) {
+                    return false;
+                }
+
+            }
+
+            // Check that all elements in userSolution are valid
+            function isValid() {
+
+                // Check to ensure all squares contain a valid entry
+                var isValid = true;
+                var character = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 
+                'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+                for (var i = 0; i < userSolution.length; i++) {
+                    if (character.includes(userSolution[i])) {
+                        isValid = false;
+                    }
+                }
+
+                if (isValid) {
+                    return true;
+                } else if (!isValid) {
+                    return false;
+                }
+
+            }
+
             var message = document.getElementById("message");
-            if (userSolution.includes("")) {
-                message.innerText = "There are still empty squares to fill."
+            if (userSolution.includes("")) { // Check if the userSolution contains an empty squares
+
+                message.innerText = "There are still empty squares to fill.";
                 message.style.visibility = "visible";
                 setTimeout(function() {
                     message.style.visibility = "hidden";
                 }, 6000);
+
+            } else if (!isValid()) { // userSolution contains a non-numeric or invalid value
+
+                message.innerText = "There are one or more invalid characters on the board.";
+                message.style.visibility = "visible";
+                setTimeout(function() {
+                    message.style.visibility = "hidden";
+                }, 6000);
+
+            } else if (!solved()) { // userSolution doesn't match validSolution
+
+                message.innerText = "Try again!";
+                message.style.visibility = "visible";
+                setTimeout(function() {
+                    message.style.visibility = "hidden";
+                }, 6000);
+
+            } else if (solved()) { // userSolution matches to validSolution
+
+                message.innerText = "Great Work! Why not solve another?";
 
             }
           }
