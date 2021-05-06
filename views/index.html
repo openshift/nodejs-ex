@@ -203,6 +203,10 @@
               background-color: var(--border-color);
           }
 
+          #clear {
+              width: 100%;
+          }
+
           /* --------- Delete after development ---------- */
           #test {
               width: 100%;
@@ -212,9 +216,11 @@
         </style>
     </head>
     <body>
+
         <header>
           <h1>Simple Sudoku</h1>
         </header>
+
         <div id="content">
             <div id="message-container">
                 <div id="message">Message to user appears here</div>
@@ -356,11 +362,13 @@
                     <button type="button" onclick="inputNumber(8)">8</button>
                     <button type="button" onclick="inputNumber(9)">9</button>
                 </div>
+                <div class="button-container">
+                    <button type="button" id="clear" onclick="clear()">CLEAR</button>
+                </div>
             </div> <!--End of div:numPad-->
 
-            <div id="test"></div>
-
         </div>
+
         <script>
           // Global variables
           var given = 0;
@@ -384,6 +392,12 @@
             activate[0].innerText = number;
             activate[0].style.color = "DarkSlateGray";
             activate[0].style.fontWeight = "Bold";
+          }
+
+          // Clear a square on request
+          function clear() {
+            var activate = document.getElementsByClassName("active");
+            activate[0].innerText = "";
           }
 
           // Allow user to input a value via keyboard (press)
@@ -767,5 +781,6 @@
 
           }
         </script>
+
     </body>
 </html>
