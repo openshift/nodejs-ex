@@ -551,6 +551,10 @@
           // Generate and display a startBoard based on selected level and generated solution
           function startBoard(level, solution) {
 
+              // Hide message
+              var message = document.getElementById("message");
+              message.style.visibility = "hidden";
+              
               // Reset hints
               hints = [];
 
@@ -702,6 +706,7 @@
             } else if (solved()) { // userSolution matches to validSolution
 
                 message.innerText = "Great Work! Why not solve another?";
+                message.style.visibility = "visible";
 
             }
           }
