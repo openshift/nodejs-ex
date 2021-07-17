@@ -1,1 +1,1 @@
-
+This is the file talks about views in the project
